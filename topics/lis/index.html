@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIS — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Longest Increasing Subsequence (LIS)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>LIS</strong> = ลำดับย่อยที่ <em>เพิ่มขึ้น</em> และ <em>ยาวที่สุด</em> (ไม่ต้องติดกัน) ในอาเรย์
+          เช่น [10, 9, <b>2, 5, 7, 18</b>] มี LIS ยาว 4
+        </p>
+        <p>
+          DP: <code>dp[i]</code> = ความยาว LIS ที่ <em>จบที่ตำแหน่ง i</em> ·
+          <code>dp[i] = 1 + max(dp[j])</code> สำหรับทุก j &lt; i ที่ <code>A[j] &lt; A[i]</code> (ถ้าไม่มีก็เป็น 1)
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(n²) แบบนี้ (มีวิธี O(n log n) ด้วย binary search) · ตัวเลขใต้กล่อง = dp[i]</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="lis-values" value="10,9,2,5,3,7,101,18" placeholder="ค่า">
+          <button class="vp__btn vp__btn--primary" id="lis-run">▶ คำนวณ</button>
+          <button class="vp__btn" id="lis-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ตัวที่กำลังคิด (i)</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> ตัวที่เทียบ (j)</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> LIS ที่ได้</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

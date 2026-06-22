@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floyd-Warshall — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Floyd-Warshall (เส้นทางสั้นสุดทุกคู่)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Floyd-Warshall</strong> หาเส้นทางสั้นสุด <em>ระหว่างทุกคู่โหนด</em> พร้อมกัน ด้วย DP บนตารางระยะทาง:
+          ลองให้แต่ละโหนด k เป็น <em>"จุดพักกลางทาง"</em> แล้วถามว่า "ไป i→k→j สั้นกว่า i→j เดิมไหม?"
+        </p>
+        <p>
+          <code>dist[i][j] = min( dist[i][j],  dist[i][k] + dist[k][j] )</code> ทำสำหรับทุก k, i, j
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(V³) · เข้าใจง่าย เขียนสั้น · เหมาะกับกราฟเล็ก-กลางที่ต้องการระยะทุกคู่ ·
+          รองรับน้ำหนักลบ (แต่ห้ามมี negative cycle)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="fw-run">▶ คำนวณ</button></div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ช่อง dist[i][j] ที่กำลังคิด</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> ช่องที่ใช้ (ผ่าน k)</span>
+        </div>
+        <div id="fwviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

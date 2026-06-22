@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Union-Find — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Union-Find (Disjoint Set)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Union-Find</strong> จัดการกลุ่ม (set) ที่ไม่ทับซ้อนกัน เก็บด้วยอาเรย์ <code>parent[]</code>
+          แต่ละสมาชิกชี้ไปยัง "พ่อ" จนถึงตัวแทนกลุ่ม (root) ที่ชี้ตัวเอง มี 2 การทำงานหลัก:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>find(x)</strong>: ตามตัวชี้ขึ้นไปจน root → บอกว่า x อยู่กลุ่มไหน</li>
+          <li><strong>union(a,b)</strong>: รวมกลุ่มของ a และ b เข้าด้วยกัน (ให้ root หนึ่งชี้อีก root)</li>
+        </ul>
+        <p style="margin-bottom:0">
+          <strong>Path compression</strong> ทำให้ตัวบนเส้นทางชี้ตรงไป root เลย เร็วขึ้นมาก ·
+          ความซับซ้อนเฉลี่ยเกือบ O(1) (α(n)) · ใช้ใน Kruskal MST, ตรวจ connected components
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="uf-a" placeholder="a" class="sv-target-input" style="flex:0 0 70px">
+          <input type="text" id="uf-b" placeholder="b" class="sv-target-input" style="flex:0 0 70px">
+          <button class="vp__btn vp__btn--primary" id="uf-union">🔗 union(a,b)</button>
+          <button class="vp__btn" id="uf-find">🔍 find(a)</button>
+          <button class="vp__btn" id="uf-demo">▶ เดโม</button>
+          <button class="vp__btn" id="uf-reset">♻️ รีเซ็ต</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

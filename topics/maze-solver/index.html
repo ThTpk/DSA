@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maze Solver — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Maze Solver (หาทางออกเขาวงกต)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          หาทางจากจุดเริ่ม (S) ไปจุดออก (E) ด้วย <strong>Backtracking / DFS</strong>: เดินลงลึกไปทางหนึ่งเรื่อยๆ
+          ถ้าเจอทางตัน (กำแพงล้อม หรือเดินวน) ก็ <em>ถอยกลับ (backtrack)</em> มาลองทางอื่น จนเจอทางออก
+        </p>
+        <p style="margin-bottom:0">
+          <strong>เกี่ยวข้องกับ:</strong> DFS บนกราฟ · ถ้าต้องการเส้นทาง <em>สั้นสุด</em> ใช้ BFS แทน ·
+          ความซับซ้อน O(จำนวนช่อง)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="mz-run">▶ หาทางออก</button>
+          <button class="vp__btn" id="mz-random">🎲 เขาวงกตใหม่</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#f59e0b"></i> กำลังอยู่</span>
+          <span><i class="swatch" style="background:#cbd5e1"></i> เคยลอง (ตัน)</span>
+          <span><i class="swatch" style="background:#10b981"></i> เส้นทางออก</span>
+          <span><i class="swatch" style="background:#334155"></i> กำแพง</span>
+        </div>
+        <div id="mzviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

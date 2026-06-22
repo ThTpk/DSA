@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prim's MST — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Minimum Spanning Tree (Prim's)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Prim's</strong> สร้าง MST โดย <em>ขยายต้นไม้จากโหนดเดียว</em> (ต่างจาก Kruskal ที่หยิบเส้นทั่วกราฟ):
+          แต่ละรอบเลือก <strong>เส้นน้ำหนักน้อยสุดที่เชื่อมต้นไม้กับโหนดนอกต้นไม้</strong> แล้วดึงโหนดนั้นเข้ามา
+          ทำซ้ำจนครบทุกโหนด
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(E log V) ด้วย min-heap · ได้ MST น้ำหนักรวมเท่ากับ Kruskal</p>
+      </div>
+      <div class="card">
+        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="g-run">▶ รัน Prim (เริ่มที่ A)</button></div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> อยู่ในต้นไม้แล้ว</span>
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> เส้นที่กำลังพิจารณา</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom Filter — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Bloom Filter (ตัวกรองบลูม)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Bloom Filter</strong> เช็กว่าสมาชิก "เคยถูกเพิ่มไหม" โดยใช้หน่วยความจำน้อยมาก ด้วย
+          <em>บิตอาเรย์</em> + <em>hash function หลายตัว (k)</em>:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>add(x)</strong>: คำนวณ k ตำแหน่งจาก hash แล้วตั้งบิตเป็น 1</li>
+          <li><strong>query(x)</strong>: ถ้าบิตทั้ง k ตำแหน่งเป็น 1 → "อาจมี", ถ้ามีตัวใดเป็น 0 → "ไม่มีแน่นอน"</li>
+        </ul>
+        <p style="margin-bottom:0">
+          <strong>จุดเด่น:</strong> ประหยัดพื้นที่สุดๆ, เช็กเร็ว O(k) · <strong>ข้อแลก:</strong> อาจ "false positive"
+          (บอกว่ามีทั้งที่ไม่มี) แต่ <em>ไม่มี false negative</em> · ใช้ใน cache, ฐานข้อมูล, เว็บเบราว์เซอร์
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="bf-word" placeholder="คำ (a-z)" class="sv-target-input" style="flex:0 0 200px">
+          <button class="vp__btn vp__btn--primary" id="bf-add">➕ add</button>
+          <button class="vp__btn" id="bf-query">🔍 query</button>
+          <button class="vp__btn" id="bf-reset">♻️ ล้าง</button>
+        </div>
+        <div style="color:var(--c-muted);margin-bottom:8px" id="bf-added">เพิ่มแล้ว: —</div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

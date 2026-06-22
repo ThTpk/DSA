@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Quick Sort (การเรียงแบบเร็ว)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Quick Sort</strong> เลือกค่าหนึ่งเป็น <em>pivot</em> (ในที่นี้ใช้ตัวขวาสุด)
+          แล้ว <strong>แบ่งพาร์ทิชัน (partition)</strong>: ย้ายตัวที่น้อยกว่า pivot ไปอยู่ซ้าย
+          ตัวที่มากกว่าไปอยู่ขวา จากนั้นวาง pivot ลงตำแหน่งที่ถูกต้อง แล้ว <em>เรียกซ้ำ</em>
+          กับสองฝั่งที่เหลือ
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลาเฉลี่ย O(n log n), แย่สุด O(n²) (เมื่อ pivot ไม่ดี) ·
+          พื้นที่ O(log n) · <em>in-place</em> แต่ <em>ไม่ stable</em>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          💡 ในภาพ: แท่งสีม่วงคือ <em>pivot</em> · สีส้มคือตัวที่กำลังเทียบ · สีแดงคือการสลับ
+        </p>
+      </div>
+
+      <div class="card"><div id="sortviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SortViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

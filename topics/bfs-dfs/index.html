@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BFS & DFS — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>BFS &amp; DFS (การท่องกราฟ)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>BFS (Breadth-First Search)</strong> ท่องกราฟแบบ <em>แผ่กว้างทีละชั้น</em> ใช้ <em>คิว (queue)</em>
+          เยี่ยมเพื่อนบ้านทั้งหมดก่อนค่อยลงลึก — ใช้หาเส้นทางสั้นสุดบนกราฟไม่มีน้ำหนัก
+        </p>
+        <p style="margin-bottom:0">
+          <strong>DFS (Depth-First Search)</strong> ท่องแบบ <em>ลงลึกก่อน</em> ใช้ <em>สแตก/การเรียกซ้ำ</em>
+          ไปจนสุดทางแล้วค่อยถอยกลับ — ใช้ตรวจวงจร, topological sort, หา connected components ·
+          ทั้งคู่ใช้เวลา O(V + E)
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">เริ่มที่โหนด:</label>
+          <input type="text" id="g-start" value="A" class="sv-target-input" style="flex:0 0 80px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="g-bfs">▶ BFS</button>
+          <button class="vp__btn vp__btn--primary" id="g-dfs">▶ DFS</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังเยี่ยม</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> อยู่ใน queue/stack</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เยี่ยมแล้ว</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

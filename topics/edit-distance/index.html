@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Distance — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Edit Distance (Levenshtein)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Edit Distance</strong> = จำนวนการแก้ไขน้อยที่สุดในการเปลี่ยนสตริงหนึ่งเป็นอีกสตริง
+          โดยใช้ 3 การกระทำ: <em>แทรก (insert)</em>, <em>ลบ (delete)</em>, <em>แทนที่ (replace)</em>
+        </p>
+        <p>
+          <code>dp[i][j]</code> = ระยะแก้ไขระหว่าง s1[0..i] กับ s2[0..j] · กฎ:
+        </p>
+        <ul style="margin-top:0">
+          <li>ตัวอักษรตรงกัน → <code>dp[i-1][j-1]</code> (ไม่ต้องแก้)</li>
+          <li>ไม่ตรง → <code>1 + min(</code>แทนที่ dp[i-1][j-1], ลบ dp[i-1][j], แทรก dp[i][j-1]<code>)</code></li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ใช้ใน:</strong> ตรวจคำสะกด, autocorrect, diff, ชีวสารสนเทศ (DNA) · O(m·n)</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="ed-s1" value="kitten" placeholder="สตริง 1" class="sv-target-input" style="flex:0 0 160px">
+          <input type="text" id="ed-s2" value="sitting" placeholder="สตริง 2" class="sv-target-input" style="flex:0 0 160px">
+          <button class="vp__btn vp__btn--primary" id="ed-run">▶ เติมตาราง</button>
+        </div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

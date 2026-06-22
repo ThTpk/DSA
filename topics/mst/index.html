@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MST (Kruskal) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Minimum Spanning Tree (Kruskal)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>MST</strong> คือต้นไม้ที่เชื่อมทุกโหนดเข้าด้วยกันโดยใช้ <em>น้ำหนักรวมน้อยที่สุด</em> และไม่มีวงจร
+          <strong>Kruskal</strong> ใช้หลัก greedy: เรียงเส้นตามน้ำหนักจากน้อยไปมาก แล้วค่อยๆ หยิบเส้นที่
+          <em>ไม่ทำให้เกิดวงจร</em> (ใช้ Union-Find ตรวจ) จนเชื่อมครบทุกโหนด (V−1 เส้น)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(E log E) (หลักๆ คือการเรียงเส้น) · ใช้วางสายเครือข่าย/ถนนให้ประหยัดที่สุด
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="g-run">▶ รัน Kruskal</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังพิจารณา</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> อยู่ใน MST</span>
+          <span><i class="swatch" style="background:var(--c-border)"></i> ข้าม (เกิดวงจร)</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Visualizer — เรียนรู้โครงสร้างข้อมูลและอัลกอริทึม</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <style>
+    .hero {
+      background: linear-gradient(135deg, var(--c-primary-dark), var(--c-accent));
+      color: #fff;
+      padding: 56px 40px;
+      text-align: center;
+    }
+    .hero h1 { font-size: 2.4rem; margin: 0 0 12px; color: #fff; }
+    .hero p { font-size: 1.1rem; max-width: 640px; margin: 0 auto; opacity: .95; }
+    .home-wrap { max-width: 1100px; margin: 36px auto; padding: 0 24px 80px; }
+    .home-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .home-item {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 14px 16px;
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius-sm);
+      background: var(--c-surface-2);
+    }
+    .home-item__title { font-weight: 600; color: var(--c-text); }
+    .home-item.is-ready { border-color: var(--c-primary); }
+    .home-item.is-ready:hover { background: var(--c-primary-soft); text-decoration: none; transform: translateY(-2px); transition: .15s; }
+    .home-item__go { font-size: .82rem; color: var(--c-primary); font-weight: 600; }
+    .home-item.is-planned { opacity: .65; }
+    .home-item.is-planned .home-item__title { color: var(--c-muted); }
+    .intro-note {
+      background: var(--c-primary-soft);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      color: var(--c-primary-dark);
+      font-size: .95rem;
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+
+  <section class="hero">
+    <h1>🧠 เรียนรู้ Data Structure &amp; Algorithm</h1>
+    <p>เครื่องมือจำลองแบบโต้ตอบ ช่วยให้นักศึกษาเห็นการทำงานของโครงสร้างข้อมูลและอัลกอริทึมทีละขั้นตอน เข้าใจทฤษฎีพื้นฐานได้ง่ายขึ้น</p>
+  </section>
+
+  <main class="home-wrap">
+    <div class="intro-note">
+      💡 <strong>วิธีใช้:</strong> เลือกหัวข้อด้านล่าง แล้วกดปุ่ม <strong>เล่น</strong> เพื่อดูภาพเคลื่อนไหว
+      หรือกด <strong>เดิน</strong> เพื่อก้าวทีละขั้น ปรับความเร็วและใส่ข้อมูลเองได้
+    </div>
+    <div id="course-map"></div>
+  </main>
+
+  <script src="assets/js/data/topics.js"></script>
+  <script src="assets/js/core/ui.js"></script>
+  <script>
+    DSA.UI.mountNavbar('navbar');
+    DSA.UI.mountHome('course-map');
+  </script>
+</body>
+</html>

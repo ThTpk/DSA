@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic Programming (LCS) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Dynamic Programming — LCS</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Dynamic Programming (DP)</strong> แก้ปัญหาโดยแบ่งเป็นปัญหาย่อยที่ซ้อนทับกัน
+          แล้ว <em>เก็บคำตอบของปัญหาย่อยไว้ในตาราง</em> เพื่อไม่คำนวณซ้ำ
+        </p>
+        <p>
+          ตัวอย่าง <strong>Longest Common Subsequence (LCS)</strong> — หาลำดับย่อยที่ยาวที่สุดที่ปรากฏใน
+          ทั้งสองสตริง (ไม่ต้องติดกัน) กฎเติมตาราง:
+        </p>
+        <ul style="margin-top:0">
+          <li>ถ้าตัวอักษรตรงกัน: <code>dp[i][j] = dp[i-1][j-1] + 1</code> (มุมทแยงบนซ้าย +1)</li>
+          <li>ถ้าไม่ตรง: <code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code> (มากกว่าระหว่างบนกับซ้าย)</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> เวลา O(m·n) · พื้นที่ O(m·n)</p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="dp-s1" value="ABCB" placeholder="สตริง 1" class="sv-target-input" style="flex:0 0 150px;text-transform:uppercase">
+          <input type="text" id="dp-s2" value="BDCB" placeholder="สตริง 2" class="sv-target-input" style="flex:0 0 150px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="dp-run">▶ เติมตาราง</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ช่องที่กำลังคิด</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> ช่องที่ใช้คำนวณ</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เส้นทาง LCS</span>
+        </div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

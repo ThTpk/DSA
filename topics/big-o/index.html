@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Big-O — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+  <style>
+    .bigo-axis path, .bigo-axis line { stroke: var(--c-border); }
+    .bigo-axis text { fill: var(--c-muted); font-family: var(--font-mono); font-size: 11px; }
+    .bigo-line { fill: none; stroke-width: 2.5; }
+    .bigo-table { border-collapse: collapse; font-family: var(--font-mono); font-size: 13px; width: 100%; }
+    .bigo-table th, .bigo-table td { border: 1px solid var(--c-border); padding: 5px 8px; text-align: left; }
+    .bigo-table th { background: var(--c-surface-2); color: var(--c-muted); }
+    .bigo-swatch { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: middle; }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 0 · พื้นฐานการวิเคราะห์</div>
+        <h1>Big-O Notation (อัตราการเติบโต)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Big-O</strong> อธิบายว่าเวลา/หน่วยความจำที่อัลกอริทึมใช้ <em>เติบโตเร็วแค่ไหน</em>
+          เมื่อขนาดข้อมูล n ใหญ่ขึ้น โดยมองที่แนวโน้มหลัก (ตัด constant และพจน์เล็กทิ้ง)
+          ยิ่งโตช้า ยิ่งดี: <code>O(1) &lt; O(log n) &lt; O(n) &lt; O(n log n) &lt; O(n²) &lt; O(2ⁿ)</code>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          💡 เลื่อน n ดูว่าจำนวนการทำงานต่างกันมหาศาลแค่ไหน (แกนตั้งเป็น log scale)
+        </p>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap">
+          <label style="color:var(--c-muted)">ขนาดข้อมูล n =</label>
+          <input type="range" id="bigo-n" min="2" max="40" value="16" style="flex:1 1 240px;accent-color:var(--c-primary)">
+          <b id="bigo-nval" style="font-family:var(--font-mono);font-size:1.2rem;color:var(--c-primary)">16</b>
+        </div>
+        <div class="viz-grid">
+          <div><div class="viz-stage"><svg id="bigo-svg" viewBox="0 0 640 400" preserveAspectRatio="xMidYMid meet"></svg></div></div>
+          <div><div id="bigo-table"></div></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

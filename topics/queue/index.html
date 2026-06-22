@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Queue — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Queue (คิว)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Queue</strong> ทำงานแบบ <em>FIFO</em> (First In, First Out) — เข้าก่อนออกก่อน เหมือนคนต่อแถว
+          เพิ่ม (enqueue) ที่ <strong>ท้าย (rear)</strong> และเอาออก (dequeue) ที่ <strong>หน้า (front)</strong>
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> enqueue / dequeue = O(1) · ใช้กับ: BFS, จัดคิวงาน, บัฟเฟอร์ ·
+          <span style="color:var(--c-muted)">หมายเหตุ: ของจริงนิยมใช้ <em>circular queue</em> เลื่อนตัวชี้แทนการขยับสมาชิก</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="qu-val" placeholder="ค่าที่จะ enqueue" class="sv-target-input" style="flex:0 0 170px">
+          <button class="vp__btn vp__btn--primary" id="qu-enq">➡️ enqueue</button>
+          <button class="vp__btn" id="qu-deq">⬅️ dequeue</button>
+          <button class="vp__btn" id="qu-reset">♻️ รีเซ็ต</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

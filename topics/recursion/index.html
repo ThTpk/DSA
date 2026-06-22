@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recursion — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 0 · พื้นฐานการวิเคราะห์</div>
+        <h1>Recursion (การเรียกซ้ำ)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Recursion</strong> คือฟังก์ชันที่เรียกตัวเอง เพื่อแก้ปัญหาโดยลดให้เล็กลงเรื่อยๆ จนถึง
+          <em>กรณีฐาน (base case)</em> ที่ตอบได้ทันที แล้วผลลัพธ์จะ "คืนค่า" ย้อนกลับขึ้นมาประกอบกัน
+        </p>
+        <p>
+          แต่ละครั้งที่เรียก ระบบจะเก็บสถานะไว้ใน <strong>call stack</strong> (ซ้อนขึ้นไป) เมื่อถึงฐานก็ทยอย
+          คืนค่าและ pop ออกจาก stack ตัวอย่าง: <code>factorial(n) = n × factorial(n−1)</code>, ฐาน <code>factorial(1) = 1</code>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          ⚠️ ต้องมีกรณีฐานเสมอ ไม่งั้นจะเรียกไม่รู้จบ (stack overflow)
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">คำนวณ factorial(</label>
+          <input type="text" id="rc-n" value="5" class="sv-target-input" style="flex:0 0 70px">
+          <label style="align-self:center;color:var(--c-muted)">)</label>
+          <button class="vp__btn vp__btn--primary" id="rc-run">▶ เรียกซ้ำ</button>
+        </div>
+        <div id="rcviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

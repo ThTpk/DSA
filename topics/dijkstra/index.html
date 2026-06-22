@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dijkstra — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Dijkstra (เส้นทางสั้นที่สุด)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Dijkstra</strong> หาเส้นทางสั้นที่สุดจากจุดเริ่มไปทุกโหนด บนกราฟที่ <em>น้ำหนักเส้นไม่ติดลบ</em>
+          หลักการ greedy: เลือกโหนดที่มีระยะทางสะสมน้อยที่สุดที่ยังไม่ยืนยัน มา "ยืนยัน" แล้ว <em>relax</em>
+          (ปรับระยะทาง) เพื่อนบ้านของมัน ทำซ้ำจนครบ
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O((V+E) log V) เมื่อใช้ priority queue (min-heap) ·
+          ตัวเลขใต้โหนด = ระยะทางสั้นสุดจากจุดเริ่มที่พบจนถึงตอนนี้
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">เริ่มที่โหนด:</label>
+          <input type="text" id="g-start" value="A" class="sv-target-input" style="flex:0 0 80px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="g-run">▶ รัน Dijkstra</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังยืนยัน</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> ยืนยันแล้ว</span>
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> เส้นที่กำลัง relax</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hash Table — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Hash Table (ตารางแฮช)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Hash Table</strong> เก็บข้อมูลโดยใช้ <em>hash function</em> คำนวณตำแหน่ง (bucket) จาก key
+          ทำให้เข้าถึงได้เร็วเฉลี่ย O(1) เมื่อ key สองตัวได้ตำแหน่งเดียวกัน เรียกว่า <strong>collision</strong>
+          วิธีแก้ที่ใช้ในตัวอย่างนี้คือ <em>chaining</em> (ต่อกันเป็น linked list ในแต่ละ bucket)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> insert / search / delete เฉลี่ย O(1), แย่สุด O(n) เมื่อ collision เยอะ ·
+          ใช้ทำ dictionary, set, cache · ในตัวอย่าง <code>hash(key) = key % 7</code>
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="ht-keys" placeholder="key เช่น 10,17,3,24,8">
+          <button class="vp__btn vp__btn--primary" id="ht-build">สร้างตาราง</button>
+          <button class="vp__btn" id="ht-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="ht-key" placeholder="key" class="sv-target-input" style="flex:0 0 110px">
+          <button class="vp__btn" id="ht-insert">➕ insert</button>
+          <button class="vp__btn" id="ht-search">🔍 search</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

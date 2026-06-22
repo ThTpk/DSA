@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heap (Min-Heap) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>Heap (Min-Heap)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Heap</strong> คือต้นไม้ทวิภาคแบบสมบูรณ์ (complete binary tree) ที่มีกติกา
+          <em>Min-Heap: ทุกโหนดต้องมีค่าน้อยกว่าหรือเท่ากับลูกของมัน</em> ดังนั้นค่าน้อยที่สุดอยู่ที่ราก
+          เก็บได้ด้วยอาเรย์ (ลูกของ index i อยู่ที่ 2i+1 และ 2i+2)
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>insert</strong>: เพิ่มที่ท้าย แล้ว <em>sift-up</em> (ลอยขึ้นโดยสลับกับพ่อถ้าพ่อมากกว่า)</li>
+          <li><strong>extract-min</strong>: เอารากออก ย้ายตัวสุดท้ายมาราก แล้ว <em>sift-down</em> (จมลงสลับกับลูกที่เล็กกว่า)</li>
+        </ul>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> insert / extract-min = O(log n) · ดูค่าน้อยสุด = O(1) ·
+          ใช้ทำ Priority Queue และ Heap Sort
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="hp-values" placeholder="ค่าเริ่มต้น เช่น 50,30,70,20,40,60,80">
+          <button class="vp__btn vp__btn--primary" id="hp-build">สร้าง Heap</button>
+          <button class="vp__btn" id="hp-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="hp-val" placeholder="ค่าที่จะเพิ่ม" class="sv-target-input" style="flex:0 0 180px">
+          <button class="vp__btn" id="hp-insert">➕ insert</button>
+          <button class="vp__btn" id="hp-extract">⬆️ extract-min</button>
+        </div>
+        <div id="treeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/TreeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

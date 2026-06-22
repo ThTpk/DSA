@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AVL Tree — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>AVL Tree (ต้นไม้ปรับสมดุลเอง)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>AVL Tree</strong> คือ BST ที่รักษาความสมดุล: ทุกโหนดต้องมี
+          <em>ความสูงของซับทรีซ้าย-ขวาต่างกันไม่เกิน 1</em> (เรียกว่า balance factor, bf ∈ {-1,0,1})
+          เมื่อ insert แล้วเสียสมดุล จะ <strong>หมุน (rotation)</strong> เพื่อปรับให้สมดุลกลับมา
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>LL</strong> (เอียงซ้าย-ซ้าย) → หมุนขวา 1 ครั้ง</li>
+          <li><strong>RR</strong> (เอียงขวา-ขวา) → หมุนซ้าย 1 ครั้ง</li>
+          <li><strong>LR / RL</strong> → หมุน 2 ครั้ง (หมุนลูกก่อน แล้วหมุนตัวเอง)</li>
+        </ul>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> search/insert/delete = O(log n) <em>รับประกัน</em> (ต่างจาก BST ธรรมดาที่อาจเอียงเป็นเส้น O(n))
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="avl-values" placeholder="ค่า เช่น 10,20,30,40,50,25">
+          <button class="vp__btn vp__btn--primary" id="avl-build">สร้างต้นไม้</button>
+          <button class="vp__btn" id="avl-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="avl-val" placeholder="ค่าที่จะเพิ่ม" class="sv-target-input" style="flex:0 0 180px">
+          <button class="vp__btn" id="avl-insert">➕ insert</button>
+        </div>
+        <div id="treeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/TreeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

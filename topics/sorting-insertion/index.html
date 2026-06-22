@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insertion Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Insertion Sort (การเรียงแบบแทรก)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Insertion Sort</strong> ทำงานเหมือนการจัดไพ่ในมือ: หยิบไพ่ใบถัดไป
+          แล้ว <em>เลื่อนไปทางซ้าย</em> สลับกับตัวที่มากกว่า จนกว่าจะถึงตำแหน่งที่ถูกต้อง
+          ฝั่งซ้ายจะเรียงเรียบร้อยและขยายขึ้นทีละตัว
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลา O(n²) แย่สุด/เฉลี่ย, O(n) เมื่อเกือบเรียงแล้ว ·
+          พื้นที่ O(1) · <em>stable</em> และ <em>in-place</em> · เหมาะกับข้อมูลน้อยหรือเกือบเรียง
+        </p>
+      </div>
+
+      <div class="card"><div id="sortviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SortViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

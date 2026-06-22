@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stack — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Stack (สแตก)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Stack</strong> ทำงานแบบ <em>LIFO</em> (Last In, First Out) — เข้าทีหลังออกก่อน
+          เพิ่ม (push) และเอาออก (pop) ที่ <strong>ปลายบนสุด (top)</strong> เท่านั้น เหมือนกองจานที่วางซ้อนกัน
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> push / pop / peek = O(1) · ใช้กับ: ตรวจวงเล็บ, undo, เรียกฟังก์ชัน (call stack), DFS
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="st-val" placeholder="ค่าที่จะ push" class="sv-target-input" style="flex:0 0 160px">
+          <button class="vp__btn vp__btn--primary" id="st-push">⬇️ push</button>
+          <button class="vp__btn" id="st-pop">⬆️ pop</button>
+          <button class="vp__btn" id="st-reset">♻️ รีเซ็ต</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

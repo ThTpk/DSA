@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>0/1 Knapsack (DP) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>0/1 Knapsack (ปัญหาเป้สะพายหลัง)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          มีของหลายชิ้น แต่ละชิ้นมี <em>น้ำหนัก</em> และ <em>มูลค่า</em> เป้รับน้ำหนักได้จำกัด
+          เลือกของ (เอาหรือไม่เอา — 0/1) ให้ <strong>มูลค่ารวมมากที่สุด</strong> โดยไม่เกินน้ำหนักที่รับได้
+        </p>
+        <p>
+          DP: <code>dp[i][w]</code> = มูลค่าสูงสุดเมื่อพิจารณาของ i ชิ้นแรก เป้รับได้ w · กฎ:
+        </p>
+        <ul style="margin-top:0">
+          <li>ถ้าชิ้น i หนักเกิน w → <code>dp[i][w] = dp[i-1][w]</code> (เอาไม่ได้)</li>
+          <li>ไม่งั้น → <code>max(dp[i-1][w], dp[i-1][w-wᵢ] + vᵢ)</code> (ไม่เอา vs เอา)</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(n·W) · แถวเขียว = ของที่ถูกเลือก (traceback)</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="kn-w" value="1,3,4,5" placeholder="น้ำหนัก" class="sv-target-input" style="flex:0 0 130px">
+          <input type="text" id="kn-v" value="1,4,5,7" placeholder="มูลค่า" class="sv-target-input" style="flex:0 0 130px">
+          <input type="text" id="kn-cap" value="7" placeholder="ความจุ" class="sv-target-input" style="flex:0 0 90px">
+          <button class="vp__btn vp__btn--primary" id="kn-run">▶ เติมตาราง</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ช่องที่กำลังคิด</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> ช่องที่ใช้คำนวณ</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เส้นทาง/ของที่เลือก</span>
+        </div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

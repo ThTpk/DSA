@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Permutations — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+  <style>
+    .perm-box { display:inline-grid; place-items:center; width:46px; height:46px; margin:3px; border-radius:8px;
+      border:2px solid var(--c-border); font-family:var(--font-mono); font-weight:700; font-size:18px; background:var(--c-surface); }
+    .perm-box.filled { background:var(--c-primary-soft); border-color:var(--c-primary); color:var(--c-primary-dark); }
+    .perm-box.empty { color:var(--c-faint); }
+    .perm-chip { display:inline-block; font-family:var(--font-mono); border:1px solid var(--c-border); border-radius:6px; padding:3px 8px; margin:3px; font-size:.9rem; }
+    .perm-chip.latest { background:var(--viz-sorted); color:#fff; border-color:#059669; }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Permutations (การเรียงสับเปลี่ยน)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          สร้าง <em>ทุกการเรียงลำดับที่เป็นไปได้</em> ของชุดข้อมูล (n ตัว → n! แบบ) ด้วย <strong>Backtracking</strong>:
+          เลือกตัวที่ยังไม่ใช้มาต่อทีละตำแหน่ง พอครบก็บันทึกผล แล้ว <em>ถอยกลับ</em> เปลี่ยนตัวเลือก
+        </p>
+        <p style="margin-bottom:0"><strong>จำนวนผลลัพธ์:</strong> n! · ดู Call Stack เห็นความลึกของการเรียกซ้ำ (= ตำแหน่งที่กำลังเลือก)</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="pm-values" value="1,2,3" placeholder="ค่า เช่น 1,2,3 (สูงสุด 4 ตัว)">
+          <button class="vp__btn vp__btn--primary" id="pm-run">▶ สร้างทั้งหมด</button>
+        </div>
+        <div id="pmviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

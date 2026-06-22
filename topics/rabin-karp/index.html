@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rabin-Karp — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Rabin-Karp (ค้นหาด้วย rolling hash)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Rabin-Karp</strong> เทียบ <em>ค่าแฮช (hash)</em> ของแพตเทิร์นกับหน้าต่างในข้อความแทนการเทียบตัวอักษรทุกตัว
+          ใช้ <strong>rolling hash</strong> เลื่อนหน้าต่างทีละ 1 แล้วอัปเดตแฮชเร็วๆ
+          (ลบตัวที่ออก บวกตัวที่เข้า) ถ้าแฮชตรงค่อย <em>ตรวจตัวอักษรยืนยัน</em> (กัน hash ชนกันโดยบังเอิญ)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เฉลี่ย O(n + m), แย่สุด O(n·m) (เมื่อชนกันบ่อย) ·
+          ในตัวอย่างนี้ใช้ <code>hash = ผลรวมรหัสตัวอักษร</code> · เด่นเรื่องค้นหาหลายแพตเทิร์นพร้อมกัน
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="rk-text" value="AABAACAADAABAABA" placeholder="ข้อความ" style="flex:1 1 240px;text-transform:uppercase">
+          <input type="text" id="rk-pat" value="AABA" placeholder="แพตเทิร์น" class="sv-target-input" style="flex:0 0 140px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="rk-run">▶ ค้นหา</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--search-active)"></i> หน้าต่างปัจจุบัน</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> ตรง</span>
+          <span><i class="swatch" style="background:#fca5a5"></i> ไม่ตรง</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

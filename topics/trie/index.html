@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trie (Prefix Tree) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>Trie (Prefix Tree / ต้นไม้คำนำหน้า)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Trie</strong> คือต้นไม้ที่เก็บคำโดยใช้ <em>ตัวอักษรเป็นเส้นทาง</em> — คำที่มีคำนำหน้า (prefix)
+          เหมือนกันจะใช้เส้นทางช่วงต้นร่วมกัน ทำให้ค้นหาคำหรือ prefix ได้เร็ว โหนดที่เป็น
+          <em>จุดจบคำ</em> จะถูกทำเครื่องหมายไว้ (วงเขียว)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> insert / search = O(L) เมื่อ L คือความยาวคำ (ไม่ขึ้นกับจำนวนคำที่เก็บ) ·
+          ใช้ทำ autocomplete, ตรวจคำสะกด, พจนานุกรม
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="tr-words" placeholder="คำคั่นด้วยจุลภาค เช่น cat,car,card,dog,do">
+          <button class="vp__btn vp__btn--primary" id="tr-build">สร้าง Trie</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="tr-word" placeholder="คำเดี่ยว (a-z)" class="sv-target-input" style="flex:0 0 180px">
+          <button class="vp__btn" id="tr-insert">➕ insert</button>
+          <button class="vp__btn" id="tr-search">🔍 search</button>
+        </div>
+        <div id="trieviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

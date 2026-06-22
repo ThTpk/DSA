@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Topological Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Topological Sort (เรียงลำดับเชิงทอพอโลยี)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          จัดลำดับโหนดในกราฟ <em>มีทิศและไม่มีวงวน (DAG)</em> ให้ทุกลูกศร <strong>ชี้ไปข้างหน้าเสมอ</strong>
+          (ถ้า u→v แล้ว u ต้องมาก่อน v) ใช้กับงานที่มีลำดับก่อนหลัง เช่น ตารางเรียน, build dependencies, สูตรอาหาร
+        </p>
+        <p style="margin-bottom:0">
+          <strong>Kahn's algorithm:</strong> นับ <em>in-degree</em> (ลูกศรเข้า) ของแต่ละโหนด เอาตัวที่ in-degree=0
+          ออกก่อน แล้วลด in-degree ของเพื่อนบ้าน ทำซ้ำ · O(V + E) · ตัวเลขใต้โหนด = in-degree
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="g-run">▶ จัดลำดับ</button></div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> in-degree=0 กำลังเอาออก</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> จัดลำดับแล้ว</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

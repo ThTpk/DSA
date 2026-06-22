@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P / NP — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+  <style>
+    .pnp-svg text { font-family: var(--font-thai); }
+    .pnp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-top: 10px; }
+    .pnp-card { border: 1px solid var(--c-border); border-left-width: 4px; border-radius: var(--radius-sm); padding: 12px 14px; background: var(--c-surface-2); }
+    .pnp-card h3 { margin: 0 0 6px; font-size: 1rem; }
+    .pnp-card p { margin: 0; font-size: .9rem; color: var(--c-muted); }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>P / NP / NP-Complete (เชิงแนวคิด)</h1>
+      </div>
+
+      <div class="card">
+        <h2>คำถามที่ยิ่งใหญ่ที่สุดข้อหนึ่งของวิทยาการคอมพิวเตอร์</h2>
+        <p>
+          ปัญหาบางอย่าง <em>หาคำตอบ</em> ได้เร็ว ปัญหาบางอย่าง <em>ตรวจคำตอบ</em> ได้เร็ว (แต่หายาก)
+          คำถาม <strong>"P = NP ?"</strong> ถามว่า ถ้าตรวจคำตอบได้เร็ว จะหาคำตอบได้เร็วด้วยไหม —
+          ยังไม่มีใครพิสูจน์ได้ (รางวัล 1 ล้านดอลลาร์รออยู่!) ส่วนใหญ่เชื่อว่า <strong>P ≠ NP</strong>
+        </p>
+        <div class="viz-stage" style="display:flex;justify-content:center">
+          <svg class="pnp-svg" viewBox="0 0 500 420" style="max-width:520px">
+            <ellipse cx="250" cy="120" rx="210" ry="95" fill="#fde68a" fill-opacity="0.5" stroke="#f59e0b" stroke-width="2"></ellipse>
+            <ellipse cx="250" cy="270" rx="200" ry="130" fill="#c7d2fe" fill-opacity="0.5" stroke="#6366f1" stroke-width="2"></ellipse>
+            <ellipse cx="195" cy="300" rx="110" ry="80" fill="#a7f3d0" fill-opacity="0.75" stroke="#059669" stroke-width="2"></ellipse>
+            <text x="250" y="60" text-anchor="middle" font-size="20" font-weight="700" fill="#b45309">NP-Hard</text>
+            <text x="345" y="195" text-anchor="middle" font-size="15" font-weight="700" fill="#7c3aed">NP-Complete</text>
+            <text x="345" y="213" text-anchor="middle" font-size="11" fill="#7c3aed">(NP ∩ NP-Hard)</text>
+            <text x="430" y="300" text-anchor="middle" font-size="18" font-weight="700" fill="#4338ca">NP</text>
+            <text x="195" y="305" text-anchor="middle" font-size="22" font-weight="700" fill="#047857">P</text>
+            <text x="250" y="408" text-anchor="middle" font-size="12" fill="var(--c-muted)">แผนภาพภายใต้สมมติฐาน P ≠ NP</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>ความหมายแต่ละกลุ่ม</h2>
+        <div class="pnp-cards">
+          <div class="pnp-card" style="border-left-color:#059669">
+            <h3>P</h3>
+            <p>หาคำตอบได้ในเวลาพหุนาม (เร็ว) เช่น เรียงลำดับ, ค้นหา, เส้นทางสั้นสุด (Dijkstra)</p>
+          </div>
+          <div class="pnp-card" style="border-left-color:#6366f1">
+            <h3>NP</h3>
+            <p>ถ้ามีคำตอบให้ ตรวจว่าถูกได้ในเวลาพหุนาม เช่น Sudoku, ระบายสีกราฟ (ตรวจง่าย หายาก)</p>
+          </div>
+          <div class="pnp-card" style="border-left-color:#7c3aed">
+            <h3>NP-Complete</h3>
+            <p>ปัญหายากที่สุดใน NP — ถ้าแก้ตัวใดตัวหนึ่งได้เร็ว จะแก้ทุกตัวใน NP ได้ เช่น SAT, TSP (แบบตัดสินใจ), Knapsack</p>
+          </div>
+          <div class="pnp-card" style="border-left-color:#f59e0b">
+            <h3>NP-Hard</h3>
+            <p>ยากอย่างน้อยเท่า NP-Complete แต่อาจไม่อยู่ใน NP (ตรวจคำตอบก็อาจยาก) เช่น Halting Problem</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>ตัวอย่างปัญหา</h2>
+        <table class="adj-matrix" style="width:100%">
+          <tr><th style="width:55%">ปัญหา</th><th>กลุ่ม</th></tr>
+          <tr><td style="text-align:left;padding:6px 10px">เรียงลำดับตัวเลข / Binary Search</td><td>P</td></tr>
+          <tr><td style="text-align:left;padding:6px 10px">หาเส้นทางสั้นสุด (Dijkstra)</td><td>P</td></tr>
+          <tr><td style="text-align:left;padding:6px 10px">Boolean Satisfiability (SAT)</td><td>NP-Complete</td></tr>
+          <tr><td style="text-align:left;padding:6px 10px">Traveling Salesman (แบบตัดสินใจ)</td><td>NP-Complete</td></tr>
+          <tr><td style="text-align:left;padding:6px 10px">0/1 Knapsack</td><td>NP-Complete</td></tr>
+          <tr><td style="text-align:left;padding:6px 10px">Halting Problem (ตัดสินว่าโปรแกรมหยุดไหม)</td><td>NP-Hard (แก้ไม่ได้เลย)</td></tr>
+        </table>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script>DSA.UI.mountNavbar('navbar'); DSA.UI.mountSidebar('sidebar', 'p-np');</script>
+</body>
+</html>

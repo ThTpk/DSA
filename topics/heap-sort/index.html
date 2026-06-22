@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heap Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Heap Sort (การเรียงด้วยฮีป)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Heap Sort</strong> ใช้โครงสร้าง <em>Max-Heap</em> ช่วยเรียง 2 ขั้น:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>สร้าง Max-Heap</strong> จากอาเรย์ (heapify จากล่างขึ้นบน) — ค่ามากสุดลอยไปที่ราก (index 0)</li>
+          <li><strong>ดึงค่ามากสุด</strong> สลับไปไว้ท้าย แล้วลดขนาด heap ทำ sift-down ซ่อม heap ทำซ้ำจนหมด</li>
+        </ul>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(n log n) ทุกกรณี · พื้นที่ O(1) (in-place) · ไม่ stable ·
+          มองอาเรย์เป็นต้นไม้: ลูกของ index i คือ 2i+1 และ 2i+2
+        </p>
+      </div>
+
+      <div class="card"><div id="sortviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SortViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

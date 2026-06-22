@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sieve of Eratosthenes — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Sieve of Eratosthenes (ตะแกรงหาจำนวนเฉพาะ)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          หา <strong>จำนวนเฉพาะ</strong> ทั้งหมดถึง N อย่างรวดเร็ว: เริ่มจากจำนวนเฉพาะตัวแรก (2)
+          แล้ว <em>ขีดฆ่าพหุคูณ</em> ของมันทั้งหมด (4, 6, 8, ...) เพราะมีตัวประกอบ → ไม่ใช่จำนวนเฉพาะ
+          เลื่อนไปจำนวนถัดไปที่ยังไม่ถูกขีด (เป็นจำนวนเฉพาะ) แล้วทำซ้ำ
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(N log log N) — เร็วมาก · เริ่มขีดจาก p² ได้ (ตัวเล็กกว่าถูกขีดไปแล้ว) ·
+          <span style="color:var(--viz-sorted);font-weight:700">เขียว = จำนวนเฉพาะ</span>, เทา = ถูกขีด
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="sv-run">▶ ร่อนตะแกรง</button></div>
+        <div id="sieveviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

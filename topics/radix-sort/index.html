@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radix Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Radix Sort (การเรียงตามหลัก)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Radix Sort</strong> เรียงจำนวนเต็มทีละหลัก จาก <em>หลักหน่วย → สิบ → ร้อย</em> (LSD)
+          แต่ละรอบใช้การแจกเข้า <em>ถัง 0–9</em> ตามเลขหลักนั้นแบบ <strong>เสถียร (stable)</strong>
+          แล้วเก็บกลับตามลำดับถัง พอครบทุกหลักก็เรียงเสร็จ
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(d·(n + b)) เมื่อ d = จำนวนหลัก, b = ฐาน (10) ·
+          เร็วมากเมื่อเลขไม่ยาว · ใช้ Counting Sort เป็นตัวช่วยในแต่ละหลัก
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="rx-values" value="170,45,75,90,2,802,24,66" placeholder="จำนวนเต็มบวก">
+          <button class="vp__btn vp__btn--primary" id="rx-run">▶ เรียง</button>
+          <button class="vp__btn" id="rx-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> หลักที่กำลังดู (sub = เลขหลักนั้น)</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

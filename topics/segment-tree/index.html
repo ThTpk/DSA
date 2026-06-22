@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Segment Tree — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>Segment Tree (ต้นไม้ช่วง)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Segment Tree</strong> ใช้ตอบคำถามแบบ <em>ช่วง (range query)</em> เช่น "ผลรวม/ค่าน้อยสุดของ A[l..r]"
+          ได้เร็ว O(log n) และยัง <em>แก้ค่า (update)</em> ได้เร็วด้วย แต่ละโหนดเก็บผลสรุปของช่วงหนึ่ง
+          รากครอบทั้งอาเรย์ ใบคือสมาชิกเดี่ยว โหนดพ่อ = รวมผลของลูกซ้าย+ขวา
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> build O(n) · query ช่วง O(log n) · update จุด O(log n) ·
+          ใช้ในงานที่มีทั้งถามช่วงและแก้ค่าบ่อยๆ
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="sg-values" value="2,5,1,4,9,3" placeholder="ค่า เช่น 2,5,1,4,9,3">
+          <button class="vp__btn vp__btn--primary" id="sg-build">สร้าง</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="sg-l" placeholder="l" class="sv-target-input" style="flex:0 0 70px">
+          <input type="text" id="sg-r" placeholder="r" class="sv-target-input" style="flex:0 0 70px">
+          <button class="vp__btn" id="sg-query">🔍 query sum [l..r]</button>
+          <input type="text" id="sg-i" placeholder="i" class="sv-target-input" style="flex:0 0 70px">
+          <input type="text" id="sg-v" placeholder="ค่าใหม่" class="sv-target-input" style="flex:0 0 90px">
+          <button class="vp__btn" id="sg-update">✏️ update A[i]</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังลงลึก/ซ้อนบางส่วน</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> ช่วงที่นำมาตอบ</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> นอกช่วง (ข้าม)</span>
+        </div>
+        <div id="treeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/TreeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

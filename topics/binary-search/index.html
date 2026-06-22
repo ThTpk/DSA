@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Search — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Binary Search (การค้นหาแบบทวิภาค)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Binary Search</strong> ใช้ได้กับข้อมูลที่ <em>เรียงลำดับแล้ว</em> เท่านั้น
+          ดูที่ค่ากลาง (mid) ของช่วง ถ้าตรงก็จบ ถ้า target น้อยกว่าก็ <strong>ตัดครึ่งขวาทิ้ง</strong>
+          ถ้ามากกว่าก็ <strong>ตัดครึ่งซ้ายทิ้ง</strong> ทำให้ขนาดที่ต้องค้นเหลือครึ่งเดียวทุกครั้ง
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลา O(log n) — เร็วกว่า Linear Search มากเมื่อข้อมูลใหญ่ ·
+          พื้นที่ O(1) · <em>ข้อแม้: ข้อมูลต้องเรียงก่อน</em>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          💡 ตัวชี้: <b style="color:#2563eb">lo</b> = ขอบซ้าย · <b style="color:#f59e0b">mid</b> = ตัวที่เทียบ · <b style="color:#8b5cf6">hi</b> = ขอบขวา
+        </p>
+      </div>
+
+      <div class="card"><div id="searchviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SearchViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

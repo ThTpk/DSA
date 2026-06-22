@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counting Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Counting Sort (การเรียงแบบนับ)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Counting Sort</strong> เรียงโดย <em>ไม่เปรียบเทียบ</em> เหมาะกับจำนวนเต็มช่วงแคบ:
+          นับว่าค่าแต่ละตัวมีกี่ครั้งลงในอาเรย์ <code>count[]</code> แล้วไล่ค่าจากน้อยไปมาก
+          เติมลง output ตามจำนวนที่นับได้ — ได้ผลเรียงทันที
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(n + k) เมื่อ k คือช่วงของค่า · เร็วมากเมื่อ k ไม่ใหญ่ ·
+          แต่เปลืองพื้นที่ถ้าค่ากระจายกว้าง
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="cs-values" value="4,2,2,8,3,3,1" placeholder="จำนวนเต็ม 0-15 เช่น 4,2,2,8,3,3,1">
+          <button class="vp__btn vp__btn--primary" id="cs-run">▶ เรียง</button>
+          <button class="vp__btn" id="cs-random">🎲 สุ่ม</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

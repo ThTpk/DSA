@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linear Search — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Linear Search (การค้นหาแบบเชิงเส้น)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Linear Search</strong> ค้นหาแบบตรงไปตรงมา: ไล่ดูข้อมูล <em>ทีละตัวจากซ้ายไปขวา</em>
+          เปรียบเทียบกับค่าที่ต้องการ ถ้าตรงก็คืนตำแหน่งทันที ถ้าดูครบทุกตัวแล้วไม่เจอก็แปลว่าไม่มี
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลา O(n) แย่สุด/เฉลี่ย, O(1) ดีสุด (เจอตัวแรก) ·
+          พื้นที่ O(1) · ใช้ได้กับข้อมูล <em>ที่ไม่ต้องเรียง</em>
+        </p>
+      </div>
+
+      <div class="card"><div id="searchviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SearchViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

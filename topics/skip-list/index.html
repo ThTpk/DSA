@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skip List — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Skip List (รายการข้ามชั้น)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Skip List</strong> คือ linked list ที่เรียงแล้ว แต่มี <em>"เลนด่วน" หลายชั้น</em> ซ้อนอยู่ข้างบน
+          แต่ละโหนดสุ่มความสูง ทำให้ชั้นบนข้ามหลายโหนดทีเดียว — ค้นหาเหมือน "ลงบันได": เดินขวาในชั้นบนจนเกือบเกิน
+          แล้วลงชั้นล่าง ทำซ้ำจนถึงชั้นล่างสุด
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> search/insert/delete เฉลี่ย O(log n) · เป็นทางเลือกที่ง่ายกว่า balanced tree
+          (ใช้ใน Redis, LevelDB)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="sk-target" placeholder="ค่าที่ค้นหา" class="sv-target-input" style="flex:0 0 150px">
+          <button class="vp__btn vp__btn--primary" id="sk-search">🔍 ค้นหา</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ตำแหน่งปัจจุบัน</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> เส้นทางที่เดิน</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เจอเป้าหมาย</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

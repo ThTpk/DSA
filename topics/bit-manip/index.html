@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bit Manipulation — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+  <style>
+    .bitrow { display: flex; align-items: center; gap: 16px; margin: 12px 0; flex-wrap: wrap; }
+    .bitrow__label { width: 90px; font-weight: 700; color: var(--c-muted); font-family: var(--font-mono); }
+    .bits { display: flex; gap: 6px; }
+    .bit { width: 44px; height: 52px; border: 2px solid var(--c-border); border-radius: 8px; display: grid; place-items: center;
+           font-family: var(--font-mono); font-size: 20px; font-weight: 700; cursor: pointer; background: var(--c-surface); transition: .15s; }
+    .bit.on { background: var(--viz-sorted); color: #fff; border-color: #059669; }
+    .bit.changed { box-shadow: 0 0 0 3px var(--viz-compare); }
+    .bit.readonly { cursor: default; }
+    .bit__pos { font-size: 10px; color: var(--c-faint); }
+    .bitdec { font-family: var(--font-mono); font-size: 1.1rem; color: var(--c-primary); font-weight: 700; min-width: 60px; }
+    .op-btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0; }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Bit Manipulation (การจัดการบิต)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          คอมพิวเตอร์เก็บเลขเป็น <em>บิต (0/1)</em> การดำเนินการระดับบิตเร็วมากและใช้ทริกได้หลายอย่าง:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>AND (&amp;)</strong> เอาเฉพาะบิตที่เป็น 1 ทั้งคู่ · <strong>OR (|)</strong> เป็น 1 ถ้ามีตัวใดเป็น 1 · <strong>XOR (^)</strong> เป็น 1 ถ้าต่างกัน</li>
+          <li><strong>เลื่อนซ้าย (&lt;&lt;1)</strong> = คูณ 2 · <strong>เลื่อนขวา (&gt;&gt;1)</strong> = หาร 2</li>
+          <li>ทริก: <code>x &amp; 1</code> เช็กคู่/คี่ · <code>x &amp; (x-1)</code> ล้างบิต 1 ขวาสุด</li>
+        </ul>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">💡 คลิกที่บิตของ A หรือ B เพื่อสลับ 0/1 แล้วกดปุ่มดำเนินการ</p>
+      </div>
+
+      <div class="card">
+        <div class="bitrow"><div class="bitrow__label">A</div><div class="bits" id="bits-a"></div><div class="bitdec" id="dec-a"></div></div>
+        <div class="bitrow"><div class="bitrow__label">B</div><div class="bits" id="bits-b"></div><div class="bitdec" id="dec-b"></div></div>
+        <div class="op-btns">
+          <button class="vp__btn vp__btn--primary" data-op="and">A &amp; B</button>
+          <button class="vp__btn vp__btn--primary" data-op="or">A | B</button>
+          <button class="vp__btn vp__btn--primary" data-op="xor">A ^ B</button>
+          <button class="vp__btn" data-op="notA">~A</button>
+          <button class="vp__btn" data-op="shlA">A &lt;&lt; 1</button>
+          <button class="vp__btn" data-op="shrA">A &gt;&gt; 1</button>
+        </div>
+        <div class="bitrow"><div class="bitrow__label" id="res-label">ผลลัพธ์</div><div class="bits" id="bits-r"></div><div class="bitdec" id="dec-r"></div></div>
+        <div id="bit-note" style="color:var(--c-muted);margin-top:8px"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

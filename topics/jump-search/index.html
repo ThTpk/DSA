@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jump Search — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Jump Search (ค้นหาแบบกระโดด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Jump Search</strong> ใช้กับอาเรย์ที่ <em>เรียงแล้ว</em> โดยกระโดดทีละบล็อกขนาด <code>⌊√n⌋</code>
+          จนเจอบล็อกที่ค่าปลายบล็อก ≥ เป้าหมาย แล้วค่อย <em>ค้นเชิงเส้น</em> ภายในบล็อกนั้น
+          เร็วกว่า Linear Search แต่ช้ากว่า Binary Search
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(√n) · เหมาะเมื่อการ "กระโดดถอยหลัง" แพง (เช่นบางระบบจัดเก็บ)</p>
+      </div>
+      <div class="card"><div id="searchviz"></div></div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SearchViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

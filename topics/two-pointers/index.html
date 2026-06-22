@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Two Pointers — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Two Pointers (เทคนิคสองตัวชี้)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Two Pointers</strong> เป็นเทคนิคที่ใช้ตัวชี้ 2 ตัววิ่งเข้าหากันบนอาเรย์ที่ <em>เรียงแล้ว</em>
+          ตัวอย่างคลาสสิก: หาคู่ตัวเลขที่บวกกันได้เท่ากับเป้าหมาย — เริ่มจากซ้ายสุด (L) และขวาสุด (R)
+          ถ้าผลรวม <em>น้อยไป</em> เลื่อน L ไปขวา (เพิ่มค่า), ถ้า <em>มากไป</em> เลื่อน R ไปซ้าย (ลดค่า)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลา O(n) — เร็วกว่าการลองทุกคู่ O(n²) มาก ·
+          พื้นที่ O(1) · <em>ข้อแม้: อาเรย์ต้องเรียงก่อน</em>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          💡 ตัวชี้: <b style="color:#2563eb">L</b> = ซ้าย · <b style="color:#8b5cf6">R</b> = ขวา
+        </p>
+      </div>
+
+      <div class="card"><div id="searchviz"></div></div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SearchViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

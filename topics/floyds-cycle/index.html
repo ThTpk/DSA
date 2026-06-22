@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Floyd's Cycle Detection — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>Floyd's Cycle Detection (เต่ากับกระต่าย)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          ตรวจว่า Linked List มี <em>วงวน (cycle)</em> ไหม ด้วยตัวชี้ 2 ตัว:
+          <strong style="color:#2563eb">slow (เต่า)</strong> เดินทีละ 1 ก้าว และ
+          <strong style="color:#ef4444">fast (กระต่าย)</strong> เดินทีละ 2 ก้าว
+          ถ้ามีวงวน กระต่ายจะวิ่งวนมา <em>เจอเต่า</em> ในวง · ถ้าไม่มีวงวน กระต่ายจะถึง null ก่อน
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เวลา O(n) · พื้นที่ O(1) (ไม่ต้องเก็บโหนดที่เคยไป) ·
+          ใช้ตรวจ memory leak, วนซ้ำในลำดับ ฯลฯ
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="fc-run">▶ ตรวจวงวน</button>
+          <button class="vp__btn" id="fc-toggle">สลับ: มีวงวน / ไม่มี</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

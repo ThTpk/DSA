@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>String Matching (KMP) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>String Matching — KMP</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          การค้นหา <em>แพตเทิร์น</em> ในข้อความ แบบตรงไปตรงมา (naive) เมื่อเจอตัวไม่ตรงต้องเลื่อนทีละ 1 และเริ่มเทียบใหม่ตั้งแต่ต้น → O(n·m)
+        </p>
+        <p>
+          <strong>KMP</strong> ฉลาดกว่า: เตรียมตาราง <strong>LPS</strong> (Longest Proper Prefix ที่เป็น Suffix ด้วย) ของแพตเทิร์นไว้ก่อน
+          เมื่อเจอตัวไม่ตรง จะ <em>ข้ามไปเทียบต่อ</em> โดยไม่ย้อนกลับไปอ่านข้อความซ้ำ → O(n + m)
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">
+          💡 แถวบน = ข้อความ · แถวล่าง = แพตเทิร์น (เลื่อนตามการเทียบ) · เขียว = ตรง · แดง = ไม่ตรง
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="km-text" value="AABAACAADAABAABA" placeholder="ข้อความ" style="flex:1 1 240px;text-transform:uppercase">
+          <input type="text" id="km-pat" value="AABA" placeholder="แพตเทิร์น" class="sv-target-input" style="flex:0 0 140px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="km-run">▶ ค้นหา</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

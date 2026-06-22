@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LRU Cache — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 1 · โครงสร้างข้อมูลเชิงเส้น</div>
+        <h1>LRU Cache (แคชแบบใช้ล่าสุด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>LRU Cache</strong> เก็บข้อมูลได้จำกัด เมื่อเต็มจะ <em>ไล่ตัวที่ไม่ได้ใช้นานสุด (Least Recently Used)</em> ออก
+          ทำได้เร็ว O(1) ด้วยการรวม <strong>HashMap</strong> (หาเร็ว) + <strong>Doubly Linked List</strong> (เรียงตามความใหม่)
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>get / put</strong> ตัวที่ถูกใช้จะถูกย้ายไปไว้ <em>หน้าสุด (MRU)</em></li>
+          <li>เมื่อใส่เกินความจุ → ลบ <em>ตัวท้ายสุด (LRU)</em> ทิ้ง</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ใช้ใน:</strong> แคชของ OS, เบราว์เซอร์, ฐานข้อมูล · ความจุในตัวอย่างนี้ = 4</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="lru-k" placeholder="key" class="sv-target-input" style="flex:0 0 90px">
+          <input type="text" id="lru-v" placeholder="value" class="sv-target-input" style="flex:0 0 90px">
+          <button class="vp__btn vp__btn--primary" id="lru-put">put(k,v)</button>
+          <button class="vp__btn" id="lru-get">get(k)</button>
+          <button class="vp__btn" id="lru-reset">♻️ ล้าง</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:6px">
+          <span>ซ้ายสุด = MRU (ใช้ล่าสุด) · ขวาสุด = LRU (จะถูกไล่ก่อน)</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

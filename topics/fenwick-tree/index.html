@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fenwick Tree (BIT) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>Fenwick Tree / Binary Indexed Tree (BIT)</h1>
+      </div>
+
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Fenwick Tree (BIT)</strong> ตอบ <em>ผลรวมสะสม (prefix sum)</em> และแก้ค่าได้เร็ว O(log n)
+          โดยใช้แค่อาเรย์เดียว (กระชับกว่า Segment Tree) เคล็ดลับคือ <code>lowbit = i &amp; (−i)</code>
+          (บิต 1 ขวาสุด) ที่บอกว่าแต่ละช่อง <code>tree[i]</code> ดูแลผลรวมของช่วงยาวเท่าไหร่
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>prefix(i)</strong>: ไล่ <code>i -= lowbit(i)</code> บวกไปเรื่อยๆ จนถึง 0</li>
+          <li><strong>update(i, Δ)</strong>: ไล่ <code>i += lowbit(i)</code> บวก Δ ทุกช่องจน &gt; n</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> query / update = O(log n) · พื้นที่ O(n) (1-indexed)</p>
+      </div>
+
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="fw-values" value="1,2,3,4,5,6,7,8" placeholder="ค่า A[1..n]">
+          <button class="vp__btn vp__btn--primary" id="fw-build">สร้าง BIT</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="fw-pi" placeholder="i" class="sv-target-input" style="flex:0 0 70px">
+          <button class="vp__btn" id="fw-prefix">🔍 prefix sum [1..i]</button>
+          <input type="text" id="fw-ui" placeholder="i" class="sv-target-input" style="flex:0 0 70px">
+          <input type="text" id="fw-ud" placeholder="+Δ" class="sv-target-input" style="flex:0 0 80px">
+          <button class="vp__btn" id="fw-update">✏️ update A[i] += Δ</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ช่อง BIT ที่กำลังเยี่ยม (ตามการกระโดด)</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

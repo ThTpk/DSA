@@ -1,0 +1,341 @@
+/* ============================================================
+   viz.css — สไตล์ตัวจำลอง: แท่ง, แผงควบคุม, แผงโค้ด
+   ============================================================ */
+
+/* ---------- กล่อง Visualization ---------- */
+.viz-stage {
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+/* ---------- แท่งข้อมูล D3/SVG (สำหรับ sorting) ---------- */
+.viz-svg { display: block; width: 100%; height: auto; }
+.bar {
+  fill: var(--viz-default);
+  rx: 6;
+}
+.bar.is-compare { fill: var(--viz-compare); }
+.bar.is-swap    { fill: var(--viz-swap); }
+.bar.is-sorted  { fill: var(--viz-sorted); }
+.bar.is-pivot   { fill: var(--viz-pivot); }
+/* ---- สถานะสำหรับการค้นหา ---- */
+.bar.is-active   { fill: var(--search-active); }
+.bar.is-checking { fill: var(--viz-compare); }
+.bar.is-excluded { fill: var(--search-excluded); }
+.bar.is-found    { fill: var(--viz-sorted); }
+
+/* ตัวชี้ lo / mid / hi / i */
+.ptr__arrow { font-size: 12px; text-anchor: middle; }
+.ptr__label { font-family: var(--font-mono); font-size: 12px; font-weight: 600; text-anchor: middle; }
+
+/* แถบแสดงค่าเป้าหมาย */
+.search-target {
+  background: var(--c-primary-soft);
+  color: var(--c-primary-dark);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  margin-bottom: 14px;
+  font-size: .98rem;
+}
+.search-target .note { color: var(--c-muted); font-size: .85rem; font-weight: 400; }
+.sv-target-input { flex: 0 0 130px !important; }
+.bar-val {
+  font-family: var(--font-thai);
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--c-muted);
+  text-anchor: middle;
+}
+.bar-idx {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  fill: var(--c-faint);
+  text-anchor: middle;
+}
+
+/* ---------- แผงควบคุม (สร้างโดย VizPlayer) ---------- */
+.vp {
+  margin-top: 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+}
+.vp__row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.vp__btn {
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-text);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: .95rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: background .15s, border-color .15s;
+}
+.vp__btn:hover { background: var(--c-surface-2); border-color: var(--c-faint); }
+.vp__btn--primary {
+  background: var(--c-primary);
+  border-color: var(--c-primary);
+  color: #fff;
+  min-width: 96px;
+  justify-content: center;
+}
+.vp__btn--primary:hover { background: var(--c-primary-dark); }
+.vp__btn:disabled { opacity: .45; cursor: not-allowed; }
+
+.vp__speed { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.vp__speed label { font-size: .85rem; color: var(--c-muted); }
+.vp__speed input { accent-color: var(--c-primary); }
+
+.vp__progress {
+  margin-top: 12px;
+  height: 6px;
+  background: var(--c-surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.vp__progress-bar {
+  height: 100%;
+  width: 0;
+  background: var(--c-primary);
+  transition: width .2s ease;
+}
+.vp__status {
+  margin-top: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.vp__counter {
+  font-size: .8rem;
+  color: var(--c-faint);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.vp__desc { font-size: .98rem; color: var(--c-text); font-weight: 500; }
+
+/* ---------- แผงอินพุต ---------- */
+.viz-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.viz-input input[type="text"] {
+  flex: 1 1 240px;
+  padding: 9px 12px;
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: .95rem;
+}
+.viz-input input[type="text"]:focus {
+  outline: none;
+  border-color: var(--c-primary);
+  box-shadow: 0 0 0 3px var(--c-primary-soft);
+}
+
+/* ---------- แผงโค้ด ---------- */
+.code-panel {
+  background: #0f172a;
+  border-radius: var(--radius);
+  padding: 16px 6px;
+  overflow-x: auto;
+}
+.code__line {
+  display: block;
+  padding: 2px 16px;
+  font-family: var(--font-mono);
+  font-size: .9rem;
+  color: #cbd5e1;
+  white-space: pre;
+  border-left: 3px solid transparent;
+}
+.code__line.is-active {
+  background: rgba(79, 70, 229, .25);
+  border-left-color: var(--c-accent);
+  color: #fff;
+}
+
+/* ---------- คำอธิบายสี (legend) ---------- */
+.viz-legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 14px; font-size: .85rem; color: var(--c-muted); }
+.viz-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.swatch { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+
+/* ---------- ต้นไม้ (TreeViz) ---------- */
+.edge { stroke: var(--tree-edge); stroke-width: 2; }
+.tnode circle {
+  fill: var(--tree-node);
+  stroke: var(--c-faint);
+  stroke-width: 2;
+  transition: fill .2s ease, stroke .2s ease;
+}
+.tnode__val {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--c-text);
+  text-anchor: middle;
+}
+.tnode.rb-red circle   { fill: #dc2626; stroke: #991b1b; }
+.tnode.rb-black circle { fill: #1e293b; stroke: #0f172a; }
+.tnode.rb-red .tnode__val, .tnode.rb-black .tnode__val { fill: #fff; }
+.tnode.is-compare circle { fill: var(--viz-compare); stroke: #d97706; }
+.tnode.is-visited circle { fill: var(--search-active); stroke: #6366f1; }
+.tnode.is-found   circle { fill: var(--viz-sorted); stroke: #059669; }
+.tnode.is-compare .tnode__val,
+.tnode.is-found   .tnode__val { fill: #fff; }
+/* Trie: ป้ายตัวอักษรบนเส้น + โหนดจุดจบคำ */
+.edge-label { font-family: var(--font-mono); font-size: 13px; font-weight: 600; fill: var(--c-primary); text-anchor: middle; }
+.tnode.is-end circle { stroke: var(--viz-sorted); stroke-width: 3.5; }
+
+/* ---------- โครงสร้างเชิงเส้น (NodeViz) ---------- */
+.cell rect {
+  fill: var(--c-surface);
+  stroke: var(--c-faint);
+  stroke-width: 2;
+  transition: fill .2s ease, stroke .2s ease;
+}
+.cell__val { font-family: var(--font-mono); font-size: 15px; font-weight: 600; fill: var(--c-text); text-anchor: middle; }
+.cell__sub { font-family: var(--font-mono); font-size: 11px; fill: var(--c-faint); text-anchor: middle; }
+.cell.is-active   rect { fill: var(--viz-compare); stroke: #d97706; }
+.cell.is-highlight rect { fill: var(--search-active); stroke: #6366f1; }
+.cell.is-found    rect { fill: var(--viz-sorted); stroke: #059669; }
+.cell.is-new      rect { fill: var(--c-primary-soft); stroke: var(--c-primary); }
+.cell.is-faded    rect { fill: var(--search-excluded); stroke: var(--c-border); }
+.cell.is-bad rect { fill: #fca5a5; stroke: #ef4444; }
+.cell.is-bad .cell__val { fill: #7f1d1d; }
+.cell.bucket rect { fill: #eef2ff; stroke: #c7d2fe; }
+.cell.bucket .cell__val { fill: var(--c-primary-dark); }
+.cell.is-active rect ~ text.cell__val,
+.cell.is-active .cell__val,
+.cell.is-found .cell__val { fill: #fff; }
+
+.nv-arrow-line { stroke: #475569; stroke-width: 2; }
+.nv-arrow-line.is-active { stroke: var(--c-primary); stroke-width: 2.5; }
+.nv-label { font-family: var(--font-thai); font-size: 13px; font-weight: 600; fill: var(--c-muted); }
+.nv-label.is-accent { fill: var(--c-primary); }
+
+/* ---------- ตาราง DP ---------- */
+.dp-table { border-collapse: collapse; font-family: var(--font-mono); font-size: 14px; }
+.dp-table th { background: var(--c-surface-2); color: var(--c-muted); padding: 4px 8px; font-weight: 700; min-width: 34px; }
+.dp-table th.hl { color: var(--c-primary-dark); background: var(--c-primary-soft); }
+.dp-table td { border: 1px solid var(--c-border); width: 40px; height: 40px; text-align: center; color: var(--c-text); }
+.dp-table td.cur  { background: var(--viz-compare); color: #fff; font-weight: 700; }
+.dp-table td.dep  { background: var(--search-active); }
+.dp-table td.path { background: var(--viz-sorted); color: #fff; font-weight: 700; }
+
+/* ---------- กระดาน N-Queens ---------- */
+.board-cell-l { fill: #f1f5f9; }
+.board-cell-d { fill: #cbd5e1; }
+.board-cell.try    { fill: var(--viz-compare) !important; }
+.board-cell.conflict { fill: #fca5a5 !important; }
+.board-queen { font-size: 26px; text-anchor: middle; }
+.board-queen.placed { fill: #047857; }
+.board-queen.trying { fill: #7c2d12; }
+
+/* ---------- การแทนกราฟ (matrix / list) ---------- */
+.adj-wrap { display: flex; flex-direction: column; gap: 18px; }
+.adj-title { font-size: .85rem; font-weight: 700; color: var(--c-muted); margin-bottom: 6px; }
+.adj-matrix { border-collapse: collapse; font-family: var(--font-mono); font-size: 13px; }
+.adj-matrix th, .adj-matrix td { border: 1px solid var(--c-border); width: 30px; height: 30px; text-align: center; }
+.adj-matrix th { background: var(--c-surface-2); color: var(--c-muted); font-weight: 700; }
+.adj-matrix td.on { background: var(--viz-sorted); color: #fff; font-weight: 600; }
+.adj-matrix td.active { background: var(--viz-compare); color: #fff; font-weight: 600; }
+.adj-list { font-family: var(--font-mono); font-size: 14px; line-height: 2; }
+.adj-list .node { color: var(--c-primary-dark); font-weight: 700; }
+.adj-list .hl { background: var(--viz-compare); color: #fff; border-radius: 4px; padding: 0 5px; }
+
+/* ---------- กราฟ (GraphViz) ---------- */
+.gedge { stroke: var(--tree-edge); stroke-width: 2.5; }
+.gedge.is-active { stroke: var(--viz-compare); stroke-width: 4; }
+.gedge.is-tree   { stroke: var(--viz-sorted); stroke-width: 4; }
+.gedge.is-faded  { stroke: var(--c-border); stroke-width: 2; }
+.gweight { font-family: var(--font-mono); font-size: 13px; font-weight: 600; fill: var(--c-primary-dark); text-anchor: middle; }
+.gnode circle { fill: var(--tree-node); stroke: var(--c-faint); stroke-width: 2.5; transition: fill .2s ease, stroke .2s ease; }
+.gnode__label { font-family: var(--font-mono); font-size: 15px; font-weight: 700; fill: var(--c-text); text-anchor: middle; }
+.gnode__sub { font-family: var(--font-mono); font-size: 12px; fill: var(--c-primary-dark); text-anchor: middle; font-weight: 600; }
+.gnode.is-current circle { fill: var(--viz-compare); stroke: #d97706; }
+.gnode.is-frontier circle { fill: var(--search-active); stroke: #6366f1; }
+.gnode.is-visited circle { fill: var(--viz-sorted); stroke: #059669; }
+.gnode.is-start circle { stroke: var(--c-primary); stroke-width: 4; }
+.gnode.is-current .gnode__label, .gnode.is-visited .gnode__label { fill: #fff; }
+
+/* ---------- Call Stack (อัลกอริทึม recursive) ---------- */
+.stack-panel {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-bottom: 20px;
+}
+.stack-panel__head {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--c-muted);
+  margin-bottom: 10px;
+}
+.stack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 38px;
+}
+.stack-list[data-empty]::before {
+  content: attr(data-empty);
+  color: var(--c-faint);
+  font-size: .85rem;
+  font-style: italic;
+}
+.frame {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: var(--c-surface-2);
+  border: 1px solid var(--c-border);
+  border-left: 3px solid var(--viz-pivot);
+  border-radius: 8px;
+  padding: 6px 10px;
+  transition: margin-left .2s ease, background-color .15s ease;
+  animation: frameIn .16s ease;
+}
+@keyframes frameIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: none; }
+}
+.frame__title {
+  font-family: var(--font-mono);
+  font-size: .85rem;
+  color: var(--c-text);
+}
+.frame.is-top {
+  background: var(--c-primary-soft);
+  border-color: var(--c-primary);
+  border-left-color: var(--c-primary);
+}
+.frame.is-top .frame__title { font-weight: 600; color: var(--c-primary-dark); }
+.frame__phase {
+  font-family: var(--font-thai);
+  font-size: .72rem;
+  color: var(--c-muted);
+  background: #fff;
+  border: 1px solid var(--c-border);
+  border-radius: 999px;
+  padding: 1px 9px;
+  white-space: nowrap;
+}
+
+/* ---------- layout 2 คอลัมน์: viz + code ---------- */
+.viz-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+@media (min-width: 900px) {
+  .viz-grid { grid-template-columns: 1.4fr 1fr; align-items: start; }
+}

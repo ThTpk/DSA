@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convex Hull — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Convex Hull (กรอบนูน)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Convex Hull</strong> คือรูปหลายเหลี่ยมนูนที่เล็กที่สุดที่ครอบจุดทั้งหมด (เหมือนเอายางรัดรอบหมุด)
+          วิธี <strong>Andrew's Monotone Chain</strong>: เรียงจุดตามแกน x แล้วสร้างขอบล่างและขอบบน
+          โดยใช้ <em>cross product</em> ตรวจ "การเลี้ยว" — ถ้าเลี้ยวผิดทาง (ไม่นูน) ก็ <em>ถอยจุดออก</em>
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(n log n) (หลักๆ คือการเรียง) · ใช้ในกราฟิก, GIS, การชนกันของวัตถุ
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="ch-run">▶ สร้างกรอบนูน</button>
+          <button class="vp__btn" id="ch-random">🎲 จุดใหม่</button>
+        </div>
+        <div id="chviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
