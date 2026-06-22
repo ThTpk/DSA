@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>van Emde Boas Tree — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>van Emde Boas Tree (vEB)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          vEB เก็บเซตของจำนวนเต็มในช่วง <code>0 … u−1</code> และทำ insert / member / <strong>successor</strong> / min / max
+          ได้เร็วถึง <strong>O(log log u)</strong> (เร็วกว่า BST!) ด้วยการ <em>แบ่งจักรวาลเป็น √u คลัสเตอร์</em> แบบเรียกซ้ำ
+        </p>
+        <ul style="margin-top:0">
+          <li>แตกเลข x เป็น <code>high(x) = ⌊x/√u⌋</code> (คลัสเตอร์ไหน) และ <code>low(x) = x mod √u</code> (ตำแหน่งในคลัสเตอร์)</li>
+          <li><strong>summary</strong> = vEB ย่อยที่จำว่าคลัสเตอร์ไหน "ไม่ว่าง" → กระโดดหาคลัสเตอร์ถัดไปได้เร็ว</li>
+          <li>เคล็ดลับสำคัญ: <strong>เก็บ min แยกไว้ (ไม่ใส่ลงคลัสเตอร์)</strong> → insert ลงเซตว่างเป็น O(1) ทำให้ลดการเรียกซ้ำ</li>
+        </ul>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">💡 ตัวอย่างนี้ u=16 → √u=4 (แสดงการแบ่งระดับบนสุด: summary 4 ช่อง + 4 คลัสเตอร์ ๆ ละ 4)</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="vb-x" placeholder="0-15" class="sv-target-input" style="flex:0 0 90px">
+          <button class="vp__btn" id="vb-insert">➕ insert</button>
+          <button class="vp__btn vp__btn--primary" id="vb-succ">→ successor</button>
+          <button class="vp__btn" id="vb-demo">▶ เดโม</button>
+          <button class="vp__btn" id="vb-reset">♻️ ล้าง</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#10b981"></i> มีค่า / min,max</span>
+          <span><i class="swatch" style="background:#f59e0b"></i> high(x) / low(x) ปัจจุบัน</span>
+          <span><i class="swatch" style="background:#3b82f6"></i> ผลของ successor</span>
+        </div>
+        <div id="vbviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

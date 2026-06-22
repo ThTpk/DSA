@@ -46,6 +46,7 @@
         { id: 'b-tree',      title: 'B-Tree',                    path: 'topics/b-tree/',       status: 'ready' },
         { id: 'b-plus-tree', title: 'B+ Tree',                   path: 'topics/b-plus-tree/',  status: 'ready' },
         { id: 'fibonacci-heap', title: 'Fibonacci Heap',         path: 'topics/fibonacci-heap/', status: 'ready' },
+        { id: 'veb',         title: 'van Emde Boas Tree',        path: 'topics/veb/',          status: 'ready' },
       ],
     },
     {
