@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suffix Array — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Suffix Array (อาเรย์ส่วนต่อท้าย)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Suffix Array</strong> คือลำดับของ <em>ตำแหน่งเริ่มต้น</em> ของ "ส่วนต่อท้าย (suffix)" ทั้งหมดของสตริง
+          เมื่อ <strong>เรียงตามพจนานุกรม (lexicographic)</strong> · เป็นโครงสร้างที่เบากว่า suffix tree แต่ทรงพลัง
+        </p>
+        <p style="margin-bottom:0">
+          ใช้ค้นหาสตริงย่อยเร็ว (binary search บน SA), หา longest repeated substring, บีบอัดข้อมูล (BWT) ·
+          สร้างแบบเรียงตรง ๆ O(n² log n) (ตัวอย่างนี้) — ของจริงใช้ O(n log n) หรือ O(n)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="sa-text" value="banana" placeholder="สตริง (a-z)" class="sv-target-input" style="flex:0 0 200px;text-transform:lowercase">
+          <button class="vp__btn vp__btn--primary" id="sa-run">▶ สร้าง Suffix Array</button>
+        </div>
+        <div id="saviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

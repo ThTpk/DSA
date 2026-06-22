@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strassen — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Strassen's Matrix Multiplication</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          คูณเมทริกซ์ 2×2 แบบปกติใช้การคูณ <strong>8 ครั้ง</strong> · <strong>Strassen</strong> ใช้ <em>เพียง 7 ครั้ง</em>
+          (แลกกับการบวก/ลบที่มากขึ้น) ด้วยการคำนวณผลคูณช่วย M₁…M₇ แล้วประกอบเป็นบล็อกผลลัพธ์
+        </p>
+        <p>
+          แบบ Divide & Conquer: เมทริกซ์ n×n แบ่งเป็นบล็อก 2×2 แล้วใช้สูตรเดิมซ้ำ → ความซับซ้อนลดจาก
+          <code>O(n³)</code> เหลือ <code>O(n^log₂7) ≈ O(n^2.81)</code>
+        </p>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">💡 ตัวอย่างนี้แสดงระดับบล็อก 2×2 (สมาชิกเป็นตัวเลข) และตรวจผลกับการคูณปกติ</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="st-run">▶ คำนวณ</button>
+          <button class="vp__btn" id="st-random">🎲 สุ่มเมทริกซ์</button>
+        </div>
+        <div id="stviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
