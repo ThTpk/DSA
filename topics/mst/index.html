@@ -43,6 +43,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มี n หมู่บ้านบนพิกัด ต้องวางสายไฟเชื่อมทุกหมู่บ้านให้ถึงกันหมด โดยใช้ความยาวสายรวมน้อยที่สุด ค่าเชื่อมแต่ละคู่ = ระยะทางระหว่างหมู่บ้าน</p>
+        <p><strong>แก้ด้วย MST (Kruskal) อย่างไร:</strong> สร้างเส้นจากทุกคู่หมู่บ้าน เรียงน้ำหนักจากน้อยไปมาก แล้วหยิบเส้นที่ไม่ทำให้เกิดวงจร (ใช้ Union-Find ตรวจ) จนได้ V−1 เส้น = ต้นไม้น้ำหนักรวมต่ำสุด · O(E log E) จากการเรียง · ได้ผลรวมเท่ากับ Prim เสมอ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> วางสายเครือข่าย/ไฟฟ้า/ถนนราคาถูกสุด · clustering แบบ single-linkage · LeetCode: Min Cost to Connect All Points (1584), Connecting Cities With Minimum Cost (1135)</p>
+      </div>
     </main>
   </div>
 

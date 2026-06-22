@@ -53,6 +53,13 @@
         </div>
         <div id="treeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มียอดขายรายวันของร้าน 365 วัน ต้องตอบคำถาม "ผลรวมยอดขายวันที่ 50–120 เท่าไหร่" สลับกับ "แก้ยอดขายวันที่ 80 เป็นค่าใหม่" หลายพันครั้ง</p>
+        <p><strong>แก้ด้วย Segment Tree อย่างไร:</strong> สร้างต้นไม้ที่แต่ละโหนดเก็บผลรวมของช่วงหนึ่ง build O(n) · range sum query [l..r] เดินจากรากลงไปรวมเฉพาะโหนดที่ครอบช่วงพอดี O(log n) · update จุดเดียวไล่ขึ้นไปแก้พ่อ O(log n) — เร็วกว่าคำนวณใหม่ทั้งช่วง O(n) ทุกครั้ง</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> range min/max/sum/gcd query + update, competitive programming, ตัดช่วงเวลา/พิกัด (พร้อม lazy propagation สำหรับ range update) · LeetCode: Range Sum Query - Mutable (307)</p>
+      </div>
     </main>
   </div>
 

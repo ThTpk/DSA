@@ -53,6 +53,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มี n คน ให้ความสัมพันธ์ว่าใครเป็นเพื่อนใคร (เพื่อนของเพื่อนถือเป็นกลุ่มเดียวกัน) ถามว่ามีกลุ่มเพื่อน (friend circles) ทั้งหมดกี่กลุ่ม</p>
+        <p><strong>แก้ด้วย Union-Find อย่างไร:</strong> เริ่มให้ทุกคนเป็นกลุ่มของตัวเอง (n กลุ่ม) ทุกคู่ที่เป็นเพื่อนกันก็ union() เข้าด้วยกัน จำนวนกลุ่มสุดท้าย = จำนวน root ที่ต่างกัน · ด้วย path compression + union by rank ทุก operation เกือบ O(1) (α(n)) · ตรวจว่าสองโหนดอยู่กลุ่มเดียวกันไหมได้ทันที</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตรวจ cycle ในกราฟ · ใช้ใน Kruskal MST · จัดกลุ่มเพื่อน/network connectivity · LeetCode: Number of Provinces (547), Number of Connected Components (323), Redundant Connection (684)</p>
+      </div>
     </main>
   </div>
 

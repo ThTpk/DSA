@@ -43,6 +43,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เครือข่ายเซิร์ฟเวอร์เชื่อมกันเป็นกราฟ ต้องการหา "สายเชื่อมวิกฤต" ที่ถ้าขาดแล้วเครือข่ายจะแยกเป็นหลายส่วน เพื่อวางแผนสำรองเส้นทาง</p>
+        <p><strong>แก้ด้วย Articulation/Bridge อย่างไร:</strong> สายวิกฤต = bridge (สะพาน) · DFS ครั้งเดียวเก็บ <code>disc[u]</code> (ลำดับค้นพบ) และ <code>low[u]</code> (ลำดับต่ำสุดที่ย้อนถึงผ่าน back-edge) · ถ้าลูก v มี <code>low[v] &gt; disc[u]</code> → เส้น (u,v) เป็นสะพาน, ถ้า <code>low[v] ≥ disc[u]</code> → u เป็นจุดบอบบาง · O(V+E)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> หาจุดอ่อน/สายวิกฤตของเครือข่าย · ออกแบบความทนทาน (fault tolerance) · วิเคราะห์ถนนคอขวด · LeetCode: Critical Connections in a Network (1192)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

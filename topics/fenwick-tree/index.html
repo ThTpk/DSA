@@ -51,6 +51,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ระบบจัดอันดับเกม มีคะแนนผู้เล่นที่เปลี่ยนตลอด ต้องตอบ "มีผู้เล่นกี่คนที่คะแนน ≤ X" และ "บวกคะแนนให้ผู้เล่น i" ได้เร็ว</p>
+        <p><strong>แก้ด้วย Fenwick Tree (BIT) อย่างไร:</strong> เก็บความถี่สะสม · prefix(i) ไล่ <code>i −= i &amp; (−i)</code> บวกผลรวมจนถึง 0 ได้ O(log n) · point update <code>i += i &amp; (−i)</code> O(log n) · ใช้แค่อาเรย์เดียว โค้ดสั้นและกินพื้นที่น้อยกว่า Segment Tree เมื่อต้องการแค่ prefix sum</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> prefix sum + point update, นับ inversion ตอนเรียง, จัดอันดับ/leaderboard, สถิติสะสมแบบเรียลไทม์ · LeetCode: Count of Smaller Numbers After Self (315)</p>
+      </div>
     </main>
   </div>
 

@@ -42,6 +42,12 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หาตำแหน่งแรกที่แพตเทิร์น "abcab" ปรากฏในข้อความ "ababcabcab" (string matching)</p>
+        <p><strong>แก้ด้วย KMP อย่างไร:</strong> สร้างตาราง prefix-function (failure function) ของแพตเทิร์นก่อน O(m) เมื่อเทียบไม่ตรงก็เลื่อนแพตเทิร์นโดยไม่ถอย pointer ของข้อความ → รวม O(n+m) เร็วกว่า brute-force O(n·m) เพราะใช้ข้อมูลที่เทียบไปแล้วซ้ำ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ฟังก์ชัน find/indexOf ในภาษาโปรแกรม · ตรวจ DNA sequence · LeetCode 28 (Find the Index of the First Occurrence) · LeetCode 459 (Repeated Substring Pattern)</p>
+      </div>
     </main>
   </div>
 

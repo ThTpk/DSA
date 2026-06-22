@@ -34,6 +34,13 @@
       </div>
 
       <div class="card"><div id="sortviz"></div></div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เรียงอาเรย์ [5, 2, 4, 6, 1, 3] จากน้อยไปมากด้วย Insertion Sort</p>
+        <p><strong>แก้ด้วย Insertion Sort อย่างไร:</strong> ถือฝั่งซ้ายเป็นมือที่เรียงแล้ว เริ่ม [5] · หยิบ 2 เลื่อนแทรกหน้า 5 → [2,5] · หยิบ 4 แทรกระหว่าง → [2,4,5] · หยิบ 6 อยู่ท้าย → [2,4,5,6] · หยิบ 1 เลื่อนสุดซ้าย → [1,2,4,5,6] · หยิบ 3 → [1,2,3,4,5,6] · O(n²) แย่สุด แต่ <strong>O(n) เมื่อข้อมูลเกือบเรียง</strong> และทำงานทีละชิ้น (online) จึงเร็วมากกับข้อมูลน้อย</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ใช้เป็น base case ใน hybrid sort จริง (เช่น Timsort/Introsort สลับมาใช้ insertion เมื่อ subarray เล็ก), เรียงข้อมูลที่ทยอยเข้ามาทีละตัว (streaming), เรียงข้อมูลที่เกือบเรียงอยู่แล้ว · LeetCode: Insertion Sort List, Sort an Array</p>
+      </div>
     </main>
   </div>
 

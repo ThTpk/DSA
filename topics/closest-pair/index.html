@@ -38,6 +38,12 @@
         </div>
         <div id="cpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีจุด 100,000 จุดบนระนาบ จงหาคู่จุดที่อยู่ใกล้กันที่สุด</p>
+        <p><strong>แก้ด้วย Closest Pair (divide &amp; conquer) อย่างไร:</strong> เรียงจุดตามแกน x แบ่งครึ่งซ้าย-ขวา หาคู่ใกล้สุดในแต่ละฝั่งแบบ recursive แล้วตรวจเฉพาะจุดในแถบกลาง (strip) กว้าง 2δ → O(n log n) เร็วกว่าการเทียบทุกคู่ O(n²)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตรวจการชน (collision detection) ในเกม/หุ่นยนต์ · จัดกลุ่มข้อมูล (clustering) · ระบบควบคุมการจราจรทางอากาศหาเครื่องบินที่ใกล้กัน</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

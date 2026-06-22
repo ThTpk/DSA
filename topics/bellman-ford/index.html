@@ -38,6 +38,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ตลาดแลกเปลี่ยนเงินมีอัตราแลกระหว่างสกุล ถามว่ามี "ช่องทำกำไรฟรี" (arbitrage) ไหม คือแลกวนกลับมาสกุลเดิมแล้วได้เงินเพิ่ม</p>
+        <p><strong>แก้ด้วย Bellman-Ford อย่างไร:</strong> แปลงอัตรา r เป็นน้ำหนัก −log(r) แล้วหา negative cycle · relax ทุกเส้นซ้ำ V−1 รอบให้ระยะลู่เข้า ถ้ารอบที่ V ยัง relax ได้อีก = มีวงจรน้ำหนักลบ = มี arbitrage · O(V·E) ช้ากว่า Dijkstra แต่รองรับน้ำหนักลบและตรวจ negative cycle ได้</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตรวจ arbitrage อัตราแลกเปลี่ยน · routing ที่มีน้ำหนักลบ · เป็นขั้นตอนภายใน Johnson's · LeetCode: Cheapest Flights Within K Stops (787, แบบจำกัดรอบ)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

@@ -42,6 +42,12 @@
         </div>
         <div id="dpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีเหรียญชนิด [1, 3, 4] ต้องทอนเงิน 6 บาท ใช้จำนวนเหรียญน้อยที่สุดกี่เหรียญ (คำตอบ: 2 เหรียญ คือ 3+3 — greedy จะได้ 4+1+1 = 3 เหรียญ ซึ่งผิด)</p>
+        <p><strong>แก้ด้วย Coin Change DP อย่างไร:</strong> dp[a] = จำนวนเหรียญน้อยสุดสำหรับยอด a โดย dp[a] = min(dp[a−coin]+1) ทุกเหรียญ · O(amount·coins) · ครอบคลุมกรณีที่ greedy พลาด</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ระบบทอนเงินตู้ ATM/เครื่องขายของ · นับจำนวนวิธีจ่ายเงิน · LeetCode 322 Coin Change, 518 Coin Change II</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

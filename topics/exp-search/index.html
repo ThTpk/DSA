@@ -32,6 +32,13 @@
         </p>
       </div>
       <div class="card"><div id="searchviz"></div></div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ในสตรีมข้อมูลเรียงแล้วที่ไม่รู้ขนาด (unbounded) หาเลข 25 โดยไม่รู้ความยาวล่วงหน้า</p>
+        <p><strong>แก้ด้วย Exponential Search อย่างไร:</strong> ขยายช่วงเป็นเท่าตัว (1,2,4,8,16,32...) จนเลยค่าเป้าหมาย แล้วทำ binary search ในช่วง [i/2, i] · O(log i) เมื่อ i คือตำแหน่งคำตอบ · เหมาะเมื่อไม่รู้ขอบเขตหรือคำตอบอยู่ใกล้ต้นอาเรย์</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ค้นในอาเรย์/สตรีมขนาดไม่จำกัด · LeetCode: Search in a Sorted Array of Unknown Size (702) · ใช้ก่อนหน้า binary search เมื่อไม่ทราบ bound</p>
+      </div>
+
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

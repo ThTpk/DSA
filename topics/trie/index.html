@@ -45,6 +45,13 @@
         </div>
         <div id="trieviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ช่องค้นหาพิมพ์ "ca" แล้วต้องแนะนำคำที่ขึ้นต้นด้วย "ca" ทั้งหมด (cat, car, card) ทันที</p>
+        <p><strong>แก้ด้วย Trie อย่างไร:</strong> เดินตามตัวอักษร c→a ถึงโหนด prefix ใช้เวลา O(L) เมื่อ L = ความยาว prefix (ไม่ขึ้นกับจำนวนคำในพจนานุกรม) จากนั้น DFS ใต้โหนดนั้นเก็บทุกคำที่จบ · ใช้เส้นทางร่วมกันสำหรับ prefix เดียวกัน ประหยัดพื้นที่</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> autocomplete/prefix search, ตรวจคำสะกด, IP routing, T9 · LeetCode: Implement Trie (208), Word Search II (212), Search Suggestions System (1268)</p>
+      </div>
     </main>
   </div>
 

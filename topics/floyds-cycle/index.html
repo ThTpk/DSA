@@ -45,6 +45,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มี Linked List ที่โหนดสุดท้ายอาจชี้ย้อนกลับไปโหนดกลาง อยากรู้ว่ามีวงวนไหม และถ้ามีจุดเริ่มวงอยู่ตรงไหน โดยไม่ใช้หน่วยความจำเพิ่ม</p>
+        <p><strong>แก้ด้วย Floyd's Cycle อย่างไร:</strong> ใช้ตัวชี้ 2 ตัว slow เดิน 1 ก้าว fast เดิน 2 ก้าว; ถ้ามีวงวน fast จะวิ่งวนมาเจอ slow แน่นอน → เวลา O(n) พื้นที่ O(1) (ต่างจากวิธีเก็บโหนดที่เคยไปลง hash set ที่ใช้ O(n)); หาจุดเริ่มวงต่อได้โดยรีเซ็ตตัวหนึ่งกลับ head แล้วเดินพร้อมกันทีละ 1</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตรวจ cycle ใน linked list, หาเลขซ้ำในอาเรย์, หาคาบของลำดับสุ่ม (Pollard's rho) · LeetCode: Linked List Cycle (141), Linked List Cycle II (142), Find the Duplicate Number (287)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

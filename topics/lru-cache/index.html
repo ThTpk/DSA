@@ -44,6 +44,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ออกแบบแคชที่เก็บได้แค่ 2 ช่อง รองรับ get/put แล้วเมื่อเต็มต้องไล่ตัวที่ไม่ได้ใช้นานสุดออก เช่น put(1), put(2), get(1), put(3) → ตัว 2 ถูกไล่</p>
+        <p><strong>แก้ด้วย LRU Cache อย่างไร:</strong> ใช้ HashMap (key→โหนด) เพื่อหาเจอใน O(1) + Doubly Linked List เรียงตามความใหม่; ทุกครั้งที่ get/put ย้ายโหนดไปหน้าสุด (MRU) และเมื่อเกินความจุก็ลบโหนดท้ายสุด (LRU) → get/put เป็น O(1) ทั้งคู่</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> page cache ของ OS, แคชเบราว์เซอร์, eviction policy ของ Redis/Memcached, CPU cache · LeetCode: LRU Cache (146), LFU Cache (460)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

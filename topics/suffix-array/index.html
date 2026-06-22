@@ -37,6 +37,12 @@
         </div>
         <div id="saviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หา substring ที่ยาวที่สุดที่ปรากฏซ้ำในสตริง "banana"</p>
+        <p><strong>แก้ด้วย Suffix Array อย่างไร:</strong> เรียง suffix ทั้งหมดตามพจนานุกรมเก็บเป็น array (สร้างได้ O(n log n)) แล้วคำนวณ LCP array (prefix ร่วมยาวสุดของ suffix ที่อยู่ติดกัน) ค่า LCP มากสุดคือคำตอบ → ค้นหา substring ด้วย binary search O(m log n) ประหยัดหน่วยความจำกว่า suffix tree</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ดัชนีข้อความเต็ม (full-text index) · บีบอัดข้อมูล (BWT/bzip2) · bioinformatics จัดเรียง genome · LeetCode 1044 (Longest Duplicate Substring)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

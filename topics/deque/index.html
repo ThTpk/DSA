@@ -37,6 +37,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีอาเรย์ [1, 3, -1, -3, 5, 3, 6, 7] และหน้าต่างขนาด k=3 อยากได้ค่าสูงสุดของทุกหน้าต่างที่เลื่อนไป</p>
+        <p><strong>แก้ด้วย Deque อย่างไร:</strong> เก็บ index ของตัวที่ "ยังอาจเป็นค่าสูงสุด" เรียงจากมากไปน้อยใน deque; ก่อนใส่ตัวใหม่ ลบตัวที่เล็กกว่าออกจากท้าย (popBack) และลบตัวที่หลุดหน้าต่างออกจากหน้า (popFront) → หัว deque คือคำตอบของหน้าต่างนั้น แต่ละตัวเข้า-ออกแค่ครั้งเดียว → O(n) แทน O(nk)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> sliding window, job scheduling แบบ double-ended, undo/redo, work-stealing scheduler · LeetCode: Sliding Window Maximum (239), Sliding Window Median (480)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

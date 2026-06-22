@@ -39,6 +39,12 @@
         <div style="color:var(--c-muted);margin-bottom:8px" id="mc-info"></div>
         <div id="dpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> คูณเมทริกซ์ A(10×100) × B(100×5) × C(5×50) จัดวงเล็บอย่างไรให้จำนวนการคูณน้อยสุด ((AB)C = 7,500 ครั้ง เทียบ A(BC) = 75,000 ครั้ง)</p>
+        <p><strong>แก้ด้วย Matrix-Chain DP อย่างไร:</strong> dp[i][j] = ต้นทุนน้อยสุดในการคูณช่วง i..j โดยลองทุกจุดแบ่ง k · O(n³) — เร็วกว่าลองทุกแบบจัดวงเล็บ (Catalan number, เลขชี้กำลัง)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ปรับ query plan ของฐานข้อมูล (ลำดับ join) · คอมไพเลอร์ · LeetCode 312 Burst Balloons (รูปแบบ interval DP เดียวกัน)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

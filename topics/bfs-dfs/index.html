@@ -47,6 +47,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีตารางแผนที่ขนาด m×n เป็น '1' (พื้นดิน) กับ '0' (น้ำ) ติดกันแนวตั้ง/นอน นับว่ามี "เกาะ" ทั้งหมดกี่เกาะ</p>
+        <p><strong>แก้ด้วย BFS/DFS อย่างไร:</strong> ไล่ทุกช่อง เจอ '1' ที่ยังไม่เยี่ยม = เกาะใหม่ +1 แล้วยิง DFS/BFS ลามไปกลบช่อง '1' ที่ติดกันทั้งกลุ่มให้เป็นเยี่ยมแล้ว (หา connected component) · แต่ละช่องเยี่ยมครั้งเดียว → O(m·n) · BFS ยังหาเส้นทางสั้นสุดบนกราฟไม่มีน้ำหนักได้ (จำนวนก้าวน้อยสุด)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> หา connected components · web crawler ไล่ลิงก์ · ระยะสั้นสุดในเขาวงกต · LeetCode: Number of Islands (200), Word Ladder (127), Rotting Oranges (994)</p>
+      </div>
     </main>
   </div>
 

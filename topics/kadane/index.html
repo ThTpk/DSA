@@ -44,6 +44,12 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หาผลรวมของช่วงย่อยต่อเนื่อง (subarray) ที่มากที่สุดใน [-2,1,-3,4,-1,2,1,-5,4] (คำตอบ: 6 คือ [4,-1,2,1])</p>
+        <p><strong>แก้ด้วย Kadane อย่างไร:</strong> ไล่ทีละตัว เก็บ cur = max(a[i], cur+a[i]) แล้วอัปเดต best · ถ้าผลรวมสะสมติดลบให้เริ่มใหม่ · O(n) สแกนรอบเดียว เร็วกว่า brute-force O(n²)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> หาช่วงกำไร/ขาดทุนสูงสุดของหุ้น · วิเคราะห์สัญญาณ · LeetCode 53 Maximum Subarray, 152 Maximum Product Subarray, 918 Maximum Sum Circular Subarray</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

@@ -57,6 +57,13 @@
         <div style="color:var(--c-muted);margin-bottom:8px" id="bf-added">เพิ่มแล้ว: —</div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เว็บมีรายชื่อ username ที่ถูกใช้ไปแล้วหลายร้อยล้านชื่อ อยากเช็กเร็ว ๆ ว่าชื่อที่ผู้ใช้กรอกน่าจะซ้ำไหม โดยไม่อยากเก็บทุกชื่อในหน่วยความจำ</p>
+        <p><strong>แก้ด้วย Bloom Filter อย่างไร:</strong> ใช้บิตอาเรย์ + hash หลายตัว (k); add คือตั้งบิต k ตำแหน่งเป็น 1, query คือเช็กว่าบิตครบทุกตำแหน่งไหม → ใช้พื้นที่น้อยมาก เช็ก O(k); ถ้าตอบ "ไม่มี" แน่นอนจริง (ไม่มี false negative) ถ้าตอบ "อาจมี" จึงค่อยไปเช็กฐานข้อมูลจริง ลดการ query ที่ไม่จำเป็น</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> กรอง key ที่ไม่มีก่อนแตะ disk ใน Cassandra/HBase/RocksDB, เช็ก URL อันตรายใน Chrome Safe Browsing, ป้องกัน cache penetration · เทคนิคต่อยอด: Counting Bloom Filter, Cuckoo Filter</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

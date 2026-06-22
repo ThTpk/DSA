@@ -50,6 +50,13 @@
         </div>
         <div id="bpviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ตาราง orders ใน MySQL ต้องรันคิวรี <code>WHERE order_date BETWEEN '2024-01-01' AND '2024-03-31'</code> เร็ว ๆ บนข้อมูลหลายล้านแถว</p>
+        <p><strong>แก้ด้วย B+ Tree อย่างไร:</strong> ค้นหาขอบล่างของช่วงลงไปถึงใบ O(log n) จากนั้น <em>เดินตามลิงก์ระหว่างใบ (leaf link)</em> เก็บผลทีละแถวจนถึงขอบบน — range scan เร็วมากเพราะคีย์จริงอยู่ที่ใบทั้งหมดและเรียงต่อเนื่องกัน ไม่ต้องวนกลับขึ้นโหนดภายใน · fan-out สูง ต้นไม้เตี้ย อ่านดิสก์น้อย</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ดัชนีฐานข้อมูลที่ใช้จริง — MySQL InnoDB (clustered index ใช้ B+ Tree), PostgreSQL, Oracle · ระบบไฟล์ (NTFS, XFS), range query / ORDER BY / pagination</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

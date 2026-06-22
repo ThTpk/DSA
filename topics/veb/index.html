@@ -47,6 +47,13 @@
         </div>
         <div id="vbviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีเซตของพอร์ต/เลขจำนวนเต็มในช่วง 0…2³²−1 ต้องตอบ "ตัวถัดไปที่มีอยู่จริงหลังเลข x คือเลขใด (successor)" ให้เร็วกว่า BST</p>
+        <p><strong>แก้ด้วย van Emde Boas Tree อย่างไร:</strong> แบ่งจักรวาลเป็น √u คลัสเตอร์แบบเรียกซ้ำ ใช้ summary จำว่าคลัสเตอร์ไหนไม่ว่าง · successor/insert/member/min/max ได้ O(log log u) — เช่น u = 2³² ให้ log log u ≈ 5 เท่านั้น เร็วกว่า BST ที่ O(log n) มากเมื่อจักรวาลคงที่และหนาแน่น (แลกกับพื้นที่ O(u))</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> O(log log u) successor/predecessor, IP routing tables, จัดการเลขพอร์ต/PID/integer keys ในช่วงจำกัด, priority queue ที่ key เป็นจำนวนเต็มเล็ก</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

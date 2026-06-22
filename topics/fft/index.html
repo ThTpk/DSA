@@ -38,6 +38,12 @@
         </div>
         <div id="ftviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> คูณพหุนาม 2 ตัวที่มีดีกรีสูง (หรือคูณจำนวนเต็มขนาดใหญ่มาก) ให้เร็ว</p>
+        <p><strong>แก้ด้วย FFT อย่างไร:</strong> การคูณพหุนามคือ convolution ของสัมประสิทธิ์ FFT แปลงไปโดเมนความถี่ (O(n log n)) คูณแบบจุดต่อจุด O(n) แล้ว inverse FFT กลับ → รวม O(n log n) เร็วกว่าการคูณตรง O(n²) มาก</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ประมวลผลสัญญาณเสียง/ภาพ (กรองความถี่) · บีบอัด MP3/JPEG · คูณจำนวนเต็มใหญ่ (big integer) · LeetCode 43 (Multiply Strings) แนวคิด convolution</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

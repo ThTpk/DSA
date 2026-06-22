@@ -46,6 +46,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เครือข่ายมี n โหนด มีเวลาส่งสัญญาณบนแต่ละสาย (เป็นบวก) ถ้าส่งสัญญาณจากโหนด k จะใช้เวลาเท่าไรกว่าทุกโหนดจะได้รับ</p>
+        <p><strong>แก้ด้วย Dijkstra อย่างไร:</strong> หาเส้นทางสั้นสุดจาก k ไปทุกโหนด คำตอบคือ max ของระยะทางทั้งหมด · greedy เลือกโหนดระยะน้อยสุดที่ยังไม่ยืนยันด้วย min-heap แล้ว relax เพื่อนบ้าน · O((V+E) log V) · ใช้ได้เพราะน้ำหนักไม่ติดลบ (ถ้ามีลบต้องใช้ Bellman-Ford)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> GPS หาเส้นทางสั้นสุด (Google Maps) · network routing (OSPF) · LeetCode: Network Delay Time (743), Path with Minimum Effort (1631), Cheapest Flights Within K Stops (787)</p>
+      </div>
     </main>
   </div>
 

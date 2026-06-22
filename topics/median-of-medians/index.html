@@ -31,6 +31,13 @@
         </p>
       </div>
       <div class="card"><div id="sortviz"></div></div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หาอันดับที่ k ในอาเรย์ขนาดใหญ่ โดย<em>รับประกัน</em> O(n) แม้ในกรณีแย่สุด (ไม่เสี่ยง O(n²) แบบ quickselect)</p>
+        <p><strong>แก้ด้วย Median of Medians อย่างไร:</strong> แบ่งข้อมูลเป็นกลุ่มละ 5 หามัธยฐานแต่ละกลุ่ม แล้วหามัธยฐานของมัธยฐานเหล่านั้นมาเป็น pivot ที่ดี · O(n) worst-case · pivot นี้รับประกันว่าตัดทิ้งได้อย่างน้อย ~30% ทุกรอบ จึงไม่เสื่อมเป็น O(n²)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> เลือก pivot ให้ quickselect/quicksort ปลอดภัย · ระบบเรียลไทม์ที่ต้องการ worst-case การันตี · เป็นพื้นฐานทฤษฎีของ deterministic selection</p>
+      </div>
+
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

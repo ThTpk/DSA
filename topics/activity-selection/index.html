@@ -41,6 +41,12 @@
         </div>
         <div id="asviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ห้องประชุมมีคำขอจอง 5 ช่วงเวลา [(1,4),(3,5),(0,6),(5,7),(8,9)] เลือกจัดได้มากสุดกี่ประชุมโดยไม่ทับเวลากัน (คำตอบ: 3 คือ (1,4),(5,7),(8,9))</p>
+        <p><strong>แก้ด้วย Activity Selection อย่างไร:</strong> เรียงตามเวลาสิ้นสุด (finish time) แล้วเลือกแบบ greedy: หยิบกิจกรรมที่จบเร็วสุดที่ยังไม่ชนกับที่เลือกไว้ · O(n log n) จากการเรียง · พิสูจน์ได้ว่า greedy optimal</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> จัดตารางห้องประชุม/ห้องเรียน · CPU/job scheduling · LeetCode 435 Non-overlapping Intervals, 452 Minimum Arrows to Burst Balloons</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

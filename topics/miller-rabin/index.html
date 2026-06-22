@@ -41,6 +41,12 @@
         </div>
         <div id="ntviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ตรวจว่าเลข 561 หลักหรือเลขใหญ่ระดับ 2048 บิตเป็นจำนวนเฉพาะหรือไม่ (เร็ว)</p>
+        <p><strong>แก้ด้วย Miller-Rabin อย่างไร:</strong> ทดสอบความเป็นจำนวนเฉพาะแบบความน่าจะเป็น โดยเขียน n-1 = 2^s·d แล้วเช็คพยาน (witness) a หลายตัวว่าผ่านเงื่อนไข a^d, a^(2d)... mod n หรือไม่ → แต่ละรอบ O(k log³n) ความผิดพลาดลดลงเหลือ 4^(-k) เร็วกว่าการทดลองหารจริงสำหรับเลขใหญ่มหาศาล</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> สร้างคีย์ RSA (ต้องหาจำนวนเฉพาะใหญ่) · ระบบเข้ารหัส · ตรวจ pseudoprime / Carmichael number · ไลบรารี BigInteger.isProbablePrime</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

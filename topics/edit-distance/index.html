@@ -42,6 +42,12 @@
         </div>
         <div id="dpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> แปลงคำว่า "kitten" เป็น "sitting" ต้องแก้ (แทรก/ลบ/แทนที่ตัวอักษร) น้อยที่สุดกี่ครั้ง (คำตอบ: 3)</p>
+        <p><strong>แก้ด้วย Edit Distance (Levenshtein) อย่างไร:</strong> dp[i][j] = ระยะแก้ของ s1[..i] กับ s2[..j] · ถ้าตัวอักษรเท่ากันใช้ค่าทแยงเดิม ไม่เท่าใช้ 1 + min(แทรก, ลบ, แทนที่) · O(m·n)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> autocorrect/spell-check · diff ของไฟล์ (git) · จัดเรียง DNA · ค้นหาแบบ fuzzy · LeetCode 72 Edit Distance, 583 Delete Operation for Two Strings</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

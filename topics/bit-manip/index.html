@@ -60,6 +60,12 @@
         <div class="bitrow"><div class="bitrow__label" id="res-label">ผลลัพธ์</div><div class="bits" id="bits-r"></div><div class="bitdec" id="dec-r"></div></div>
         <div id="bit-note" style="color:var(--c-muted);margin-top:8px"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ในอาเรย์ที่ทุกตัวซ้ำกัน 2 ครั้งยกเว้นตัวเดียว จงหาตัวที่ไม่ซ้ำ เช่น [4,1,2,1,2] → 4</p>
+        <p><strong>แก้ด้วย Bit Manipulation อย่างไร:</strong> XOR ทุกตัวเข้าด้วยกัน เพราะ x ^ x = 0 และ x ^ 0 = x คู่ที่ซ้ำจะหักล้างกันหมด เหลือเฉพาะตัวที่ไม่ซ้ำ → O(n) เวลา O(1) หน่วยความจำ ไม่ต้องใช้ hash map เลย</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> subset/bitmask DP · flags &amp; permission (สิทธิ์เป็นบิต) · LeetCode 136 (Single Number) · LeetCode 191 (Number of 1 Bits) · LeetCode 78 (Subsets)</p>
+      </div>
     </main>
   </div>
 

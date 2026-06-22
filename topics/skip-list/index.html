@@ -43,6 +43,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ทำ leaderboard ของเกมที่ต้องเพิ่มคะแนน, ลบผู้เล่น และดึงอันดับช่วงคะแนนได้เร็ว โดยไม่อยากเขียน balanced tree ที่ซับซ้อน</p>
+        <p><strong>แก้ด้วย Skip List อย่างไร:</strong> เก็บคะแนนเรียงไว้ใน linked list แล้วมี "เลนด่วน" หลายชั้นสุ่มความสูง → ค้นหา/แทรก/ลบ เฉลี่ย O(log n) เหมือน "ลงบันได" ข้ามทีละหลายโหนดในชั้นบน; โค้ดง่ายกว่า red-black tree และรองรับ range query โดยตรง</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> Redis sorted set (ZADD/ZRANGE), index ใน LevelDB/RocksDB, ดัชนีของ Apache Lucene · LeetCode: Design Skiplist (1206)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

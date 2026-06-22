@@ -43,6 +43,12 @@
         </div>
         <div id="graphviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ติดกล้องวงจรปิดให้น้อยจุดที่สุด โดยทุกถนน (เส้นเชื่อม) ต้องมีกล้องคุมอย่างน้อยปลายด้านหนึ่ง</p>
+        <p><strong>แก้ด้วย Vertex Cover อย่างไร:</strong> นี่คือปัญหา NP-hard หาคำตอบที่ดีที่สุดยากมาก จึงใช้ 2-approximation: เลือกเส้นเชื่อมที่ยังไม่ถูกคุม หยิบปลายทั้งสองเข้า cover แล้วลบเส้นที่เกี่ยวข้องออก ทำซ้ำ → ได้คำตอบไม่เกิน 2 เท่าของที่ดีที่สุด ในเวลาพหุนาม</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> วางเซ็นเซอร์/กล้องคุมเครือข่าย · ตัวอย่าง NP-hard + approximation algorithm คลาสสิก · เกี่ยวข้องกับ Maximum Matching และ Independent Set</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

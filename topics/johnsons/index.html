@@ -36,6 +36,13 @@
         <div class="viz-input"><button class="vp__btn vp__btn--primary" id="jh-run">▶ รัน Johnson's</button></div>
         <div id="jhviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> กราฟมีทิศขนาดใหญ่แต่เบาบาง (V=2000, E≈8000) มีน้ำหนักลบบางเส้น (เช่น โปรโมชันลดราคา) ต้องการระยะสั้นสุดทุกคู่โหนด</p>
+        <p><strong>แก้ด้วย Johnson's อย่างไร:</strong> Floyd-Warshall จะเป็น O(V³)=8×10⁹ ช้าไป · Johnson's ใช้ reweighting: เพิ่มโหนดเสมือน q ชี้ทุกโหนดน้ำหนัก 0 รัน Bellman-Ford หา h(v) ปรับเป็น <code>w'=w+h(u)−h(v)</code> (ไม่มีลบ) แล้วรัน Dijkstra จากทุกโหนด · O(V²log V + VE) เร็วกว่ามากบนกราฟ sparse · รองรับน้ำหนักลบ (ห้ามมี negative cycle)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> all-pairs shortest path บนกราฟ sparse ที่มีน้ำหนักลบ · ตารางระยะทาง/ค่าโดยสารทั้งเครือข่าย · เปรียบเทียบกับ Floyd-Warshall (เหมาะกราฟแน่น/เล็ก)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

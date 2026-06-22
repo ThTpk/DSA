@@ -35,6 +35,13 @@
       </div>
 
       <div class="card"><div id="reprviz"></div></div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> โซเชียลเน็ตเวิร์กมีผู้ใช้ 1 ล้านคน แต่ละคนมีเพื่อนเฉลี่ยแค่ 200 คน จะเก็บความสัมพันธ์เพื่อนในหน่วยความจำอย่างไรให้ไม่ระเบิด</p>
+        <p><strong>แก้ด้วย การแทนกราฟ อย่างไร:</strong> กราฟนี้เบาบาง (sparse, E ≪ V²) จึงเลือก Adjacency List เก็บแค่ O(V+E) ≈ 200 ล้านช่อง แทน Matrix ที่ต้องใช้ O(V²) = 10¹² ช่อง · เช็กว่า A เป็นเพื่อน B ไหมใช้ O(degree) แต่ไล่เพื่อนทั้งหมดได้เร็ว ส่วน Matrix เหมาะเมื่อกราฟแน่น (dense) หรือต้องเช็กเส้น O(1) บ่อยๆ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> โครงพื้นฐานของทุกอัลกอริทึมกราฟ (BFS/DFS/Dijkstra) · กราฟเพื่อนใน Facebook · ตารางเส้นทางบนแผนที่ · LeetCode: Find the Town Judge (997), Course Schedule (207)</p>
+      </div>
     </main>
   </div>
 

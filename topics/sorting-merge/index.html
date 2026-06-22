@@ -37,6 +37,13 @@
       </div>
 
       <div class="card"><div id="sortviz"></div></div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เรียงอาเรย์ [38, 27, 43, 3, 9, 82, 10] จากน้อยไปมากด้วย Merge Sort</p>
+        <p><strong>แก้ด้วย Merge Sort อย่างไร:</strong> แบ่งครึ่งซ้ำๆ จนเหลือชิ้นละตัว: [38,27,43,3] กับ [9,82,10] → ... → ชิ้นเดี่ยว · จากนั้นผสานคู่ที่เรียงแล้วกลับขึ้นมา เช่น [27,38]+[3,43]→[3,27,38,43] และ [9,82]+[10]→[9,10,82] · ผสานสองก้อนใหญ่สุดท้ายได้ [3,9,10,27,38,43,82] · O(n log n) <strong>ทุกกรณี</strong> และ <em>stable</em> (รักษาลำดับค่าที่เท่ากัน) จึงเหมาะเมื่อต้องการประสิทธิภาพที่คาดเดาได้และความเสถียร</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> External sort สำหรับข้อมูลใหญ่เกิน RAM (เรียงไฟล์ทีละก้อนแล้ว merge), เป็นแกนของ Timsort (Python/Java), นับ inversions, เรียง linked list (ไม่ต้อง random access) · LeetCode: Sort List, Count of Smaller Numbers After Self, Merge k Sorted Lists</p>
+      </div>
     </main>
   </div>
 

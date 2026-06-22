@@ -38,6 +38,12 @@
         </div>
         <div id="stviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> คูณเมทริกซ์ขนาดใหญ่ A·B ขนาด n×n ให้เร็วกว่าวิธีปกติ</p>
+        <p><strong>แก้ด้วย Strassen's Algorithm อย่างไร:</strong> แบ่งเมทริกซ์เป็น 4 บล็อก แล้วใช้การคูณย่อยเพียง 7 ครั้งแทน 8 ครั้ง (ด้วยการบวก/ลบที่ฉลาด) → O(n^2.807) แทน O(n³) ของวิธีตรง ยิ่ง n ใหญ่ยิ่งเห็นผล แม้ค่าคงที่จะสูงกว่า</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ไลบรารีพีชคณิตเชิงเส้น · ประมวลผลกราฟิก/วิทยาศาสตร์ · ตัวอย่างคลาสสิกของ divide &amp; conquer ที่ลด complexity · พื้นฐานสู่ Coppersmith-Winograd</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

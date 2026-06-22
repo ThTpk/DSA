@@ -48,6 +48,13 @@
         </div>
         <div id="treeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ต้องการ map ที่ key เรียงตลอดเวลา รองรับ insert/delete/lookup บ่อยมาก และยังต้องวนค่าตามลำดับได้ — จะเลือกโครงสร้างไหน</p>
+        <p><strong>แก้ด้วย Red-Black Tree อย่างไร:</strong> เป็น balanced BST ที่ซ่อมสมดุลด้วย recolor + rotation รับประกัน O(log n) ทุกการดำเนินการ · ปรับสมดุลน้อยครั้งกว่า AVL (หมุนไม่เกิน 2–3 ครั้งต่อ insert) จึงเหมาะกับงาน insert/delete หนัก · inorder ให้ค่าตามลำดับ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> C++ <code>std::map</code>/<code>std::set</code>, Java <code>TreeMap</code>/<code>TreeSet</code>, Linux CFS scheduler, จัดการช่วงหน่วยความจำในเคอร์เนล (epoll, vma)</p>
+      </div>
     </main>
   </div>
 

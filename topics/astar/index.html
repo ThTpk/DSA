@@ -62,6 +62,13 @@
         </div>
         <div id="asviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หาเส้นทางสั้นสุดของตัวละครในเกมจากจุด A ไปจุด B บนกริดที่มีกำแพงขวาง</p>
+        <p><strong>แก้ด้วย A* อย่างไร:</strong> เลือกขยายโหนดที่ f(n) = g(n) + h(n) ต่ำสุด โดย g คือระยะที่เดินมาแล้ว h คือฮิวริสติกประมาณระยะเหลือ (เช่น Manhattan distance) · เร็วกว่า Dijkstra เพราะ h ชี้นำให้ค้นไปทางเป้าหมาย · ได้คำตอบดีที่สุดเมื่อ h ไม่ประเมินเกินจริง (admissible)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> pathfinding ในเกม/หุ่นยนต์ · นำทาง GPS · LeetCode: Sliding Puzzle (773), Shortest Path in Binary Matrix (1091)</p>
+      </div>
+
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

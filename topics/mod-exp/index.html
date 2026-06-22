@@ -42,6 +42,12 @@
         </div>
         <div id="ntviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> คำนวณ 7^435 mod 1000 โดยไม่ให้ตัวเลขล้น (overflow)</p>
+        <p><strong>แก้ด้วย Modular Exponentiation อย่างไร:</strong> ใช้ fast exponentiation (square-and-multiply) ยกกำลังทีละบิตของเลขชี้กำลัง แล้ว mod ทุกขั้นเพื่อกันตัวเลขโต → O(log n) การคูณ แทนที่จะคูณ n ครั้ง เป็นพื้นฐานของการเข้ารหัสคีย์สาธารณะ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> RSA encryption/decryption · Diffie-Hellman key exchange · ตัวประกอบใน Miller-Rabin · LeetCode 50 (Pow(x,n)) · LeetCode 372 (Super Pow)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

@@ -47,6 +47,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เก็บ key [25, 36, 14] ลงตาราง m=11 โดยไม่อยากใช้ linked list แยกแต่ละ bucket เพื่อให้ข้อมูลอยู่ติดกันใน cache</p>
+        <p><strong>แก้ด้วย Open Addressing อย่างไร:</strong> hash(25)=3, ถ้าช่อง 3 ไม่ว่างก็ลองช่องถัดไป 4, 5, ... (linear probing) จนเจอช่องว่าง → เก็บทุกอย่างในอาเรย์เดียว ประหยัด pointer และ cache-friendly; เฉลี่ย O(1) ถ้า load factor ต่ำ แต่ระวัง clustering ทำให้ probe ยาวขึ้น</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> hash map ประสิทธิภาพสูงที่เน้น cache (เช่น Python dict, Google dense_hash_map), symbol table ในคอมไพเลอร์ · เทคนิคคู่กัน: quadratic probing, double hashing</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

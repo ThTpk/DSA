@@ -42,6 +42,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีโมดูลซอฟต์แวร์ที่ import กันเป็นกราฟมีทิศ ต้องการหากลุ่มโมดูลที่ "พึ่งพากันเป็นวงกลม" (circular dependency) เพื่อยุบเป็นกลุ่มเดียวและจัดลำดับ build</p>
+        <p><strong>แก้ด้วย SCC (Kosaraju) อย่างไร:</strong> โหนดที่ไปถึงกันได้ทั้งสองทาง = อยู่ SCC เดียวกัน = วงพึ่งพากัน · DFS รอบแรกบันทึกลำดับ finish ลงสแตก รอบสอง DFS บนกราฟกลับทิศ (transpose) ตามลำดับ finish ย้อนกลับ แต่ละต้นไม้ = 1 SCC · O(V+E) · ยุบ SCC เป็นโหนดเดียวได้ DAG ไป topological sort ต่อ</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> วิเคราะห์ dependency แบบวงกลม · 2-SAT solver · จัดกลุ่มหน้าเว็บที่ลิงก์วนกัน · condensation graph · LeetCode: Critical Connections in a Network (1192, แนวคิดใกล้เคียง)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

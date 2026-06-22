@@ -34,6 +34,12 @@
         </div>
         <div id="dpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ท่อนเหล็กยาว 4 หน่วย ราคาตามความยาว [ยาว1=2, ยาว2=5, ยาว3=7, ยาว4=8] ควรตัดอย่างไรให้ขายได้เงินมากสุด (คำตอบ: 2+2 = 10 บาท)</p>
+        <p><strong>แก้ด้วย Rod Cutting DP อย่างไร:</strong> dp[n] = max(price[i] + dp[n−i]) ทุกจุดตัด i · O(n²) — เก็บผลของท่อนสั้นมาใช้ซ้ำ แทนการลองตัดทุกแบบ O(2ⁿ⁻¹)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตัดวัสดุให้กำไรสูงสุด (cutting stock) · เป็นรากฐานของ unbounded knapsack · LeetCode 343 Integer Break, 279 Perfect Squares</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

@@ -36,6 +36,13 @@
       </div>
 
       <div class="card"><div id="sortviz"></div></div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เรียงอาเรย์ [4, 10, 3, 5, 1] จากน้อยไปมากด้วย Heap Sort</p>
+        <p><strong>แก้ด้วย Heap Sort อย่างไร:</strong> สร้าง Max-Heap ก่อน (heapify) → [10,5,3,4,1] (10 อยู่ราก) · สลับราก 10 ไปท้ายสุด ลดขนาด heap แล้ว sift-down ซ่อม → ได้ค่ามากสุดเข้าที่ทีละตัว · ทำซ้ำ: ดึง 5, 4, 3 ... จนได้ [1,3,4,5,10] · O(n log n) <strong>ทุกกรณี</strong> และพื้นที่ O(1) (in-place) จึงเหมาะเมื่อต้องการเวลาแบบคงที่และประหยัดหน่วยความจำ (ไม่เหมือน merge ที่ใช้ O(n))</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ใช้เป็น fallback ของ Introsort เพื่อกัน worst case O(n²) ของ quicksort, หา Top-K ด้วย heap, ระบบที่ต้องการ guaranteed O(n log n) โดยไม่ใช้พื้นที่เพิ่ม · LeetCode: Kth Largest Element, Top K Frequent Elements, Find Median from Data Stream</p>
+      </div>
     </main>
   </div>
 

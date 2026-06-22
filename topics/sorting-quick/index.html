@@ -38,6 +38,13 @@
       </div>
 
       <div class="card"><div id="sortviz"></div></div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เรียงอาเรย์ [7, 2, 1, 6, 8, 5, 3, 4] จากน้อยไปมากด้วย Quick Sort (เลือก pivot = ตัวขวาสุด)</p>
+        <p><strong>แก้ด้วย Quick Sort อย่างไร:</strong> เลือก pivot = 4 แล้ว partition: ย้ายตัวที่น้อยกว่า 4 ([2,1,3]) ไปซ้าย ตัวที่มากกว่า ([7,6,8,5]) ไปขวา แล้ววาง 4 ตรงกลาง → [2,1,3, 4, 7,6,8,5] · 4 อยู่ตำแหน่งสุดท้ายที่ถูกต้องแล้ว · เรียกซ้ำกับสองฝั่งจนทุกตัวเข้าที่ · เฉลี่ย O(n log n) และ <em>in-place</em> (พื้นที่ O(log n)) จึงเร็วจริงในทางปฏิบัติ; แย่สุด O(n²) เมื่อ pivot แย่ แก้ด้วยการสุ่ม pivot หรือ median-of-three</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ฟังก์ชัน sort ในไลบรารีหลายภาษา (C qsort, Introsort ใน C++ std::sort), หาค่าอันดับที่ k ด้วย Quickselect (partition แบบเดียวกัน), เรียงข้อมูลในหน่วยความจำที่เน้นความเร็ว · LeetCode: Sort an Array, Kth Largest Element in an Array</p>
+      </div>
     </main>
   </div>
 

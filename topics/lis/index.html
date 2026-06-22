@@ -44,6 +44,12 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> หาความยาวของลำดับย่อยที่เพิ่มขึ้นที่ยาวสุดใน [10,9,2,5,3,7,101,18] (คำตอบ: 4 คือ [2,3,7,101])</p>
+        <p><strong>แก้ด้วย LIS อย่างไร:</strong> DP: dp[i] = ความยาว LIS ที่จบที่ตำแหน่ง i, dp[i]=max(dp[j]+1) เมื่อ a[j]&lt;a[i] · O(n²) · หรือใช้ binary search กับ "tails array" ลดเหลือ O(n log n)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> วิเคราะห์เทรนด์ราคาหุ้น · จัดเรียงเวอร์ชัน/แพตช์ · เกม patience sorting · LeetCode 300 Longest Increasing Subsequence, 354 Russian Doll Envelopes</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

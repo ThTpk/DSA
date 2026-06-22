@@ -40,6 +40,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีพนักงาน m คนกับงาน n ชิ้น แต่ละคนทำได้เฉพาะบางงาน (ตามทักษะ) ต้องการมอบหมายให้คนได้ทำงานมากที่สุด โดย 1 คนทำ 1 งาน และ 1 งานมีคนเดียว</p>
+        <p><strong>แก้ด้วย Bipartite Matching อย่างไร:</strong> โหนดซ้าย=คน ขวา=งาน เส้น=ทำได้ · ลองจับคู่ทีละคนซ้าย ถ้างานที่อยากได้ถูกจองแล้ว ลองดันเจ้าของเดิมไปจับงานอื่น (augmenting path, วิธี Kuhn) ถ้าได้ก็เพิ่ม matching +1 · O(V·E) · เป็นกรณีพิเศษของ Max Flow (ทุกเส้นความจุ 1)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> จัดคน-งาน/นักเรียน-โครงงาน · จับคู่ทรัพยากร · จองห้อง/ตารางสอน · LeetCode: Maximum Number of Accepted Invitations (1820), Campus Bikes II (1066)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

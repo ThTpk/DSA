@@ -41,6 +41,12 @@
         </div>
         <div id="ntviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ลดเศษส่วน 240/46 ให้เป็นรูปอย่างต่ำ และหา modular inverse ของ 3 mod 11</p>
+        <p><strong>แก้ด้วย Euclidean Algorithm อย่างไร:</strong> gcd(240,46)=2 หารทั้งเศษและส่วน → 120/23 ทำได้ O(log min(a,b)) ส่วน Extended Euclidean หา x,y ที่ a·x+b·y=gcd ใช้คำนวณ modular inverse (3·4 ≡ 1 mod 11 → inverse คือ 4) ซึ่งเป็นหัวใจของ RSA</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ลดเศษส่วน · modular inverse ใน RSA / CRT · คำนวณ LCM = a·b/gcd · LeetCode 1071 (GCD of Strings) · LeetCode 365 (Water and Jug Problem)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

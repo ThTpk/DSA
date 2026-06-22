@@ -38,6 +38,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีวิชาเรียน n วิชา บางวิชาต้องเรียนวิชาก่อนหน้า (prerequisite) ให้หาลำดับการลงทะเบียนที่เรียนได้ครบทุกวิชา หรือบอกว่าเป็นไปไม่ได้</p>
+        <p><strong>แก้ด้วย Topological Sort อย่างไร:</strong> สร้าง DAG วิชา→วิชาที่ปลดล็อก นับ in-degree ทุกโหนด เอาตัว in-degree=0 (ไม่มีเงื่อนไขค้าง) เข้าคิวออกก่อน แล้วลด in-degree เพื่อนบ้าน (Kahn) · O(V+E) · ถ้าจัดได้ไม่ครบ n วิชา = มีวงจร → เป็นไปไม่ได้</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ลำดับ build/compile dependencies (Make, npm) · ตารางเรียน · spreadsheet recalculation · LeetCode: Course Schedule (207, 210), Alien Dictionary (269)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

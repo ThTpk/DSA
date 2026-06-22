@@ -41,6 +41,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ทำปุ่ม "ย้อนกลับ/ถัดไป" ของเบราว์เซอร์ ที่เดินไปข้างหน้าและถอยหลังในประวัติได้ทั้งสองทิศ</p>
+        <p><strong>แก้ด้วย Doubly Linked List อย่างไร:</strong> แต่ละหน้ามี pointer <code>next</code> และ <code>prev</code> จึงเดินไปหน้า-ถอยหลังได้ในก้าวเดียว O(1) และลบโหนดได้ทันทีเพราะรู้ตัวก่อนหน้า (ต่างจาก singly ที่ต้องไล่หา prev); แบบ circular ยังวนกลับต้นได้ เหมาะกับ round-robin</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ประวัติเบราว์เซอร์/undo-redo, โครงสร้างภายใน LRU cache, round-robin CPU scheduling · LeetCode: Flatten a Multilevel Doubly Linked List (430), Design Browser History (1472)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

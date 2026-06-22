@@ -36,6 +36,12 @@
         <div style="color:var(--c-muted);margin-bottom:8px" id="ob-info"></div>
         <div id="dpviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> คำค้น 4 คำที่มีความถี่ค้นต่างกัน (เช่น "the"=0.4, "a"=0.3, "in"=0.2, "on"=0.1) ควรจัดเป็น BST รูปไหนให้เวลาค้นเฉลี่ยน้อยสุด</p>
+        <p><strong>แก้ด้วย Optimal BST DP อย่างไร:</strong> dp[i][j] = ต้นทุนค้นหาเฉลี่ยน้อยสุดของคีย์ช่วง i..j โดยลองทุกคีย์เป็นราก แล้วบวกผลรวมความถี่ (เพราะลึกลงไป 1 ชั้น) · O(n³)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ดัชนีฐานข้อมูล/คอมไพเลอร์ที่รู้ความถี่ล่วงหน้า · การจัด dictionary ให้คำที่ค้นบ่อยอยู่ตื้น · รูปแบบ interval DP เดียวกับ matrix-chain</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

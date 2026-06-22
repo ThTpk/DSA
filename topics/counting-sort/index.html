@@ -39,6 +39,13 @@
         </div>
         <div id="nodeviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> เรียงคะแนนสอบของนักเรียน 7 คน [4, 2, 2, 8, 3, 3, 1] โดยคะแนนเป็นจำนวนเต็ม 0–8</p>
+        <p><strong>แก้ด้วย Counting Sort อย่างไร:</strong> นับความถี่ลง count[]: count[1]=1, count[2]=2, count[3]=2, count[4]=1, count[8]=1 · จากนั้นไล่ค่าจากน้อย→มาก เติม output ตามจำนวนที่นับได้ → [1,2,2,3,3,4,8] · ไม่มีการเปรียบเทียบเลย ทำงาน O(n + k) เมื่อ k คือช่วงค่า (ที่นี่ k=9) · เร็วกว่า O(n log n) มากเมื่อ k ไม่ใหญ่ แต่เปลืองพื้นที่ถ้าค่ากระจายกว้าง (เช่นมีค่า 1,000,000 ปนมา)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> เรียงอายุ/คะแนน/เกรดที่ช่วงค่าจำกัด, ใช้เป็นขั้นตอนย่อยใน Radix Sort, นับความถี่และจัดอันดับ, histogram · LeetCode: Sort Colors (Dutch flag), Maximum Gap, Relative Sort Array</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

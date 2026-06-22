@@ -44,6 +44,13 @@
         </div>
         <div id="fhviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> รัน Dijkstra บนกราฟหนาแน่น (E ใกล้ V²) ที่ต้อง <em>decrease-key</em> บ่อยมากตอน relax ขอบ จะลดต้นทุนรวมได้อย่างไร</p>
+        <p><strong>แก้ด้วย Fibonacci Heap อย่างไร:</strong> insert และ decrease-key เป็น O(1) amortized (เลื่อนงานหนักไปไว้ตอน extract-min ที่ consolidate) · ทำให้ Dijkstra/Prim ได้ O(E + V log V) ดีกว่า binary heap ที่เป็น O(E log V) เมื่อ E ใหญ่ — เพราะการ decrease-key ที่เกิด E ครั้งกลายเป็นฟรีเชิง amortized</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ลด amortized ของ decrease-key ใน Dijkstra/Prim's MST, อัลกอริทึมเชิงทฤษฎีที่ต้องการขอบเขตล่างสุด · ในทางปฏิบัติ binary/pairing heap มักเร็วกว่าเพราะค่าคงที่ต่ำและ cache ดีกว่า</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

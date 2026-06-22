@@ -37,6 +37,12 @@
         </div>
         <div id="chviz"></div>
       </div>
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> มีจุดกระจายบนแผนที่ จงหากรอบนอกสุด (รูปหลายเหลี่ยมเล็กที่สุด) ที่ครอบทุกจุด</p>
+        <p><strong>แก้ด้วย Convex Hull อย่างไร:</strong> เรียงจุดแล้วใช้ Graham Scan / Andrew's Monotone Chain ไล่สร้างขอบบน-ล่าง โดยใช้ cross product ตัดจุดที่ทำให้เลี้ยวเข้าด้านใน (concave) ออก → O(n log n) ได้ขอบนูนที่ครอบทุกจุด</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ตรวจการชน/ขอบเขตวัตถุในเกม · GIS หาพื้นที่ครอบคลุม · pattern recognition · LeetCode 587 (Erect the Fence)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>

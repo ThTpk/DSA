@@ -41,6 +41,13 @@
         </div>
         <div id="graphviz"></div>
       </div>
+
+      <div class="card">
+        <h2>📝 ตัวอย่างโจทย์ &amp; การนำไปใช้</h2>
+        <p><strong>โจทย์:</strong> ระบบประปามีท่อเชื่อมจุดต่างๆ แต่ละท่อมีความจุน้ำต่อวินาทีจำกัด อยากรู้ว่าส่งน้ำจากแหล่ง S ไปถึงเมือง T ได้มากสุดกี่หน่วยต่อวินาที</p>
+        <p><strong>แก้ด้วย Max Flow อย่างไร:</strong> หา augmenting path (เส้นทางที่ยังเหลือความจุ) แล้วดันน้ำเพิ่มเท่ากับคอขวดของเส้นทางนั้น พร้อมสร้าง residual edge ให้ย้อนได้ ทำซ้ำจนไม่มีเส้นทางเหลือ · Edmonds-Karp ใช้ BFS หาเส้นสั้นสุดทุกรอบ → O(V·E²) · ค่าการไหลสูงสุด = ความจุ min-cut (Max-Flow Min-Cut)</p>
+        <p style="margin-bottom:0"><strong>เจอได้ที่ไหน:</strong> ความจุท่อ/จราจร/แบนด์วิดท์ · จับคู่งาน-คน (bipartite matching) · image segmentation (min-cut) · LeetCode: Maximum Students Taking Exam (1349)</p>
+      </div>
     </main>
   </div>
   <script>window.DSA = { basePath: '../../' };</script>
