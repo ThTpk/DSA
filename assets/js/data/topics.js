@@ -44,6 +44,7 @@
         { id: 'fenwick-tree', title: 'Fenwick Tree (BIT)',       path: 'topics/fenwick-tree/', status: 'ready' },
         { id: 'priority-queue', title: 'Priority Queue',         path: 'topics/priority-queue/', status: 'ready' },
         { id: 'b-tree',      title: 'B-Tree',                    path: 'topics/b-tree/',       status: 'ready' },
+        { id: 'fibonacci-heap', title: 'Fibonacci Heap',         path: 'topics/fibonacci-heap/', status: 'ready' },
       ],
     },
     {
