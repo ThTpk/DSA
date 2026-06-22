@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FFT — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Fast Fourier Transform (FFT)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>DFT</strong> แปลงสัญญาณเป็นองค์ประกอบความถี่ แบบตรง ๆ ใช้เวลา O(n²) · <strong>FFT</strong> (Cooley-Tukey)
+          ใช้ <em>Divide & Conquer</em>: แยกเป็นดัชนี <em>คู่/คี่</em> แล้วรวมด้วย "ผีเสื้อ (butterfly)" + <em>twiddle factor</em>
+          <code>w = e<sup>−2πik/len</sup></code> → เหลือ <strong>O(n log n)</strong>
+        </p>
+        <p style="margin-bottom:0">
+          แบบวนซ้ำ (iterative): จัดเรียงด้วย <em>bit-reversal</em> ก่อน แล้วรวมทีละชั้น len = 2, 4, 8, … ·
+          ตัวเลขในตาราง = จำนวนเชิงซ้อน (a + bi) · ตรวจผลกับ DFT ตรง
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="ft-in" value="0,1,2,3,4,5,6,7" placeholder="8 ค่า (จำนวนจริง)" style="flex:1 1 260px">
+          <button class="vp__btn vp__btn--primary" id="ft-run">▶ แปลง FFT</button>
+        </div>
+        <div id="ftviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

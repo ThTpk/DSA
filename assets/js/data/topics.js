@@ -134,6 +134,8 @@
         { id: 'closest-pair', title: 'Closest Pair of Points', path: 'topics/closest-pair/', status: 'ready' },
         { id: 'strassen',    title: "Strassen's Matrix Mult.", path: 'topics/strassen/',    status: 'ready' },
         { id: 'vertex-cover', title: 'Vertex Cover (2-approx)', path: 'topics/vertex-cover/', status: 'ready' },
+        { id: 'simplex',     title: 'Linear Programming (Simplex)', path: 'topics/simplex/', status: 'ready' },
+        { id: 'fft',         title: 'Fast Fourier Transform',  path: 'topics/fft/',         status: 'ready' },
         { id: 'convex-hull', title: 'Convex Hull',             path: 'topics/convex-hull/', status: 'ready' },
       ],
     },

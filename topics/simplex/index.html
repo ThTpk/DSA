@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simplex / Linear Programming — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Linear Programming / Simplex (เชิงเรขาคณิต)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Linear Programming</strong>: หาค่ามากสุด/น้อยสุดของฟังก์ชันเชิงเส้น ภายใต้ <em>ข้อจำกัดเชิงเส้น</em> (อสมการ)
+          เซตของจุดที่สอดคล้องทุกข้อจำกัด = <strong>พื้นที่เป็นไปได้ (feasible region)</strong> ซึ่งเป็นรูปหลายเหลี่ยมนูน
+        </p>
+        <p>
+          ทฤษฎีบทสำคัญ: <strong>ค่าเหมาะที่สุดอยู่ที่มุม (vertex) เสมอ</strong> · <strong>Simplex</strong> จึงเดินจากมุมหนึ่งไปมุมข้างเคียง
+          ตามขอบที่ทำให้ objective <em>ดีขึ้น</em> เรื่อย ๆ จนไม่มีมุมข้างเคียงไหนดีกว่า = จุดเหมาะที่สุด
+        </p>
+        <p style="margin-bottom:0">
+          ตัวอย่าง: <strong>max 3x + 2y</strong> ภายใต้ x+y≤4, x+3y≤6, 3x+y≤9, x≥0, y≥0
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="lp-run">▶ เดิน Simplex</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#c7d2fe"></i> พื้นที่เป็นไปได้</span>
+          <span><i class="swatch" style="background:#f59e0b"></i> มุมปัจจุบัน</span>
+          <span><i class="swatch" style="background:#10b981"></i> จุดเหมาะที่สุด</span>
+        </div>
+        <div id="lpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
