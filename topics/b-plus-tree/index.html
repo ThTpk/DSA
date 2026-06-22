@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>B+ Tree — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 2 · โครงสร้างข้อมูลแบบต้นไม้</div>
+        <h1>B+ Tree</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>B+ Tree</strong> เป็น B-Tree เวอร์ชันที่ฐานข้อมูล/ระบบไฟล์ใช้จริง (MySQL InnoDB, PostgreSQL) ต่างจาก B-Tree ตรง:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>คีย์จริงอยู่ที่ "ใบ" ทั้งหมด</strong> · โหนดภายในเก็บแค่ <em>ตัวคั่น (separator)</em> ไว้นำทาง (เป็นสำเนาของคีย์)</li>
+          <li><strong>ใบทุกใบเชื่อมกันเป็นลิงก์</strong> (→) ทำให้ <em>สแกนช่วง (range scan)</em> เร็วมาก แค่เดินตามลิงก์</li>
+          <li>เวลาใบเต็มแล้วแยก จะ <em>คัดลอก (copy)</em> คีย์กลางขึ้นไปเป็นตัวคั่น (คีย์ยังอยู่ที่ใบด้วย) — ต่างจาก B-Tree ที่ <em>ย้าย</em> ขึ้น</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> ค้นหา/แทรก O(log n) · range query มีประสิทธิภาพสูงเป็นพิเศษ</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="bp-keys" value="10,20,5,6,12,30,7,17,3,25" placeholder="คีย์ เช่น 10,20,5,6,12" style="flex:1 1 240px">
+          <button class="vp__btn vp__btn--primary" id="bp-build">▶ สร้างต้นไม้</button>
+          <button class="vp__btn" id="bp-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-input">
+          <input type="text" id="bp-key" placeholder="คีย์" class="sv-target-input" style="flex:0 0 110px">
+          <button class="vp__btn" id="bp-insert">➕ แทรกทีละตัว</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#f59e0b"></i> กำลังเดินผ่าน</span>
+          <span><i class="swatch" style="background:#ef4444"></i> เต็ม → กำลังแยก</span>
+          <span><i class="swatch" style="background:#10b981"></i> คีย์ที่เพิ่งแทรก</span>
+          <span><i class="swatch" style="background:#e0f2fe"></i> โหนดใบ (มีคีย์จริง + ลิงก์ →)</span>
+        </div>
+        <div id="bpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
