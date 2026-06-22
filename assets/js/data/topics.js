@@ -83,6 +83,7 @@
         { id: 'exp-search',    title: 'Exponential Search',       path: 'topics/exp-search/',    status: 'ready' },
         { id: 'ternary-search', title: 'Ternary Search',          path: 'topics/ternary-search/', status: 'ready' },
         { id: 'astar',         title: 'A* Search (pathfinding)',  path: 'topics/astar/',         status: 'ready' },
+        { id: 'minimax',       title: 'Minimax / Alpha-Beta',     path: 'topics/minimax/',       status: 'ready' },
         { id: 'sliding-window', title: 'Sliding Window',        path: 'topics/sliding-window/', status: 'ready' },
       ],
     },

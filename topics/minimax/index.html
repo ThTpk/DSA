@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimax / Alpha-Beta — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Minimax / Alpha-Beta (การค้นหาเชิงปฏิปักษ์)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Minimax</strong> ใช้ในเกมผลัดกันเดิน (เช่น หมากรุก, OX): ผู้เล่น <strong class="hl-max">MAX</strong>
+          พยายาม <em>ทำคะแนนให้มากสุด</em> ส่วนคู่แข่ง <strong class="hl-min">MIN</strong> พยายาม <em>ให้น้อยสุด</em>
+          ค่าของแต่ละโหนดคำนวณจากใบไม้ (สถานะจบเกม) ไล่ขึ้นมา — MAX เลือกค่ามากสุดของลูก, MIN เลือกค่าน้อยสุด
+        </p>
+        <p>
+          <strong>Alpha-Beta Pruning</strong> เร่งความเร็วด้วยการเก็บช่วง <code class="hl-max">α</code> (ค่าดีสุดที่ MAX การันตีได้)
+          และ <code class="hl-min">β</code> (ค่าดีสุดที่ MIN การันตีได้) ถ้า <strong>α ≥ β</strong> เมื่อไหร่ แปลว่ากิ่งที่เหลือ
+          <em>ไม่มีทางถูกเลือก</em> → <strong>ตัดทิ้ง (prune)</strong> ไม่ต้องคำนวณ ได้ผลลัพธ์เดิมแต่เร็วกว่า
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> Minimax = O(bᵈ) · Alpha-Beta ดีสุด ≈ O(b<sup>d/2</sup>) (ถ้าเรียงลูกดี) ·
+          ลองรันทั้งสองโหมดบนต้นไม้เดียวกันเพื่อดูว่า Alpha-Beta ตัดใบไม้ไปกี่ใบ
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">ขนาดต้นไม้:</label>
+          <select id="mm-size" class="sv-target-input" style="flex:0 0 150px">
+            <option value="2,3">ลึก 2 · แตก 3 (9 ใบ)</option>
+            <option value="3,2" selected>ลึก 3 · แตก 2 (8 ใบ)</option>
+            <option value="3,3">ลึก 3 · แตก 3 (27 ใบ)</option>
+            <option value="4,2">ลึก 4 · แตก 2 (16 ใบ)</option>
+          </select>
+          <button class="vp__btn" id="mm-random">🎲 สุ่มค่าใบไม้</button>
+          <button class="vp__btn vp__btn--primary" id="mm-mini">▶ Minimax</button>
+          <button class="vp__btn vp__btn--primary" id="mm-ab">▶ Alpha-Beta</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#dbeafe"></i> MAX (เลือกมากสุด)</span>
+          <span><i class="swatch" style="background:#fce7f3"></i> MIN (เลือกน้อยสุด)</span>
+          <span><i class="swatch" style="background:#f59e0b"></i> กำลังพิจารณา</span>
+          <span><i class="swatch" style="background:#10b981"></i> ได้ค่าแล้ว</span>
+          <span><i class="swatch" style="background:#e5e7eb"></i> ถูกตัดกิ่ง (pruned)</span>
+        </div>
+        <div id="mmviz"></div>
+      </div>
+    </main>
+  </div>
+  <style>
+    .hl-max { color: #2563eb; }
+    .hl-min { color: #db2777; }
+  </style>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
