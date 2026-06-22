@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strongly Connected Components — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Strongly Connected Components (Kosaraju)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          ใน <em>กราฟมีทิศ</em> กลุ่มโหนดที่ <strong>ไปถึงกันได้ทั้งสองทาง</strong> เรียกว่า SCC (องค์ประกอบเชื่อมโยงเข้ม)
+          <strong>Kosaraju</strong> หา SCC ด้วย DFS 2 รอบ:
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>รอบ 1:</strong> DFS บนกราฟเดิม บันทึกลำดับ "เสร็จ" (finish) ลงสแตก</li>
+          <li><strong>รอบ 2:</strong> กลับทิศทุกเส้น (transpose) แล้ว DFS ตามลำดับ finish จากหลังมาหน้า — ต้นไม้ DFS แต่ละต้น = 1 SCC</li>
+        </ul>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(V + E) · ตัวเลขใต้โหนด = หมายเลข SCC</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="g-run">▶ หา SCC</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังเยี่ยม</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เสร็จแล้ว</span>
+          <span><i class="swatch" style="background:var(--c-border)"></i> เส้นภายใน SCC เดียวกัน</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Articulation Points / Bridges — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Articulation Points & Bridges</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>จุดบอบบาง (Articulation Point)</strong> = โหนดที่ถ้าลบออกแล้วกราฟ <em>ขาดเป็นหลายส่วน</em> ·
+          <strong>สะพาน (Bridge)</strong> = เส้นที่ถ้าลบออกแล้วกราฟขาด — จุดอ่อนของเครือข่าย
+        </p>
+        <p>
+          หาได้ด้วย DFS ครั้งเดียวโดยเก็บ <code>disc[u]</code> (ลำดับที่ค้นพบ) และ <code>low[u]</code>
+          (ลำดับต่ำสุดที่ย้อนถึงได้ผ่าน back-edge) · ถ้าลูก v มี <code>low[v] ≥ disc[u]</code> → u เป็นจุดบอบบาง,
+          ถ้า <code>low[v] &gt; disc[u]</code> → เส้น (u,v) เป็นสะพาน
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(V + E) · ตัวเลขใต้โหนด = disc / low</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="g-run">▶ หา AP / Bridge</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังเยี่ยม</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> จุดบอบบาง (AP)</span>
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> สะพาน (bridge)</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

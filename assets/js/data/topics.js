@@ -57,6 +57,8 @@
         { id: 'prim',       title: "MST (Prim's)",        path: 'topics/prim/',       status: 'ready' },
         { id: 'bellman-ford', title: 'Bellman-Ford',      path: 'topics/bellman-ford/', status: 'ready' },
         { id: 'floyd-warshall', title: 'Floyd-Warshall',  path: 'topics/floyd-warshall/', status: 'ready' },
+        { id: 'scc',         title: 'Strongly Connected Components', path: 'topics/scc/', status: 'ready' },
+        { id: 'articulation', title: 'Articulation Points / Bridges', path: 'topics/articulation/', status: 'ready' },
       ],
     },
     {
