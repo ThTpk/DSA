@@ -43,6 +43,7 @@
         { id: 'segment-tree', title: 'Segment Tree',             path: 'topics/segment-tree/', status: 'ready' },
         { id: 'fenwick-tree', title: 'Fenwick Tree (BIT)',       path: 'topics/fenwick-tree/', status: 'ready' },
         { id: 'priority-queue', title: 'Priority Queue',         path: 'topics/priority-queue/', status: 'ready' },
+        { id: 'b-tree',      title: 'B-Tree',                    path: 'topics/b-tree/',       status: 'ready' },
       ],
     },
     {
@@ -90,6 +91,7 @@
         { id: 'astar',         title: 'A* Search (pathfinding)',  path: 'topics/astar/',         status: 'ready' },
         { id: 'minimax',       title: 'Minimax / Alpha-Beta',     path: 'topics/minimax/',       status: 'ready' },
         { id: 'quickselect',   title: 'Quickselect (k-th smallest)', path: 'topics/quickselect/', status: 'ready' },
+        { id: 'median-of-medians', title: 'Median of Medians', path: 'topics/median-of-medians/', status: 'ready' },
         { id: 'sliding-window', title: 'Sliding Window',        path: 'topics/sliding-window/', status: 'ready' },
       ],
     },
@@ -128,6 +130,7 @@
         { id: 'gcd',         title: 'Euclid GCD + Extended',   path: 'topics/gcd/',         status: 'ready' },
         { id: 'mod-exp',     title: 'Modular Exponentiation',  path: 'topics/mod-exp/',     status: 'ready' },
         { id: 'miller-rabin', title: 'Miller-Rabin (primality)', path: 'topics/miller-rabin/', status: 'ready' },
+        { id: 'closest-pair', title: 'Closest Pair of Points', path: 'topics/closest-pair/', status: 'ready' },
         { id: 'convex-hull', title: 'Convex Hull',             path: 'topics/convex-hull/', status: 'ready' },
       ],
     },

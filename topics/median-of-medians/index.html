@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Median of Medians — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Median of Medians (เลือกแบบ O(n) รับประกัน)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          Quickselect เร็วเฉลี่ย O(n) แต่แย่สุด O(n²) เพราะ pivot อาจแย่ · <strong>Median of Medians</strong> เลือก pivot ให้ดีเสมอ:
+          แบ่งข้อมูลเป็น <em>กลุ่มละ 5</em> หา <em>มัธยฐานของแต่ละกลุ่ม</em> แล้วหา <strong>มัธยฐานของมัธยฐานเหล่านั้น</strong> มาเป็น pivot
+        </p>
+        <p style="margin-bottom:0">
+          pivot นี้รับประกันว่าตัดทิ้งได้อย่างน้อย ~30% ทุกครั้ง → <strong>O(n) แม้กรณีแย่สุด</strong> ·
+          ตัวอย่างนี้หามัธยฐาน (k = ⌊n/2⌋)
+        </p>
+      </div>
+      <div class="card"><div id="sortviz"></div></div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SortViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

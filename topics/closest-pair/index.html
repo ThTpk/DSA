@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Closest Pair of Points — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Closest Pair of Points (คู่จุดที่ใกล้สุด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          หาคู่จุดที่ระยะห่างน้อยสุดในระนาบ · วิธีตรงไปตรงมาเทียบทุกคู่ = O(n²) · <strong>Divide & Conquer</strong> ทำได้ O(n log n):
+        </p>
+        <ul style="margin-top:0">
+          <li><strong>แบ่ง:</strong> เรียงจุดตามแกน x แล้วแบ่งครึ่งด้วยเส้นตั้ง</li>
+          <li><strong>แก้:</strong> หาคู่ใกล้สุดในซ้าย (d_L) และขวา (d_R) ; d = min(d_L, d_R)</li>
+          <li><strong>รวม:</strong> ตรวจเฉพาะจุดใน "แถบกลาง" กว้าง 2d รอบเส้นแบ่ง (เทียบกันแค่ไม่กี่จุด)</li>
+        </ul>
+        <p style="margin-bottom:0">เส้นเขียว = คู่ที่ใกล้สุดที่พบ · เส้นประ = เส้นแบ่ง · แถบเทา = strip กลาง</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="cp-run">▶ หาคู่ใกล้สุด</button>
+          <button class="vp__btn" id="cp-random">🎲 สุ่มจุดใหม่</button>
+        </div>
+        <div id="cpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
