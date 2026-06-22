@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Miller-Rabin — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Miller-Rabin (ทดสอบจำนวนเฉพาะ)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          ตรวจว่า n เป็นจำนวนเฉพาะไหมแบบ <em>เร็ว</em> (ไม่ต้องหารทุกตัว) โดยเขียน <code>n−1 = d·2ˢ</code> (d เป็นเลขคี่)
+          แล้วเลือก "พยาน (witness)" a มาทดสอบ: คำนวณ <code>x = aᵈ mod n</code> ถ้า x = 1 หรือ n−1 → ผ่าน
+          ไม่งั้นยกกำลังสองซ้ำ ๆ หาว่าเจอ n−1 ไหม ถ้าไม่เจอเลย → <strong>n เป็นจำนวนประกอบแน่นอน</strong>
+        </p>
+        <p style="margin-bottom:0">
+          <strong>เป็นการทดสอบเชิงน่าจะเป็น:</strong> ถ้าผ่านทุกพยาน = "น่าจะเป็นจำนวนเฉพาะ" · ใช้พยานหลายตัวยิ่งมั่นใจ ·
+          จับ <em>เลขคาร์ไมเคิล</em> (เช่น 561) ได้ ต่างจากการทดสอบของแฟร์มา · O(k·log³n)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">n =</label>
+          <input type="text" id="mr-n" value="561" class="sv-target-input" style="flex:0 0 110px">
+          <button class="vp__btn vp__btn--primary" id="mr-run">▶ ทดสอบ</button>
+          <button class="vp__btn" id="mr-prime">🎲 สุ่มเฉพาะ</button>
+          <button class="vp__btn" id="mr-comp">🎲 สุ่มประกอบ</button>
+        </div>
+        <div id="ntviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
