@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Boyer-Moore — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Boyer-Moore (Bad Character Heuristic)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Boyer-Moore</strong> เทียบแพตเทิร์น <em>จากขวาไปซ้าย</em> และเมื่อเจอตัวไม่ตรง ใช้กฎ <strong>bad character</strong>
+          เลื่อนแพตเทิร์นไปให้ตัวอักษรที่ไม่ตรงในข้อความ ตรงกับตำแหน่งขวาสุดของตัวนั้นในแพตเทิร์น (ถ้าไม่มีเลย เลื่อนข้ามทั้งแพตเทิร์น)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>จุดเด่น:</strong> มัก <em>กระโดดข้าม</em> ได้หลายตำแหน่ง → เร็วในทางปฏิบัติ (sublinear) · เป็นพื้นฐานของคำสั่งค้นหาในโปรแกรมจริงหลายตัว
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="bm-text" value="GCTTCTGCTACCTTC" placeholder="ข้อความ" style="flex:1 1 240px;text-transform:uppercase">
+          <input type="text" id="bm-pat" value="CTAC" placeholder="แพตเทิร์น" class="sv-target-input" style="flex:0 0 140px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="bm-run">▶ ค้นหา</button>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

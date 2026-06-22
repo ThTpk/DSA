@@ -116,6 +116,8 @@
       items: [
         { id: 'string-algo', title: 'String Algorithms (KMP)', path: 'topics/string-algo/', status: 'ready' },
         { id: 'rabin-karp',  title: 'Rabin-Karp (rolling hash)', path: 'topics/rabin-karp/', status: 'ready' },
+        { id: 'z-algorithm', title: 'Z-algorithm',             path: 'topics/z-algorithm/', status: 'ready' },
+        { id: 'boyer-moore', title: 'Boyer-Moore',             path: 'topics/boyer-moore/', status: 'ready' },
         { id: 'p-np',        title: 'P / NP / NP-Complete',    path: 'topics/p-np/',        status: 'ready' },
         { id: 'bit-manip',   title: 'Bit Manipulation',        path: 'topics/bit-manip/',   status: 'ready' },
         { id: 'sieve',       title: 'Sieve of Eratosthenes',   path: 'topics/sieve/',       status: 'ready' },

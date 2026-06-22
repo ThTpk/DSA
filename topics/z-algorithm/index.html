@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z-algorithm — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 7 · หัวข้อขั้นสูง</div>
+        <h1>Z-algorithm (จับคู่สตริงแบบเชิงเส้น)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Z-array</strong> ของสตริง s: <code>Z[i]</code> = ความยาวของสตริงย่อยที่เริ่มที่ i และ <em>ตรงกับคำนำหน้า (prefix) ของ s</em>
+          คำนวณได้ใน O(n) ด้วยการจำหน้าต่าง <code>[l, r]</code> ที่แมตช์ล่าสุด เพื่อ <em>ไม่ต้องเทียบซ้ำ</em>
+        </p>
+        <p style="margin-bottom:0">
+          ใช้ค้นหาแพตเทิร์น: ต่อสตริง <code>s = pattern + '#' + text</code> ตำแหน่งที่ <code>Z[i] = |pattern|</code> คือจุดที่เจอแพตเทิร์น ·
+          เลขใต้ช่อง = ค่า Z · O(n + m)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="z-text" value="ABABABA" placeholder="ข้อความ" style="flex:1 1 220px;text-transform:uppercase">
+          <input type="text" id="z-pat" value="ABA" placeholder="แพตเทิร์น" class="sv-target-input" style="flex:0 0 130px;text-transform:uppercase">
+          <button class="vp__btn vp__btn--primary" id="z-run">▶ คำนวณ Z</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> ตำแหน่งปัจจุบัน i</span>
+          <span><i class="swatch" style="background:var(--search-active)"></i> หน้าต่าง [l, r]</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เจอแพตเทิร์น (Z = |P|)</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
