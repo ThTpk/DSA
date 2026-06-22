@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Max Flow (Edmonds-Karp) — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Maximum Flow (Edmonds-Karp)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          ส่ง "การไหล" จากต้นทาง <strong>S</strong> ไปปลายทาง <strong>T</strong> ผ่านท่อที่มี <em>ความจุ (capacity)</em> จำกัด
+          ให้ได้ <strong>มากที่สุด</strong> · <strong>Ford-Fulkerson</strong> หา <em>augmenting path</em> (เส้นทางที่ยังเหลือความจุ)
+          แล้วดันการไหลเพิ่มทีละเส้นทาง · <strong>Edmonds-Karp</strong> ใช้ <em>BFS</em> หาเส้นทางสั้นสุดเสมอ → O(V·E²)
+        </p>
+        <p style="margin-bottom:0">
+          ป้ายบนเส้น = <code>flow / capacity</code> · เมื่อไม่เหลือ augmenting path แล้ว = ได้การไหลสูงสุด ·
+          (ค่าการไหลสูงสุด = ความจุของ min-cut ตามทฤษฎี Max-Flow Min-Cut)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="g-run">▶ หา Max Flow</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> augmenting path (BFS)</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> มีการไหลแล้ว</span>
+        </div>
+        <div id="graphviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/GraphViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

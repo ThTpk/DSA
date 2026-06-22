@@ -59,6 +59,8 @@
         { id: 'floyd-warshall', title: 'Floyd-Warshall',  path: 'topics/floyd-warshall/', status: 'ready' },
         { id: 'scc',         title: 'Strongly Connected Components', path: 'topics/scc/', status: 'ready' },
         { id: 'articulation', title: 'Articulation Points / Bridges', path: 'topics/articulation/', status: 'ready' },
+        { id: 'max-flow',    title: 'Max Flow (Edmonds-Karp)', path: 'topics/max-flow/', status: 'ready' },
+        { id: 'bipartite-matching', title: 'Bipartite Matching', path: 'topics/bipartite-matching/', status: 'ready' },
       ],
     },
     {
