@@ -65,6 +65,47 @@
     if (res) { var nr = node(false); nr.keys = [res.key]; nr.children = [root, res.right]; root = nr; step(root.uid, null, 'รากแยก → สร้างรากใหม่ ต้นไม้สูงขึ้น', 5); }
   }
 
+  // ---- delete (คีย์อยู่ที่ใบ ; underflow → ยืม/รวม ; ปรับตัวคั่นใหม่) ----
+  var MIN = 1;
+  function leftmost(n) { while (!n.leaf) n = n.children[0]; return n.keys[0]; }
+  function refreshSeparators(n) { if (n.leaf) return; for (var j = 0; j < n.keys.length; j++) n.keys[j] = leftmost(n.children[j + 1]); }
+  function fixChild(parent, i) {
+    var c = parent.children[i];
+    var left = i > 0 ? parent.children[i - 1] : null, right = i < parent.children.length - 1 ? parent.children[i + 1] : null;
+    if (c.leaf) {
+      if (left && left.keys.length > MIN) { c.keys.unshift(left.keys.pop()); step(c.uid, null, 'ใบคีย์น้อย → ยืมจากพี่ซ้าย', 3); }
+      else if (right && right.keys.length > MIN) { c.keys.push(right.keys.shift()); step(c.uid, null, 'ใบคีย์น้อย → ยืมจากพี่ขวา', 3); }
+      else if (left) { left.keys = left.keys.concat(c.keys); left.next = c.next; parent.children.splice(i, 1); parent.keys.splice(i - 1, 1); step(left.uid, left.uid, 'รวมใบกับพี่ซ้าย + ต่อลิงก์', 4); }
+      else { c.keys = c.keys.concat(right.keys); c.next = right.next; parent.children.splice(i + 1, 1); parent.keys.splice(i, 1); step(c.uid, c.uid, 'รวมใบกับพี่ขวา + ต่อลิงก์', 4); }
+    } else {
+      if (left && left.keys.length > MIN) { c.keys.unshift(parent.keys[i - 1]); c.children.unshift(left.children.pop()); parent.keys[i - 1] = left.keys.pop(); step(c.uid, null, 'โหนดในยืมจากพี่ซ้าย', 3); }
+      else if (right && right.keys.length > MIN) { c.keys.push(parent.keys[i]); c.children.push(right.children.shift()); parent.keys[i] = right.keys.shift(); step(c.uid, null, 'โหนดในยืมจากพี่ขวา', 3); }
+      else if (left) { left.keys.push(parent.keys[i - 1]); left.keys = left.keys.concat(c.keys); left.children = left.children.concat(c.children); parent.children.splice(i, 1); parent.keys.splice(i - 1, 1); step(left.uid, left.uid, 'รวมโหนดในกับพี่ซ้าย', 5); }
+      else { c.keys.push(parent.keys[i]); c.keys = c.keys.concat(right.keys); c.children = c.children.concat(right.children); parent.children.splice(i + 1, 1); parent.keys.splice(i, 1); step(c.uid, c.uid, 'รวมโหนดในกับพี่ขวา', 5); }
+    }
+  }
+  function del(n, key) {
+    if (n.leaf) {
+      var idx = n.keys.indexOf(key);
+      if (idx < 0) { step(n.uid, null, '❌ ไม่พบ ' + key, 0); return; }
+      n.keys.splice(idx, 1); step(n.uid, null, 'ลบ ' + key + ' จากใบ → [' + n.keys.join(', ') + ']', 1);
+      return;
+    }
+    var i = 0; while (i < n.keys.length && key >= n.keys[i]) i++;
+    step(n.children[i].uid, null, 'เดินผ่านตัวคั่น [' + n.keys.join(', ') + '] → ลงลูกที่ ' + i, 0);
+    del(n.children[i], key);
+    if (n.children[i].keys.length < MIN) fixChild(n, i);
+    refreshSeparators(n);
+  }
+  function deleteKey(key) {
+    if (!root) return;
+    hotKey = key;
+    step(root.uid, null, 'ลบ ' + key + ': เริ่มที่ราก', 0);
+    del(root, key);
+    if (!root.leaf && root.keys.length === 0) { root = root.children[0]; step(root.uid, null, 'รากเหลือลูกเดียว → ยุบราก ต้นไม้เตี้ยลง', 5); }
+    if (root.leaf && root.keys.length === 0) { root = null; step(null, null, 'ต้นไม้ว่างแล้ว', -1); }
+  }
+
   // ---- layout + render ----
   var KW = 30, KH = 36, LEVELH = 84, GAP = 30, TOP = 24;
   function render(stepObj) {
@@ -133,6 +174,13 @@
     var k = parseInt(document.getElementById('bp-key').value, 10); if (isNaN(k)) { alert('ใส่คีย์ (ตัวเลข)'); return; }
     S = new DSA.Stepper(); insert(k); hotKey = null;
     S.add({ root: clone(root), cur: null, split: null, hot: null }, '✅ แทรก ' + k + ' เสร็จ', { line: -1 });
+    player.setSteps(S.steps);
+  });
+  document.getElementById('bp-delete').addEventListener('click', function () {
+    var k = parseInt(document.getElementById('bp-key').value, 10); if (isNaN(k)) { alert('ใส่คีย์ (ตัวเลข)'); return; }
+    if (!root) { alert('ต้นไม้ว่าง'); return; }
+    S = new DSA.Stepper(); deleteKey(k); hotKey = null;
+    S.add({ root: root ? clone(root) : null, cur: null, split: null, hot: null }, '✅ ลบ ' + k + ' เสร็จ (คีย์จริงอยู่ที่ใบเสมอ)', { line: -1 });
     player.setSteps(S.steps);
   });
   build(parseList(keysEl.value));

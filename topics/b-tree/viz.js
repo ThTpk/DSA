@@ -54,6 +54,56 @@
     insertNonFull(root, key);
   }
 
+  // ----- delete (CLRS: เติมให้ลูกมี ≥ T คีย์ ก่อนเดินลง) -----
+  function getPred(n) { while (!n.leaf) n = n.children[n.children.length - 1]; return n.keys[n.keys.length - 1]; }
+  function getSucc(n) { while (!n.leaf) n = n.children[0]; return n.keys[0]; }
+  function merge(parent, i) {
+    var c = parent.children[i], rc = parent.children[i + 1];
+    c.keys.push(parent.keys[i]); c.keys = c.keys.concat(rc.keys);
+    if (!c.leaf) c.children = c.children.concat(rc.children);
+    parent.keys.splice(i, 1); parent.children.splice(i + 1, 1);
+    step(c.uid, c.uid, 'รวมโหนด: ลูกซ้าย + คีย์คั่น + ลูกขวา → โหนดเดียว', -1);
+    return c;
+  }
+  function fill(parent, i) {
+    var c = parent.children[i];
+    var left = i > 0 ? parent.children[i - 1] : null;
+    var right = i < parent.children.length - 1 ? parent.children[i + 1] : null;
+    if (left && left.keys.length >= T) {
+      c.keys.unshift(parent.keys[i - 1]); parent.keys[i - 1] = left.keys.pop();
+      if (!c.leaf) c.children.unshift(left.children.pop());
+      step(c.uid, null, 'ลูกมีคีย์น้อย → ยืมจากพี่ซ้าย (หมุนผ่านแม่)', -1); return i;
+    } else if (right && right.keys.length >= T) {
+      c.keys.push(parent.keys[i]); parent.keys[i] = right.keys.shift();
+      if (!c.leaf) c.children.push(right.children.shift());
+      step(c.uid, null, 'ลูกมีคีย์น้อย → ยืมจากพี่ขวา (หมุนผ่านแม่)', -1); return i;
+    }
+    if (left) { merge(parent, i - 1); return i - 1; }
+    merge(parent, i); return i;
+  }
+  function del(n, key) {
+    var i = 0; while (i < n.keys.length && n.keys[i] < key) i++;
+    if (i < n.keys.length && n.keys[i] === key) {
+      if (n.leaf) { n.keys.splice(i, 1); step(n.uid, null, 'ลบ ' + key + ' จากใบ', -1); return; }
+      var lc = n.children[i], rc = n.children[i + 1];
+      if (lc.keys.length >= T) { var pr = getPred(lc); step(n.uid, null, 'คีย์อยู่โหนดใน → แทน ' + key + ' ด้วย predecessor ' + pr + ' แล้วลบ ' + pr + ' ต่อ', -1); n.keys[i] = pr; del(lc, pr); }
+      else if (rc.keys.length >= T) { var su = getSucc(rc); step(n.uid, null, 'แทน ' + key + ' ด้วย successor ' + su + ' แล้วลบ ' + su + ' ต่อ', -1); n.keys[i] = su; del(rc, su); }
+      else { merge(n, i); del(n.children[i], key); }
+    } else {
+      if (n.leaf) { step(n.uid, null, '❌ ไม่พบ ' + key, -1); return; }
+      step(n.children[i].uid, null, 'ยังไม่เจอ ' + key + ' → เดินลงลูกที่ ' + i, -1);
+      if (n.children[i].keys.length < T) i = fill(n, i);
+      del(n.children[Math.min(i, n.children.length - 1)], key);
+    }
+  }
+  function deleteKey(key) {
+    if (!root) return;
+    hotKey = key;
+    step(root.uid, null, 'ลบ ' + key + ': เริ่มที่ราก', -1);
+    del(root, key);
+    if (root.keys.length === 0 && !root.leaf) { root = root.children[0]; step(root.uid, null, 'รากว่าง → ยุบราก ต้นไม้เตี้ยลง 1 ชั้น', -1); }
+  }
+
   // ----- layout + render -----
   var KW = 30, KH = 36, LEVELH = 82, GAP = 26, TOP = 24;
   function render(stepObj) {
@@ -112,6 +162,13 @@
     var k = parseInt(document.getElementById('bt-key').value, 10); if (isNaN(k)) { alert('ใส่คีย์ (ตัวเลข)'); return; }
     S = new DSA.Stepper(); insert(k); hotKey = null;
     S.add({ root: clone(root), cur: null, split: null, hot: null }, '✅ แทรก ' + k + ' เสร็จ', { line: -1 });
+    player.setSteps(S.steps);
+  });
+  document.getElementById('bt-delete').addEventListener('click', function () {
+    var k = parseInt(document.getElementById('bt-key').value, 10); if (isNaN(k)) { alert('ใส่คีย์ (ตัวเลข)'); return; }
+    if (!root) { alert('ต้นไม้ว่าง'); return; }
+    S = new DSA.Stepper(); deleteKey(k); hotKey = null;
+    S.add({ root: root ? clone(root) : null, cur: null, split: null, hot: null }, '✅ ลบ ' + k + ' เสร็จ (ยังสมดุล)', { line: -1 });
     player.setSteps(S.steps);
   });
   build(parseList(keysEl.value));
