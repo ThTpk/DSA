@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Optimal BST — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Optimal Binary Search Tree (DP)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          ถ้ารู้ว่าแต่ละคีย์ถูกค้นหา <em>บ่อยแค่ไหน</em> (frequency) เราอยากสร้าง BST ที่ทำให้ <strong>ต้นทุนค้นหารวมน้อยสุด</strong>
+          (คีย์ที่ค้นบ่อยควรอยู่ตื้น) ใช้ DP: <code>cost[i][j] = W(i,j) + min over r ( cost[i][r−1] + cost[r+1][j] )</code>
+          โดย r = รากของซับทรี และ <code>W(i,j)</code> = ผลรวม frequency ของคีย์ i..j
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(n³) · ต้นทุน = ผลรวมของ (frequency × ความลึก) ของทุกคีย์</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="ob-freq" value="4,2,6,3,1,5" placeholder="frequency เช่น 4,2,6,3,1,5" style="flex:1 1 260px">
+          <button class="vp__btn vp__btn--primary" id="ob-run">▶ เติมตาราง</button>
+        </div>
+        <div style="color:var(--c-muted);margin-bottom:8px" id="ob-info"></div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

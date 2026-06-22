@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Selection — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Activity Selection (เลือกกิจกรรมให้ได้มากสุด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          มีกิจกรรมหลายอย่างที่มีเวลา <em>เริ่ม–จบ</em> ใช้ห้องเดียว (ทับเวลากันไม่ได้) ต้องการเลือกให้ได้ <strong>จำนวนมากที่สุด</strong>
+          กลยุทธ์ <strong>greedy</strong>: เรียงตาม <em>เวลาจบ</em> จากน้อยไปมาก แล้วไล่เลือกกิจกรรมที่ <em>เริ่มหลังหรือพร้อมกิจกรรมล่าสุดที่เลือกจบ</em>
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ทำไม greedy ถูก:</strong> เลือกตัวที่จบเร็วสุดก่อน เหลือเวลาให้ตัวอื่นมากสุด · <strong>ความซับซ้อน:</strong> O(n log n) (ที่เรียง)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="as-run">▶ เลือกกิจกรรม</button>
+          <button class="vp__btn" id="as-random">🎲 สุ่มกิจกรรม</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#f59e0b"></i> กำลังพิจารณา</span>
+          <span><i class="swatch" style="background:#10b981"></i> เลือก</span>
+          <span><i class="swatch" style="background:#e5e7eb"></i> ข้าม (เวลาทับ)</span>
+        </div>
+        <div id="asviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

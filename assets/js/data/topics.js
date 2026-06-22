@@ -101,6 +101,8 @@
         { id: 'edit-distance',  title: 'Edit Distance',        path: 'topics/edit-distance/',  status: 'ready' },
         { id: 'matrix-chain',   title: 'Matrix-Chain Multiplication', path: 'topics/matrix-chain/', status: 'ready' },
         { id: 'rod-cutting',    title: 'Rod Cutting',          path: 'topics/rod-cutting/',    status: 'ready' },
+        { id: 'optimal-bst',    title: 'Optimal BST (DP)',     path: 'topics/optimal-bst/',    status: 'ready' },
+        { id: 'activity-selection', title: 'Activity Selection (Greedy)', path: 'topics/activity-selection/', status: 'ready' },
         { id: 'lis',            title: 'Longest Increasing Subsequence', path: 'topics/lis/', status: 'ready' },
         { id: 'permutations',   title: 'Permutations (สร้างการเรียงสับเปลี่ยน)', path: 'topics/permutations/', status: 'ready' },
         { id: 'maze-solver',    title: 'Maze Solver (หาทางออกเขาวงกต)', path: 'topics/maze-solver/', status: 'ready' },
