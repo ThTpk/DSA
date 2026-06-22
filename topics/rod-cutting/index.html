@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rod Cutting — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Rod Cutting (ตัดท่อนเหล็กให้คุ้มสุด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          มีท่อนเหล็กยาว n และตารางราคาของแต่ละความยาว ต้องการ <em>ตัดเป็นท่อน ๆ</em> ให้ขายได้ <strong>เงินมากที่สุด</strong>
+          DP: <code>r[len] = max over i ( price[i] + r[len − i] )</code> — ลองตัดท่อนแรกยาว i ทุกแบบ แล้วบวกกับคำตอบที่ดีที่สุดของส่วนที่เหลือ
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(n²) · ตัวอย่างคลาสสิกจาก CLRS</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="rc-prices" value="1,5,8,9,10,17,17,20" placeholder="ราคาความยาว 1,2,3,..." style="flex:1 1 280px">
+          <button class="vp__btn vp__btn--primary" id="rc-run">▶ เติมตาราง</button>
+        </div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

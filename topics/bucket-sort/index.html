@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bucket Sort — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 4 · การเรียงลำดับ</div>
+        <h1>Bucket Sort (เรียงแบบถัง)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Bucket Sort</strong> เหมาะกับข้อมูลที่กระจายสม่ำเสมอในช่วงที่รู้: แบ่งเป็น <em>ถัง (bucket)</em> ตามช่วงค่า
+          โยนแต่ละตัวเข้าถังของมัน แล้ว <em>เรียงในแต่ละถัง</em> (เช่น insertion sort) สุดท้าย <em>ต่อถังเรียงกัน</em> ได้ผลลัพธ์
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เฉลี่ย O(n + k) เมื่อข้อมูลกระจายดี · แย่สุด O(n²) ถ้าทุกตัวตกถังเดียว ·
+          ตัวอย่างนี้ค่า 0–99 แบ่ง 5 ถัง (ช่วงละ 20)
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="bk-values" placeholder="ค่า 0-99 เช่น 29,25,3,49,9,37,21,43">
+          <button class="vp__btn vp__btn--primary" id="bk-run">▶ เรียง</button>
+          <button class="vp__btn" id="bk-random">🎲 สุ่ม</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:var(--viz-compare)"></i> กำลังโยนเข้าถัง</span>
+          <span><i class="swatch" style="background:var(--viz-sorted)"></i> เรียงแล้ว/ผลลัพธ์</span>
+        </div>
+        <div id="nodeviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/NodeViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix-Chain Multiplication — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 6 · เทคนิคออกแบบอัลกอริทึม</div>
+        <h1>Matrix-Chain Multiplication (DP)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          การคูณเมทริกซ์หลายตัวต่อกัน A₁·A₂·…·Aₙ ให้ผลเท่ากันไม่ว่าจัดวงเล็บอย่างไร แต่ <em>จำนวนการคูณ</em> ต่างกันมาก!
+          <strong>Matrix-Chain</strong> หาวิธีใส่วงเล็บที่ใช้การคูณ <em>น้อยที่สุด</em> ด้วย DP
+        </p>
+        <p>
+          ให้เมทริกซ์ Aᵢ มีขนาด <code>p[i-1] × p[i]</code> · <code>m[i][j]</code> = ต้นทุนน้อยสุดของการคูณ Aᵢ…Aⱼ ·
+          <code>m[i][j] = min over k ( m[i][k] + m[k+1][j] + p[i-1]·p[k]·p[j] )</code>
+        </p>
+        <p style="margin-bottom:0"><strong>ความซับซ้อน:</strong> O(n³) · เติมตามความยาวโซ่จากสั้นไปยาว (เส้นทแยง)</p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <input type="text" id="mc-dims" value="30,35,15,5,10,20" placeholder="มิติ p เช่น 30,35,15,5,10,20" style="flex:1 1 280px">
+          <button class="vp__btn vp__btn--primary" id="mc-run">▶ เติมตาราง</button>
+        </div>
+        <div style="color:var(--c-muted);margin-bottom:8px" id="mc-info"></div>
+        <div id="dpviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickselect — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Quickselect (หา k-th ที่เล็กที่สุด)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Quickselect</strong> หาค่าอันดับที่ k (เช่น มัธยฐาน) โดยไม่ต้องเรียงทั้งหมด ใช้ <em>partition</em>
+          แบบเดียวกับ Quick Sort: เลือก pivot แล้วแบ่งข้อมูล หลัง partition pivot จะอยู่ตำแหน่งสุดท้ายที่ถูกต้องพอดี
+          ถ้าตำแหน่งนั้น <strong>= k</strong> ก็เจอคำตอบ ถ้าไม่ใช่ ก็ <em>เลือกค้นต่อเพียงครึ่งเดียว</em> (ฝั่งที่มี k)
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> เฉลี่ย O(n) (เร็วกว่าเรียงแล้วหยิบ O(n log n)) · แย่สุด O(n²) ·
+          ตัวอย่างนี้หา <strong>มัธยฐาน</strong> (k = ⌊n/2⌋, นับจาก 0)
+        </p>
+      </div>
+      <div class="card"><div id="sortviz"></div></div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SortViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>
