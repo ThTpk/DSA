@@ -2,15 +2,7 @@
 (function () {
   var api = DSA.GraphViz.init({ topicId: 'mst', weighted: true });
 
-  var NODES = [
-    { id: 'A', x: 90, y: 210 }, { id: 'B', x: 250, y: 90 }, { id: 'C', x: 250, y: 330 },
-    { id: 'D', x: 450, y: 90 }, { id: 'E', x: 450, y: 330 }, { id: 'F', x: 630, y: 210 },
-  ];
-  var EDGES = [
-    { id: 'AB', u: 'A', v: 'B', w: 4 }, { id: 'AC', u: 'A', v: 'C', w: 2 }, { id: 'BC', u: 'B', v: 'C', w: 1 },
-    { id: 'BD', u: 'B', v: 'D', w: 5 }, { id: 'CE', u: 'C', v: 'E', w: 8 }, { id: 'DE', u: 'D', v: 'E', w: 3 },
-    { id: 'DF', u: 'D', v: 'F', w: 6 }, { id: 'EF', u: 'E', v: 'F', w: 2 },
-  ];
+  var NODES, EDGES;
 
   function model(active, tree, faded, hiNodes) {
     var nodes = NODES.map(function (n) { return { id: n.id, x: n.x, y: n.y, label: n.id, cls: (hiNodes && hiNodes.indexOf(n.id) !== -1) ? 'is-current' : '' }; });
@@ -50,6 +42,17 @@
     return S.steps;
   }
 
+  function showInitial() {
+    var S = new DSA.Stepper();
+    S.add(DSA.GraphViz.snap(model(null, {}, {}, [])), 'กราฟมีน้ำหนัก ' + NODES.length + ' โหนด — กด "รัน Kruskal" เพื่อหา MST', { line: -1 });
+    api.setSteps(S.steps);
+  }
+  function regen() {
+    var g = DSA.GraphViz.generate(cfg.getN(), { weighted: true });
+    NODES = g.nodes; EDGES = g.edges; showInitial();
+  }
+
   document.getElementById('g-run').addEventListener('click', function () { api.setSteps(run()); });
-  (function () { var S = new DSA.Stepper(); S.add(DSA.GraphViz.snap(model(null, {}, {}, [])), 'กราฟมีน้ำหนัก — กด "รัน Kruskal" เพื่อหา MST', { line: -1 }); api.setSteps(S.steps); })();
+  var cfg = DSA.GraphViz.mountConfig({ defaultN: 6, onChange: regen });
+  regen();
 })();

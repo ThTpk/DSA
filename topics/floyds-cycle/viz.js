@@ -2,8 +2,13 @@
 (function () {
   var api = DSA.NodeViz.init({ topicId: 'floyds-cycle', vh: 250 });
   var NW = 54, NH = 46, GAP = 40, Y = 70, SX = 30, VW = api.VW;
-  function X(i) { return SX + i * (NW + GAP); }
   var N = 9, cycleStart = 4, hasCycle = true;
+  function layout() {
+    NW = Math.min(54, Math.floor((VW - 2 * SX - (N - 1) * 16) / N));
+    GAP = Math.max(16, Math.floor((VW - 2 * SX - N * NW) / (N - 1)));
+    cycleStart = Math.floor(N / 2);
+  }
+  function X(i) { return SX + i * (NW + GAP); }
   function next(i) { if (i === N - 1) return hasCycle ? cycleStart : -1; return i + 1; }
 
   function model(slow, fast, meet) {
@@ -45,5 +50,8 @@
   function go() { api.setCode(CODE); api.setSteps(build()); }
   document.getElementById('fc-run').addEventListener('click', go);
   document.getElementById('fc-toggle').addEventListener('click', function () { hasCycle = !hasCycle; go(); });
-  go();
+  document.getElementById('fc-size').addEventListener('change', function () {
+    N = parseInt(document.getElementById('fc-size').value, 10) || 9; layout(); go();
+  });
+  layout(); go();
 })();

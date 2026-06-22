@@ -3,12 +3,16 @@
   var api = DSA.NodeViz.init({ topicId: 'union-find', vh: 220 });
   var N = 7, CW = 70, CH = 52, GAP = 14, Y = 110;
   var VW = api.VW;
-  var SX = (VW - (N * CW + (N - 1) * GAP)) / 2;
+  var SX = 10;
+  function layout() {
+    CW = Math.min(70, Math.floor((VW - 20 - (N - 1) * GAP) / N));
+    SX = (VW - (N * CW + (N - 1) * GAP)) / 2;
+  }
   function X(i) { return SX + i * (CW + GAP); }
 
   var parent = [];
   function reset() { parent = []; for (var i = 0; i < N; i++) parent.push(i); }
-  reset();
+  layout(); reset();
 
   function model(hi, cls) {
     var cells = parent.map(function (p, i) {
@@ -72,17 +76,23 @@
   document.getElementById('uf-demo').addEventListener('click', function () {
     api.setCode(CODE); reset();
     var S = new DSA.Stepper();
-    add(S, [], '', 'เริ่ม: 7 กลุ่มแยกกัน', -1);
-    var seq = [[0, 1], [2, 3], [1, 3], [4, 5], [5, 6]];
+    add(S, [], '', 'เริ่ม: ' + N + ' กลุ่มแยกกัน', -1);
+    var seq = []; for (var i = 0; i + 1 < N; i += 2) seq.push([i, i + 1]);
+    if (N > 3) seq.push([0, 2]); if (N > 5) seq.push([4, Math.min(6, N - 1)]);
     seq.forEach(function (p) {
       add(S, [p[0], p[1]], 'is-active', 'union(' + p[0] + ',' + p[1] + ')', 2);
       var ra = findRoot(S, p[0], true), rb = findRoot(S, p[1], true);
       if (ra !== rb) { parent[ra] = rb; add(S, [ra, rb], 'is-new', 'รวมกลุ่ม: parent[' + ra + '] = ' + rb, 3); }
     });
-    add(S, [], '', '✅ เดโมจบ — สังเกตว่า {0,1,2,3} และ {4,5,6} เป็นคนละกลุ่ม', -1);
+    add(S, [], '', '✅ เดโมจบ — เกิดหลายกลุ่ม สังเกต root (กรอบม่วง) ของแต่ละกลุ่ม', -1);
     api.setSteps(S.steps);
+  });
+  document.getElementById('uf-size').addEventListener('change', function () {
+    N = parseInt(document.getElementById('uf-size').value, 10) || 7;
+    layout(); reset(); api.setCode([]);
+    show(N + ' สมาชิก แต่ละตัวเป็นกลุ่มของตัวเอง (parent[i]=i) — ลอง union/find');
   });
 
   api.setCode([]);
-  show('7 สมาชิก แต่ละตัวเป็นกลุ่มของตัวเอง — ลอง union/find หรือกดเดโม');
+  show(N + ' สมาชิก แต่ละตัวเป็นกลุ่มของตัวเอง — ลอง union/find หรือกดเดโม');
 })();

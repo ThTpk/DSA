@@ -1,21 +1,13 @@
-/* BFS & DFS — ท่องกราฟตัวอย่าง (undirected) เห็นลำดับการเยี่ยม + queue/stack */
+/* BFS & DFS — ท่องกราฟ (undirected) เห็นลำดับการเยี่ยม + queue/stack */
 (function () {
   var api = DSA.GraphViz.init({ topicId: 'bfs-dfs' });
 
-  // ----- กราฟตัวอย่าง -----
-  var NODES = [
-    { id: 'A', x: 90, y: 210 }, { id: 'B', x: 250, y: 90 }, { id: 'C', x: 250, y: 330 },
-    { id: 'D', x: 450, y: 90 }, { id: 'E', x: 450, y: 330 }, { id: 'F', x: 630, y: 210 },
-  ];
-  var EDGES = [
-    { id: 'AB', u: 'A', v: 'B' }, { id: 'AC', u: 'A', v: 'C' }, { id: 'BC', u: 'B', v: 'C' },
-    { id: 'BD', u: 'B', v: 'D' }, { id: 'CE', u: 'C', v: 'E' }, { id: 'DE', u: 'D', v: 'E' },
-    { id: 'DF', u: 'D', v: 'F' }, { id: 'EF', u: 'E', v: 'F' },
-  ];
-  var adj = {};
-  NODES.forEach(function (n) { adj[n.id] = []; });
-  EDGES.forEach(function (e) { adj[e.u].push(e.v); adj[e.v].push(e.u); });
-  Object.keys(adj).forEach(function (k) { adj[k].sort(); });
+  var NODES, EDGES, adj;
+  function buildAdj() {
+    adj = {}; NODES.forEach(function (n) { adj[n.id] = []; });
+    EDGES.forEach(function (e) { adj[e.u].push(e.v); adj[e.v].push(e.u); });
+    Object.keys(adj).forEach(function (k) { adj[k].sort(); });
+  }
   function edgeId(u, v) { for (var i = 0; i < EDGES.length; i++) { var e = EDGES[i]; if ((e.u === u && e.v === v) || (e.u === v && e.v === u)) return e.id; } return null; }
 
   function model(cur, done, inq, treeEdges) {
@@ -78,10 +70,20 @@
     return S.steps;
   }
 
-  function getStart() { var s = (document.getElementById('g-start').value || 'A').trim().toUpperCase(); return adj[s] ? s : 'A'; }
+  function getStart() { var s = (document.getElementById('g-start').value || 'A').trim().toUpperCase(); return adj[s] ? s : NODES[0].id; }
+
+  function showInitial() {
+    var S = new DSA.Stepper();
+    S.add(DSA.GraphViz.snap(model(null, {}, {}, {})), 'กราฟตัวอย่าง ' + NODES.length + ' โหนด — กด BFS หรือ DFS เพื่อเริ่มท่อง', { line: -1 });
+    api.setSteps(S.steps);
+  }
+  function regen() {
+    var g = DSA.GraphViz.generate(cfg.getN(), {});
+    NODES = g.nodes; EDGES = g.edges; buildAdj(); showInitial();
+  }
+
   document.getElementById('g-bfs').addEventListener('click', function () { api.setSteps(bfsSteps(getStart())); });
   document.getElementById('g-dfs').addEventListener('click', function () { api.setSteps(dfsSteps(getStart())); });
-
-  // เริ่มต้น: แสดงกราฟเฉยๆ
-  (function () { var S = new DSA.Stepper(); S.add(DSA.GraphViz.snap(model(null, {}, {}, {})), 'กราฟตัวอย่าง — กด BFS หรือ DFS เพื่อเริ่มท่อง', { line: -1 }); api.setSteps(S.steps); })();
+  var cfg = DSA.GraphViz.mountConfig({ defaultN: 6, onChange: regen });
+  regen();
 })();

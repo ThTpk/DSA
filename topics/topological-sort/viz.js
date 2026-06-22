@@ -1,14 +1,9 @@
 /* Topological Sort — Kahn's algorithm บน DAG (GraphViz directed) */
 (function () {
   var api = DSA.GraphViz.init({ topicId: 'topological-sort', directed: true });
-  var NODES = [
-    { id: 'A', x: 80, y: 100 }, { id: 'B', x: 80, y: 300 }, { id: 'C', x: 300, y: 70 },
-    { id: 'D', x: 300, y: 200 }, { id: 'E', x: 300, y: 330 }, { id: 'F', x: 520, y: 200 },
-  ];
-  var EDGES = [
-    { id: 'AC', u: 'A', v: 'C' }, { id: 'AD', u: 'A', v: 'D' }, { id: 'BD', u: 'B', v: 'D' },
-    { id: 'BE', u: 'B', v: 'E' }, { id: 'CF', u: 'C', v: 'F' }, { id: 'DF', u: 'D', v: 'F' }, { id: 'EF', u: 'E', v: 'F' },
-  ];
+
+  var NODES, EDGES;
+
   function model(indeg, removed, cur) {
     var nodes = NODES.map(function (n) {
       var cls = n.id === cur ? 'is-current' : (removed[n.id] ? 'is-visited' : '');
@@ -41,6 +36,19 @@
     S.add(DSA.GraphViz.snap(model(indeg, removed, null)), '✅ ลำดับทอพอโลยี: ' + order.join(' → '), { line: -1 });
     return S.steps;
   }
+
+  function showInitial() {
+    var indeg = {}; NODES.forEach(function (n) { indeg[n.id] = 0; }); EDGES.forEach(function (e) { indeg[e.v]++; });
+    var S = new DSA.Stepper();
+    S.add(DSA.GraphViz.snap(model(indeg, {}, null)), 'DAG ' + NODES.length + ' โหนด — กด "จัดลำดับ" เพื่อรัน Kahn\'s algorithm', { line: -1 });
+    api.setSteps(S.steps);
+  }
+  function regen() {
+    var g = DSA.GraphViz.generate(cfg.getN(), { directed: true });
+    NODES = g.nodes; EDGES = g.edges; showInitial();
+  }
+
   document.getElementById('g-run').addEventListener('click', function () { api.setSteps(run()); });
-  (function () { var indeg = {}; NODES.forEach(function (n) { indeg[n.id] = 0; }); EDGES.forEach(function (e) { indeg[e.v]++; }); var S = new DSA.Stepper(); S.add(DSA.GraphViz.snap(model(indeg, {}, null)), 'DAG — กด "จัดลำดับ" เพื่อรัน Kahn\'s algorithm', { line: -1 }); api.setSteps(S.steps); })();
+  var cfg = DSA.GraphViz.mountConfig({ defaultN: 6, onChange: regen });
+  regen();
 })();

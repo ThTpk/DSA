@@ -32,7 +32,16 @@
         </p>
       </div>
       <div class="card">
-        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="sv-run">▶ ร่อนตะแกรง</button></div>
+        <div class="viz-input">
+          <button class="vp__btn vp__btn--primary" id="sv-run">▶ ร่อนตะแกรง</button>
+          <label style="align-self:center;color:var(--c-muted)">หาเฉพาะถึง N:</label>
+          <select id="se-size" class="sv-target-input" style="flex:0 0 80px">
+            <option value="30">30</option>
+            <option value="60" selected>60</option>
+            <option value="100">100</option>
+            <option value="120">120</option>
+          </select>
+        </div>
         <div id="sieveviz"></div>
       </div>
     </main>

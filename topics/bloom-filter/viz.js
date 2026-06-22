@@ -1,14 +1,15 @@
-/* Bloom Filter — bit array + k=3 hash (NodeViz) */
+/* Bloom Filter — bit array + k hash (NodeViz) ; m และ k ปรับได้ */
 (function () {
   var api = DSA.NodeViz.init({ topicId: 'bloom-filter', vh: 200 });
-  var M = 16, K = 3, W = 42, GAP = 4, CH = 46, Y = 90, VW = api.VW;
+  var M = 16, K = 3, GAP = 4, CH = 46, Y = 90, VW = api.VW, W = 42;
+  function layout() { W = Math.min(42, Math.floor((VW - (M - 1) * GAP - 20) / M)); }
   function startX() { return (VW - (M * W + (M - 1) * GAP)) / 2; }
   function X(i) { return startX() + i * (W + GAP); }
 
   var bits = new Array(M).fill(0), added = [];
-  var SEEDS = [7, 13, 1009];
+  var SEEDS = [7, 13, 1009, 33331];
   function hashes(word) {
-    return SEEDS.map(function (seed) { var x = seed; for (var i = 0; i < word.length; i++) x = (x * 31 + word.charCodeAt(i)) % 100003; return x % M; });
+    return SEEDS.slice(0, K).map(function (seed) { var x = seed; for (var i = 0; i < word.length; i++) x = (x * 31 + word.charCodeAt(i)) % 100003; return x % M; });
   }
 
   function model(hi, cls) {
@@ -53,9 +54,17 @@
   document.getElementById('bf-query').addEventListener('click', function () { var w = clean(document.getElementById('bf-word').value); if (!w) { alert('ใส่คำ a-z'); return; } api.setSteps(querySteps(w)); });
   document.getElementById('bf-reset').addEventListener('click', function () { bits = new Array(M).fill(0); added = []; document.getElementById('bf-added').textContent = 'เพิ่มแล้ว: —'; api.setCode([]); show('ล้างบิตทั้งหมดแล้ว — ลอง add คำดู'); });
 
-  // เริ่มต้น: เพิ่มตัวอย่างไว้
-  ['cat', 'dog', 'bird'].forEach(function (w) { hashes(w).forEach(function (h) { bits[h] = 1; }); added.push(w); });
-  document.getElementById('bf-added').textContent = 'เพิ่มแล้ว: ' + added.join(', ');
-  api.setCode([]);
-  show('Bloom Filter (m=' + M + ' บิต, k=' + K + ' hash) — เพิ่ม cat/dog/bird ไว้แล้ว ลอง query ดู');
+  function reseed(initial) {
+    M = parseInt(document.getElementById('bf-bits').value, 10) || 16;
+    K = parseInt(document.getElementById('bf-k').value, 10) || 3;
+    layout(); bits = new Array(M).fill(0); added = [];
+    ['cat', 'dog', 'bird'].forEach(function (w) { hashes(w).forEach(function (h) { bits[h] = 1; }); added.push(w); });
+    document.getElementById('bf-added').textContent = 'เพิ่มแล้ว: ' + added.join(', ');
+    api.setCode([]);
+    show((initial ? 'Bloom Filter ' : 'เปลี่ยนเป็น ') + 'm=' + M + ' บิต, k=' + K + ' hash — เพิ่ม cat/dog/bird ไว้แล้ว · m เล็ก/k มาก = false positive เยอะขึ้น');
+  }
+  document.getElementById('bf-bits').addEventListener('change', function () { reseed(false); });
+  document.getElementById('bf-k').addEventListener('change', function () { reseed(false); });
+
+  reseed(true);
 })();

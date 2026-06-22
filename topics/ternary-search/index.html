@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ternary Search — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>Ternary Search (ค้นหาแบบสามส่วน)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>Ternary Search</strong> คล้าย Binary Search แต่แบ่งช่วงค้นหาออกเป็น <strong>3 ส่วน</strong>
+          ด้วยจุดตัด 2 จุด คือ <code>mid1 = lo + (hi−lo)/3</code> และ <code>mid2 = hi − (hi−lo)/3</code>
+          จากนั้นเทียบเป้าหมายกับค่าที่ทั้งสองจุด เพื่อ <em>ตัดทิ้งหนึ่งในสามส่วน</em> ในแต่ละรอบ
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> O(log₃ n) รอบ แต่เทียบ 2 ครั้งต่อรอบ จึง <em>ช้ากว่า Binary Search เล็กน้อย</em> ในทางปฏิบัติ ·
+          แนวคิด "แบ่งสามส่วน" นี้ใช้บ่อยกับการหา <em>จุดสูงสุด/ต่ำสุดของฟังก์ชัน unimodal</em>
+        </p>
+      </div>
+      <div class="card"><div id="searchviz"></div></div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="../../assets/js/core/SearchViz.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

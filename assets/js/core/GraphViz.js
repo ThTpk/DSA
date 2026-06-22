@@ -17,8 +17,75 @@
 
   var R = 21;
 
+  /* สุ่มสร้างกราฟ: วาง node เป็นวงกลม + รับประกันเชื่อมต่อ (undirected) หรือ DAG (directed)
+     opts: { directed, weighted, allowNeg, density, vw, vh, minW, maxW } */
+  function generate(n, opts) {
+    opts = opts || {};
+    n = Math.max(3, Math.min(10, (n | 0) || 6));
+    var directed = !!opts.directed, weighted = !!opts.weighted, allowNeg = !!opts.allowNeg;
+    var VW = opts.vw || 720, VH = opts.vh || 400;
+    var minW = opts.minW || 1, maxW = opts.maxW || 9;
+    var density = (opts.density == null) ? (directed ? 0.5 : 0.4) : opts.density;
+    function rnd(a, b) { return a + Math.floor(Math.random() * (b - a + 1)); }
+
+    var nodes = [];
+    var cx = VW / 2, cy = VH / 2, rx = VW * 0.40, ry = VH * 0.40;
+    for (var i = 0; i < n; i++) {
+      var ang = -Math.PI / 2 + i * 2 * Math.PI / n;
+      nodes.push({ id: String.fromCharCode(65 + i), x: Math.round(cx + rx * Math.cos(ang)), y: Math.round(cy + ry * Math.sin(ang)) });
+    }
+    function wt() { var w = rnd(minW, maxW); if (allowNeg && Math.random() < 0.3) w = -rnd(1, 4); return w; }
+
+    var edges = [], seen = {};
+    function key(a, b) { return directed ? (a + '>' + b) : (a < b ? a + '-' + b : b + '-' + a); }
+    function addEdge(ai, bi) {
+      var a = nodes[ai].id, b = nodes[bi].id, k = key(a, b);
+      if (ai === bi || seen[k]) return false; seen[k] = 1;
+      var e = { id: a + b, u: a, v: b }; if (weighted) e.w = wt();
+      edges.push(e); return true;
+    }
+
+    if (directed) {
+      // DAG: ทุกโหนด j มี parent i<j (รากที่ A เข้าถึงได้ทุกโหนด) + เส้น forward เพิ่ม
+      for (var j = 1; j < n; j++) addEdge(rnd(0, j - 1), j);
+      var extra = Math.round((n - 1) * density), t = 0;
+      while (extra > 0 && t < n * n * 2) { t++; var a = rnd(0, n - 2), b = rnd(a + 1, n - 1); if (addEdge(a, b)) extra--; }
+    } else {
+      // เชื่อมต่อแน่นอน: spanning tree + เส้นเพิ่ม
+      for (var j2 = 1; j2 < n; j2++) addEdge(rnd(0, j2 - 1), j2);
+      var extra2 = Math.round(n * density), t2 = 0;
+      while (extra2 > 0 && t2 < n * n * 2) { t2++; if (addEdge(rnd(0, n - 1), rnd(0, n - 1))) extra2--; }
+    }
+    return { nodes: nodes, edges: edges };
+  }
+
+  /* แทรกตัวควบคุม "จำนวนโหนด + สุ่มกราฟ" เข้าไปใน .viz-input ของหน้า
+     คืน { getN } ; เรียก onChange ทุกครั้งที่ผู้ใช้เปลี่ยนจำนวนโหนดหรือกดสุ่ม */
+  function mountConfig(opts) {
+    opts = opts || {};
+    var bar = document.querySelector('.viz-input');
+    var minN = opts.minN || 4, maxN = opts.maxN || 10, defN = opts.defaultN || 6;
+    var label = document.createElement('label');
+    label.textContent = 'จำนวนโหนด:';
+    label.style.cssText = 'align-self:center;color:var(--c-muted)';
+    var input = document.createElement('input');
+    input.type = 'number'; input.id = 'g-nodes'; input.min = minN; input.max = maxN; input.value = defN;
+    input.className = 'sv-target-input'; input.style.cssText = 'flex:0 0 64px';
+    var btn = document.createElement('button');
+    btn.className = 'vp__btn'; btn.id = 'g-random'; btn.textContent = '🎲 สุ่มกราฟ';
+    if (bar) { bar.appendChild(label); bar.appendChild(input); bar.appendChild(btn); }
+    function getN() { var v = parseInt(input.value, 10); if (isNaN(v)) v = defN; return Math.max(minN, Math.min(maxN, v)); }
+    if (opts.onChange) {
+      btn.addEventListener('click', function () { opts.onChange(); });
+      input.addEventListener('change', function () { input.value = getN(); opts.onChange(); });
+    }
+    return { getN: getN };
+  }
+
   DSA.GraphViz = {
     snap: snap,
+    generate: generate,
+    mountConfig: mountConfig,
 
     init: function (opts) {
       DSA.UI.mountNavbar('navbar');

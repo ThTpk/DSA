@@ -12,6 +12,7 @@
   var codeLineEls = codeEl.querySelectorAll('.code__line');
 
   var N = 60, COLS = 10, CELL = 50;
+  function readN() { N = parseInt(document.getElementById('se-size').value, 10) || 60; }
   function render(step) {
     var st = step.snapshot;
     var rows = Math.ceil(N / COLS);
@@ -62,6 +63,7 @@
 
   var player;
   function run() { if (!player) player = new DSA.VizPlayer({ steps: [], render: render, controlsEl: document.getElementById('se-controls'), speed: 250 }); player.setSteps(build()); }
-  document.getElementById('sv-run').addEventListener('click', run);
-  run();
+  document.getElementById('sv-run').addEventListener('click', function () { readN(); run(); });
+  document.getElementById('se-size').addEventListener('change', function () { readN(); run(); });
+  readN(); run();
 })();

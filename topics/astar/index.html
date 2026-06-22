@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A* Search — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+  <style>
+    .hl-g { color: #2563eb; font-weight: 700; }
+    .hl-h { color: #7c3aed; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 5 · การค้นหา</div>
+        <h1>A* Search (ค้นหาเส้นทางด้วย heuristic)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          <strong>A* (A-star)</strong> คือ Dijkstra ที่ฉลาดขึ้น ด้วยการเดา "ระยะที่เหลือ" ไปยังเป้าหมาย
+          แต่ละช่องเก็บ 3 ค่า: <code class="hl-g">g</code> = ระยะจริงจากจุดเริ่ม,
+          <code class="hl-h">h</code> = ค่าประมาณระยะที่เหลือ (<em>heuristic</em>, ที่นี่ใช้ระยะแมนฮัตตัน),
+          และ <code>f = g + h</code> ทุกรอบ A* จะเลือกขยายช่องที่มี <strong>f น้อยที่สุด</strong>
+        </p>
+        <p style="margin-bottom:0">
+          <strong>ความซับซ้อน:</strong> ขึ้นกับ heuristic — ถ้า h ไม่ประเมินเกินจริง (admissible) A* รับประกันเส้นทางสั้นสุด ·
+          <strong>เทียบ:</strong> ถ้า h = 0 ทุกช่อง A* จะกลายเป็น Dijkstra พอดี
+        </p>
+      </div>
+      <div class="card">
+        <div class="viz-input">
+          <label style="align-self:center;color:var(--c-muted)">ขนาด:</label>
+          <select id="as-size" class="sv-target-input" style="flex:0 0 130px">
+            <option value="6x8">เล็ก (6×8)</option>
+            <option value="8x11" selected>กลาง (8×11)</option>
+            <option value="10x14">ใหญ่ (10×14)</option>
+            <option value="12x18">ใหญ่มาก (12×18)</option>
+          </select>
+          <button class="vp__btn vp__btn--primary" id="as-run">▶ ค้นหาเส้นทาง</button>
+          <button class="vp__btn" id="as-random">🎲 แผนที่ใหม่</button>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><i class="swatch" style="background:#f59e0b"></i> กำลังขยาย (f ต่ำสุด)</span>
+          <span><i class="swatch" style="background:#bfdbfe"></i> open set (รอพิจารณา)</span>
+          <span><i class="swatch" style="background:#cbd5e1"></i> closed set (เสร็จแล้ว)</span>
+          <span><i class="swatch" style="background:#10b981"></i> เส้นทางสั้นสุด</span>
+          <span><i class="swatch" style="background:#334155"></i> กำแพง</span>
+        </div>
+        <div class="viz-legend" style="margin-bottom:10px">
+          <span><b class="hl-g">g</b> ระยะจากจุดเริ่ม</span>
+          <span><b class="hl-h">h</b> ระยะประมาณที่เหลือ</span>
+          <span><b>f</b> = g + h (เลขใหญ่กลางช่อง)</span>
+        </div>
+        <div id="asviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

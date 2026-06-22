@@ -1,7 +1,8 @@
-/* Hash Table: Open Addressing (linear probing) — NodeViz array */
+/* Hash Table: Open Addressing (linear probing) — NodeViz array, m ปรับได้ */
 (function () {
   var api = DSA.NodeViz.init({ topicId: 'hash-open', vh: 200 });
-  var M = 11, W = 56, GAP = 6, CH = 50, Y = 100, VW = api.VW;
+  var M = 11, GAP = 6, CH = 50, Y = 100, VW = api.VW, W = 56;
+  function layout() { W = Math.min(56, Math.floor((VW - (M - 1) * GAP - 20) / M)); }
   function startX() { return (VW - (M * W + (M - 1) * GAP)) / 2; }
   function X(i) { return startX() + i * (W + GAP); }
   var slots = new Array(M).fill(null);
@@ -17,11 +18,11 @@
   }
   function add(S, hi, cls, desc, line, hi2, cls2) { S.add(DSA.NodeViz.snap(model(hi, cls, hi2, cls2)), desc, { line: line }); }
 
-  var INS_CODE = ['insert(key): i = hash(key) = key % 11', 'while slot[i] ไม่ว่าง:', '  i = (i + 1) % 11   // probe ช่องถัดไป', 'slot[i] = key'];
-  var SR_CODE = ['search(key): i = hash(key)', 'while slot[i] ไม่ว่าง:', '  if slot[i] == key: เจอ', '  i = (i + 1) % 11', 'ช่องว่าง → ไม่พบ'];
+  function insCode() { return ['insert(key): i = hash(key) = key % ' + M, 'while slot[i] ไม่ว่าง:', '  i = (i + 1) % ' + M + '   // probe ช่องถัดไป', 'slot[i] = key']; }
+  function srCode() { return ['search(key): i = hash(key)', 'while slot[i] ไม่ว่าง:', '  if slot[i] == key: เจอ', '  i = (i + 1) % ' + M, 'ช่องว่าง → ไม่พบ']; }
 
   function insertSteps(key) {
-    api.setCode(INS_CODE);
+    api.setCode(insCode());
     var S = new DSA.Stepper();
     var i = ((key % M) + M) % M, start = i, probes = 0;
     add(S, i, 'is-active', 'insert(' + key + '): hash = ' + key + ' % ' + M + ' = ' + i, 0);
@@ -36,7 +37,7 @@
     return S.steps;
   }
   function searchSteps(key) {
-    api.setCode(SR_CODE);
+    api.setCode(srCode());
     var S = new DSA.Stepper();
     var i = ((key % M) + M) % M, probes = 0;
     add(S, i, 'is-active', 'search(' + key + '): hash = ' + i, 0);
@@ -50,11 +51,18 @@
   }
 
   function show(desc) { var S = new DSA.Stepper(); add(S, -1, '', desc, -1); api.setSteps(S.steps); }
-  document.getElementById('ho-insert').addEventListener('click', function () { var k = parseInt(document.getElementById('ho-key').value, 10); if (isNaN(k)) { alert('ใส่ key (ตัวเลข)'); return; } api.setSteps(insertSteps(k)); });
-  document.getElementById('ho-search').addEventListener('click', function () { var k = parseInt(document.getElementById('ho-key').value, 10); if (isNaN(k)) { alert('ใส่ key'); return; } api.setSteps(searchSteps(k)); });
-  document.getElementById('ho-reset').addEventListener('click', function () { slots = new Array(M).fill(null); api.setCode([]); show('ตารางว่าง (m=' + M + ') — ลอง insert (key 22,11,33 จะชนกันที่ช่อง 0)'); });
+  function getKey() { var k = parseInt(document.getElementById('ho-key').value, 10); return isNaN(k) ? null : k; }
+  document.getElementById('ho-insert').addEventListener('click', function () { var k = getKey(); if (k === null) { alert('ใส่ key (ตัวเลข)'); return; } api.setSteps(insertSteps(k)); });
+  document.getElementById('ho-search').addEventListener('click', function () { var k = getKey(); if (k === null) { alert('ใส่ key'); return; } api.setSteps(searchSteps(k)); });
+  document.getElementById('ho-reset').addEventListener('click', function () { slots = new Array(M).fill(null); api.setCode([]); show('ตารางว่าง (m=' + M + ') — ลอง insert'); });
+  document.getElementById('ho-size').addEventListener('change', function () {
+    M = parseInt(document.getElementById('ho-size').value, 10) || 11;
+    layout(); slots = new Array(M).fill(null); api.setCode([]);
+    show('เปลี่ยนขนาดตาราง m=' + M + ' (ตารางว่าง) — ลอง insert ดู load factor/clustering ที่ต่างไป');
+  });
 
+  layout();
   [22, 1, 13, 11, 24].forEach(function (k) { var i = k % M; while (slots[i] !== null) i = (i + 1) % M; slots[i] = k; });
   api.setCode([]);
-  show('ตารางตัวอย่าง (ใส่ 22,1,13,11,24 แล้ว — 11 ชนกับ 22 ที่ช่อง 0 จึง probe) ลอง insert 33');
+  show('ตารางตัวอย่าง m=' + M + ' (ใส่ 22,1,13,11,24 แล้ว) ลอง insert 33');
 })();

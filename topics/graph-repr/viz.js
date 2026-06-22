@@ -3,19 +3,15 @@
   DSA.UI.mountNavbar('navbar');
   DSA.UI.mountSidebar('sidebar', 'graph-repr');
 
-  var NODES = [
-    { id: 'A', x: 80, y: 70 }, { id: 'B', x: 300, y: 70 }, { id: 'C', x: 60, y: 250 },
-    { id: 'D', x: 330, y: 250 }, { id: 'E', x: 190, y: 335 },
-  ];
-  var IDS = NODES.map(function (n) { return n.id; });
-  var POS = {}; NODES.forEach(function (n) { POS[n.id] = n; });
-  var EDGES = [
-    { id: 'AB', u: 'A', v: 'B' }, { id: 'AC', u: 'A', v: 'C' }, { id: 'BC', u: 'B', v: 'C' },
-    { id: 'BD', u: 'B', v: 'D' }, { id: 'CE', u: 'C', v: 'E' }, { id: 'DE', u: 'D', v: 'E' },
-  ];
+  var NODES, IDS, POS, EDGES;
 
   var host = document.getElementById('reprviz');
   host.innerHTML =
+    '<div class="viz-input">' +
+      '<label style="align-self:center;color:var(--c-muted)">จำนวนโหนด:</label>' +
+      '<input type="number" id="g-nodes" min="3" max="8" value="5" class="sv-target-input" style="flex:0 0 64px">' +
+      '<button class="vp__btn" id="g-random">🎲 สุ่มกราฟใหม่</button>' +
+    '</div>' +
     '<div class="viz-grid">' +
       '<div><div class="viz-stage"><svg class="viz-svg" id="rv-svg" viewBox="0 0 390 380" preserveAspectRatio="xMidYMid meet"></svg></div><div id="rv-controls"></div></div>' +
       '<div class="adj-wrap">' +
@@ -26,34 +22,21 @@
 
   var svg = d3.select('#rv-svg');
   var R = 20;
-  // เส้น (วาดครั้งเดียว, อัปเดต class ตอน render)
-  svg.append('g').selectAll('line').data(EDGES).enter().append('line').attr('class', 'gedge').attr('data-id', function (e) { return e.id; })
-    .each(function (e) {
-      var a = POS[e.u], b = POS[e.v], dx = b.x - a.x, dy = b.y - a.y, L = Math.sqrt(dx * dx + dy * dy);
-      d3.select(this).attr('x1', a.x + dx / L * R).attr('y1', a.y + dy / L * R).attr('x2', b.x - dx / L * R).attr('y2', b.y - dy / L * R);
-    });
-  var gn = svg.append('g').selectAll('g').data(NODES).enter().append('g').attr('class', 'gnode').attr('transform', function (n) { return 'translate(' + n.x + ',' + n.y + ')'; });
-  gn.append('circle').attr('r', R);
-  gn.append('text').attr('class', 'gnode__label').attr('dy', '.34em').text(function (n) { return n.id; });
-
   var matrixEl = document.getElementById('rv-matrix');
   var listEl = document.getElementById('rv-list');
 
   function render(step) {
     var st = step.snapshot;
     var filled = st.filled, active = st.active;
-    // adjacency
     var adjSet = {}; IDS.forEach(function (u) { adjSet[u] = {}; });
     EDGES.forEach(function (e) { if (filled[e.id]) { adjSet[e.u][e.v] = 1; adjSet[e.v][e.u] = 1; } });
     var act = active ? EDGES.filter(function (e) { return e.id === active; })[0] : null;
 
-    // edges svg class
     svg.selectAll('line.gedge').attr('class', function () {
       var id = this.getAttribute('data-id');
       return 'gedge ' + (id === active ? 'is-active' : (filled[id] ? 'is-tree' : 'is-faded'));
     });
 
-    // matrix
     var html = '<table class="adj-matrix"><tr><th></th>' + IDS.map(function (v) { return '<th>' + v + '</th>'; }).join('') + '</tr>';
     IDS.forEach(function (u) {
       html += '<tr><th>' + u + '</th>';
@@ -67,7 +50,6 @@
     html += '</table>';
     matrixEl.innerHTML = html;
 
-    // list
     listEl.innerHTML = IDS.map(function (u) {
       var nb = IDS.filter(function (v) { return adjSet[u][v]; });
       var hot = act && (act.u === u || act.v === u);
@@ -79,18 +61,47 @@
     }).join('');
   }
 
-  // steps
-  var S = new DSA.Stepper();
-  var filled = {};
-  S.add({ filled: {}, active: null }, 'กราฟเปล่า — matrix เป็น 0 ทั้งหมด, list ว่าง', { line: -1 });
-  EDGES.forEach(function (e) {
-    var snap = {}; for (var k in filled) snap[k] = filled[k]; snap[e.id] = true;
-    S.add({ filled: snap, active: e.id }, 'เพิ่มเส้น ' + e.u + '–' + e.v + ' → matrix[' + e.u + '][' + e.v + '] และ [' + e.v + '][' + e.u + '] = 1 ; เพิ่มในลิสต์ของทั้งสองโหนด', { line: -1 });
-    filled[e.id] = true;
-  });
-  var allFilled = {}; EDGES.forEach(function (e) { allFilled[e.id] = true; });
-  S.add({ filled: allFilled, active: null }, '✅ ใส่ครบ ' + EDGES.length + ' เส้น — เทียบ 2 รูปแบบได้เลย', { line: -1 });
+  function buildSteps() {
+    var S = new DSA.Stepper();
+    var filled = {};
+    S.add({ filled: {}, active: null }, 'กราฟเปล่า — matrix เป็น 0 ทั้งหมด, list ว่าง', { line: -1 });
+    EDGES.forEach(function (e) {
+      var snap = {}; for (var k in filled) snap[k] = filled[k]; snap[e.id] = true;
+      S.add({ filled: snap, active: e.id }, 'เพิ่มเส้น ' + e.u + '–' + e.v + ' → matrix[' + e.u + '][' + e.v + '] และ [' + e.v + '][' + e.u + '] = 1 ; เพิ่มในลิสต์ของทั้งสองโหนด', { line: -1 });
+      filled[e.id] = true;
+    });
+    var allFilled = {}; EDGES.forEach(function (e) { allFilled[e.id] = true; });
+    S.add({ filled: allFilled, active: null }, '✅ ใส่ครบ ' + EDGES.length + ' เส้น — เทียบ 2 รูปแบบได้เลย', { line: -1 });
+    return S.steps;
+  }
 
-  // VizPlayer (ไม่มี code panel ในหน้านี้)
-  new DSA.VizPlayer({ steps: S.steps, render: render, controlsEl: document.getElementById('rv-controls'), speed: 800 });
+  function drawStatic() {
+    svg.selectAll('*').remove();
+    svg.append('g').selectAll('line').data(EDGES).enter().append('line').attr('class', 'gedge').attr('data-id', function (e) { return e.id; })
+      .each(function (e) {
+        var a = POS[e.u], b = POS[e.v], dx = b.x - a.x, dy = b.y - a.y, L = Math.sqrt(dx * dx + dy * dy) || 1;
+        d3.select(this).attr('x1', a.x + dx / L * R).attr('y1', a.y + dy / L * R).attr('x2', b.x - dx / L * R).attr('y2', b.y - dy / L * R);
+      });
+    var gn = svg.append('g').selectAll('g').data(NODES).enter().append('g').attr('class', 'gnode').attr('transform', function (n) { return 'translate(' + n.x + ',' + n.y + ')'; });
+    gn.append('circle').attr('r', R);
+    gn.append('text').attr('class', 'gnode__label').attr('dy', '.34em').text(function (n) { return n.id; });
+  }
+
+  var nodesInput = document.getElementById('g-nodes');
+  function getN() { var v = parseInt(nodesInput.value, 10); if (isNaN(v)) v = 5; return Math.max(3, Math.min(8, v)); }
+
+  var player;
+  function regen() {
+    var g = DSA.GraphViz.generate(getN(), { vw: 390, vh: 380, density: 0.35 });
+    NODES = g.nodes; EDGES = g.edges;
+    IDS = NODES.map(function (n) { return n.id; });
+    POS = {}; NODES.forEach(function (n) { POS[n.id] = n; });
+    drawStatic();
+    if (!player) player = new DSA.VizPlayer({ steps: [], render: render, controlsEl: document.getElementById('rv-controls'), speed: 800 });
+    player.setSteps(buildSteps());
+  }
+
+  document.getElementById('g-random').addEventListener('click', regen);
+  nodesInput.addEventListener('change', function () { nodesInput.value = getN(); regen(); });
+  regen();
 })();

@@ -2,17 +2,11 @@
 (function () {
   var api = DSA.GraphViz.init({ topicId: 'dijkstra', weighted: true });
 
-  var NODES = [
-    { id: 'A', x: 90, y: 210 }, { id: 'B', x: 250, y: 90 }, { id: 'C', x: 250, y: 330 },
-    { id: 'D', x: 450, y: 90 }, { id: 'E', x: 450, y: 330 }, { id: 'F', x: 630, y: 210 },
-  ];
-  var EDGES = [
-    { id: 'AB', u: 'A', v: 'B', w: 4 }, { id: 'AC', u: 'A', v: 'C', w: 2 }, { id: 'BC', u: 'B', v: 'C', w: 1 },
-    { id: 'BD', u: 'B', v: 'D', w: 5 }, { id: 'CE', u: 'C', v: 'E', w: 8 }, { id: 'DE', u: 'D', v: 'E', w: 3 },
-    { id: 'DF', u: 'D', v: 'F', w: 6 }, { id: 'EF', u: 'E', v: 'F', w: 2 },
-  ];
-  var adj = {}; NODES.forEach(function (n) { adj[n.id] = []; });
-  EDGES.forEach(function (e) { adj[e.u].push({ v: e.v, w: e.w, id: e.id }); adj[e.v].push({ v: e.u, w: e.w, id: e.id }); });
+  var NODES, EDGES, adj;
+  function buildAdj() {
+    adj = {}; NODES.forEach(function (n) { adj[n.id] = []; });
+    EDGES.forEach(function (e) { adj[e.u].push({ v: e.v, w: e.w, id: e.id }); adj[e.v].push({ v: e.u, w: e.w, id: e.id }); });
+  }
 
   function fmt(d) { return d === Infinity ? '∞' : String(d); }
   function model(cur, dist, visited, activeEdge, tree) {
@@ -61,8 +55,20 @@
     return S.steps;
   }
 
-  function getStart() { var s = (document.getElementById('g-start').value || 'A').trim().toUpperCase(); return adj[s] ? s : 'A'; }
-  document.getElementById('g-run').addEventListener('click', function () { api.setSteps(run(getStart())); });
+  function getStart() { var s = (document.getElementById('g-start').value || 'A').trim().toUpperCase(); return adj[s] ? s : NODES[0].id; }
 
-  (function () { var dist = {}; NODES.forEach(function (n) { dist[n.id] = Infinity; }); var S = new DSA.Stepper(); S.add(DSA.GraphViz.snap(model(null, dist, {}, null, {})), 'กราฟมีน้ำหนัก — กด "รัน Dijkstra" เพื่อเริ่ม', { line: -1 }); api.setSteps(S.steps); })();
+  function showInitial() {
+    var dist = {}; NODES.forEach(function (n) { dist[n.id] = Infinity; });
+    var S = new DSA.Stepper();
+    S.add(DSA.GraphViz.snap(model(null, dist, {}, null, {})), 'กราฟมีน้ำหนัก ' + NODES.length + ' โหนด — กด "รัน Dijkstra" เพื่อเริ่ม', { line: -1 });
+    api.setSteps(S.steps);
+  }
+  function regen() {
+    var g = DSA.GraphViz.generate(cfg.getN(), { weighted: true });
+    NODES = g.nodes; EDGES = g.edges; buildAdj(); showInitial();
+  }
+
+  document.getElementById('g-run').addEventListener('click', function () { api.setSteps(run(getStart())); });
+  var cfg = DSA.GraphViz.mountConfig({ defaultN: 6, onChange: regen });
+  regen();
 })();

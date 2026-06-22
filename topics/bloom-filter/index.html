@@ -36,10 +36,23 @@
       </div>
       <div class="card">
         <div class="viz-input">
-          <input type="text" id="bf-word" placeholder="คำ (a-z)" class="sv-target-input" style="flex:0 0 200px">
+          <input type="text" id="bf-word" placeholder="คำ (a-z)" class="sv-target-input" style="flex:0 0 160px">
           <button class="vp__btn vp__btn--primary" id="bf-add">➕ add</button>
           <button class="vp__btn" id="bf-query">🔍 query</button>
           <button class="vp__btn" id="bf-reset">♻️ ล้าง</button>
+          <label style="align-self:center;color:var(--c-muted)">บิต m:</label>
+          <select id="bf-bits" class="sv-target-input" style="flex:0 0 64px">
+            <option value="12">12</option>
+            <option value="16" selected>16</option>
+            <option value="24">24</option>
+            <option value="32">32</option>
+          </select>
+          <label style="align-self:center;color:var(--c-muted)">hash k:</label>
+          <select id="bf-k" class="sv-target-input" style="flex:0 0 56px">
+            <option value="2">2</option>
+            <option value="3" selected>3</option>
+            <option value="4">4</option>
+          </select>
         </div>
         <div style="color:var(--c-muted);margin-bottom:8px" id="bf-added">เพิ่มแล้ว: —</div>
         <div id="nodeviz"></div>

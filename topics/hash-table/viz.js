@@ -1,15 +1,16 @@
-/* Hash Table (chaining) — hash(key)=key%7 ; insert/search เห็น collision เป็น chain */
+/* Hash Table (chaining) — hash(key)=key%m ; insert/search เห็น collision เป็น chain (m ปรับได้) */
 (function () {
-  var api = DSA.NodeViz.init({ topicId: 'hash-table', vh: 360 });
+  var api = DSA.NodeViz.init({ topicId: 'hash-table', vh: 470 });
   var M = 7;
   var BX = 50, BW = 50, BH = 40, ROW = 44, BY = 28;
   var NW = 50, NH = 40, GAP = 26;
+  function layout() { ROW = Math.min(44, Math.floor((470 - BY - BH - 10) / Math.max(1, M - 1))); }
   function Yi(i) { return BY + i * ROW; }
   function NX(j) { return BX + BW + GAP + j * (NW + GAP); }
 
   var buckets = [], kid = 0;
   function reset() { buckets = []; for (var i = 0; i < M; i++) buckets.push([]); }
-  reset();
+  layout(); reset();
 
   function model(bHi, bCls, nHi, nCls) {
     var cells = [], arrows = [];
@@ -26,8 +27,8 @@
   }
   function add(S, bHi, bCls, nHi, nCls, desc, line) { S.add(DSA.NodeViz.snap(model(bHi, bCls, nHi, nCls)), desc, { line: line }); }
 
-  var INSERT_CODE = ['insert(key):', '  i = hash(key) = key % 7', '  ต่อ key เข้า chain ของ bucket[i]', '  (bucket ไม่ว่าง = collision → ต่อใน chain)'];
-  var SEARCH_CODE = ['search(key):', '  i = hash(key) = key % 7', '  ไล่ chain ของ bucket[i] เทียบทีละตัว', '  เจอ → return ; ถึงท้าย chain → ไม่พบ'];
+  function insertCode() { return ['insert(key):', '  i = hash(key) = key % ' + M, '  ต่อ key เข้า chain ของ bucket[i]', '  (bucket ไม่ว่าง = collision → ต่อใน chain)']; }
+  function searchCode() { return ['search(key):', '  i = hash(key) = key % ' + M, '  ไล่ chain ของ bucket[i] เทียบทีละตัว', '  เจอ → return ; ถึงท้าย chain → ไม่พบ']; }
 
   function insertSteps(S, key) {
     var i = ((key % M) + M) % M;
@@ -40,7 +41,7 @@
       collision ? 3 : 2);
   }
   function searchSteps(key) {
-    api.setCode(SEARCH_CODE);
+    api.setCode(searchCode());
     var S = new DSA.Stepper();
     var i = ((key % M) + M) % M;
     add(S, i, 'is-active', null, null, 'hash(' + key + ') = ' + i + ' → ไปที่ bucket ' + i, 1);
@@ -52,9 +53,9 @@
     add(S, i, 'is-active', null, null, '❌ ไล่จบ chain ของ bucket ' + i + ' แล้ว ไม่พบ ' + key, 3);
     return S.steps;
   }
-  function insertOne(key) { api.setCode(INSERT_CODE); var S = new DSA.Stepper(); insertSteps(S, key); S.add(DSA.NodeViz.snap(model(-1, '', null, null)), '✅ insert ' + key + ' เสร็จ', { line: -1 }); return S.steps; }
+  function insertOne(key) { api.setCode(insertCode()); var S = new DSA.Stepper(); insertSteps(S, key); S.add(DSA.NodeViz.snap(model(-1, '', null, null)), '✅ insert ' + key + ' เสร็จ', { line: -1 }); return S.steps; }
   function buildSteps(keys) {
-    api.setCode(INSERT_CODE); reset();
+    api.setCode(insertCode()); reset();
     var S = new DSA.Stepper();
     S.add(DSA.NodeViz.snap(model(-1, '', null, null)), 'ตารางว่าง (' + M + ' buckets)', { line: 0 });
     keys.forEach(function (k) { insertSteps(S, k); });
@@ -71,6 +72,11 @@
   document.getElementById('ht-random').addEventListener('click', function () { var a = []; for (var i = 0; i < 6; i++) a.push(Math.floor(Math.random() * 50)); build(a); });
   document.getElementById('ht-insert').addEventListener('click', function () { var k = Number(keyEl.value); if (isNaN(k)) { alert('ใส่ key'); return; } api.setSteps(insertOne(k)); });
   document.getElementById('ht-search').addEventListener('click', function () { var k = Number(keyEl.value); if (isNaN(k)) { alert('ใส่ key'); return; } api.setSteps(searchSteps(k)); });
+  document.getElementById('ht-size').addEventListener('change', function () {
+    M = parseInt(document.getElementById('ht-size').value, 10) || 7; layout();
+    var v = parseList(keysEl.value); if (!v.length) v = [10, 17, 3, 24, 8];
+    build(v);
+  });
 
   build([10, 17, 3, 24, 8]);
 })();

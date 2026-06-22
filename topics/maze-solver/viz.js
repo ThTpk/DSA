@@ -12,6 +12,10 @@
   var codeLineEls = codeEl.querySelectorAll('.code__line');
 
   var ROWS = 7, COLS = 9, CELL = 42, maze = [];
+  function readSize() {
+    var v = (document.getElementById('mz-size').value || '7x9').split('x');
+    ROWS = parseInt(v[0], 10); COLS = parseInt(v[1], 10);
+  }
   function genMaze() {
     // เริ่มจากกำแพงทั้งหมด แล้วเจาะทางเดิน (recursive backtracker) → มีทางออกแน่นอน
     maze = []; for (var r = 0; r < ROWS; r++) { maze.push([]); for (var c = 0; c < COLS; c++) maze[r].push(1); }
@@ -88,5 +92,6 @@
   }
   document.getElementById('mz-run').addEventListener('click', run);
   document.getElementById('mz-random').addEventListener('click', function () { genMaze(); run(); });
-  genMaze(); run();
+  document.getElementById('mz-size').addEventListener('change', function () { readSize(); genMaze(); run(); });
+  readSize(); genMaze(); run();
 })();
