@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Johnson's Algorithm — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css">
+  <link rel="stylesheet" href="../../assets/css/layout.css">
+  <link rel="stylesheet" href="../../assets/css/viz.css">
+</head>
+<body>
+  <header id="navbar"></header>
+  <div class="shell">
+    <nav id="sidebar"></nav>
+    <main class="main">
+      <div class="page-header">
+        <div class="crumb">หมวด 3 · กราฟ</div>
+        <h1>Johnson's Algorithm (เส้นทางสั้นสุดทุกคู่)</h1>
+      </div>
+      <div class="card">
+        <h2>แนวคิด</h2>
+        <p>
+          หาเส้นทางสั้นสุด <em>ทุกคู่โหนด</em> บนกราฟมีทิศ <strong>ที่มีน้ำหนักลบได้</strong> · เร็วกว่า Floyd-Warshall บนกราฟเบาบาง
+          (O(V²log V + VE) เทียบ O(V³)) ด้วยกลเม็ด <strong>reweighting</strong>:
+        </p>
+        <ul style="margin-top:0">
+          <li>เพิ่มโหนดเสมือน q ที่ชี้ไปทุกโหนดด้วยน้ำหนัก 0 แล้วรัน <strong>Bellman-Ford</strong> หา <code>h(v)</code></li>
+          <li>ปรับน้ำหนัก <code>w'(u,v) = w(u,v) + h(u) − h(v)</code> → <em>ไม่มีลบ</em> (รัน Dijkstra ได้)</li>
+          <li>รัน <strong>Dijkstra</strong> จากทุกโหนด แล้วแปลงกลับ <code>d(u,v) = d'(u,v) − h(u) + h(v)</code></li>
+        </ul>
+        <p style="margin-bottom:0; color:var(--c-muted); font-size:.9rem">💡 ตัวเลขใต้โหนด = h(v) · ป้ายบนเส้น = น้ำหนักที่ปรับแล้ว · ตารางขวา = ระยะทุกคู่</p>
+      </div>
+      <div class="card">
+        <div class="viz-input"><button class="vp__btn vp__btn--primary" id="jh-run">▶ รัน Johnson's</button></div>
+        <div id="jhviz"></div>
+      </div>
+    </main>
+  </div>
+  <script>window.DSA = { basePath: '../../' };</script>
+  <script src="../../assets/js/lib/d3.v7.min.js"></script>
+  <script src="../../assets/js/data/topics.js"></script>
+  <script src="../../assets/js/core/ui.js"></script>
+  <script src="../../assets/js/core/Stepper.js"></script>
+  <script src="../../assets/js/core/VizPlayer.js"></script>
+  <script src="viz.js"></script>
+</body>
+</html>

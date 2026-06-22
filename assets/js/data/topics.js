@@ -63,6 +63,7 @@
         { id: 'articulation', title: 'Articulation Points / Bridges', path: 'topics/articulation/', status: 'ready' },
         { id: 'max-flow',    title: 'Max Flow (Edmonds-Karp)', path: 'topics/max-flow/', status: 'ready' },
         { id: 'bipartite-matching', title: 'Bipartite Matching', path: 'topics/bipartite-matching/', status: 'ready' },
+        { id: 'johnsons',    title: "Johnson's (all-pairs)",   path: 'topics/johnsons/',    status: 'ready' },
       ],
     },
     {
