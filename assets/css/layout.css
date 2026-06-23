@@ -40,7 +40,7 @@
 /* ---------- โครงหน้าเนื้อหา (sidebar + main) ---------- */
 .shell {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 240px 1fr;
   gap: 0;
   align-items: start;
 }
@@ -94,7 +94,7 @@
 }
 
 /* ---------- Main ---------- */
-.main { padding: 32px 40px 80px; max-width: 1100px; }
+.main { padding: 28px 32px 72px; max-width: 1340px; }
 .page-header { margin-bottom: 24px; }
 .page-header h1 { margin: 0 0 6px; font-size: 1.9rem; }
 .page-header .crumb { color: var(--c-muted); font-size: .9rem; }
@@ -103,7 +103,7 @@
   background: var(--c-surface);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
-  padding: 22px 24px;
+  padding: 18px 22px;
   box-shadow: var(--shadow);
   margin-bottom: 24px;
 }

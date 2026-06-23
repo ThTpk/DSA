@@ -15,7 +15,7 @@
   }
   function escapeHtml(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-  var R = 21;
+  var R = 24;
 
   /* สุ่มสร้างกราฟ: วาง node เป็นวงกลม + รับประกันเชื่อมต่อ (undirected) หรือ DAG (directed)
      opts: { directed, weighted, allowNeg, density, vw, vh, minW, maxW } */

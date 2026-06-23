@@ -7,7 +7,7 @@
   background: var(--c-surface-2);
   border: 1px solid var(--c-border);
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 14px;
 }
 
 /* ---------- แท่งข้อมูล D3/SVG (สำหรับ sorting) ---------- */
@@ -43,14 +43,14 @@
 .sv-target-input { flex: 0 0 130px !important; }
 .bar-val {
   font-family: var(--font-thai);
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   fill: var(--c-muted);
   text-anchor: middle;
 }
 .bar-idx {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 12px;
   fill: var(--c-faint);
   text-anchor: middle;
 }
@@ -180,7 +180,7 @@
 }
 .tnode__val {
   font-family: var(--font-mono);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   fill: var(--c-text);
   text-anchor: middle;
@@ -194,7 +194,7 @@
 .tnode.is-compare .tnode__val,
 .tnode.is-found   .tnode__val { fill: #fff; }
 /* Trie: ป้ายตัวอักษรบนเส้น + โหนดจุดจบคำ */
-.edge-label { font-family: var(--font-mono); font-size: 13px; font-weight: 600; fill: var(--c-primary); text-anchor: middle; }
+.edge-label { font-family: var(--font-mono); font-size: 15px; font-weight: 600; fill: var(--c-primary); text-anchor: middle; }
 .tnode.is-end circle { stroke: var(--viz-sorted); stroke-width: 3.5; }
 
 /* ---------- โครงสร้างเชิงเส้น (NodeViz) ---------- */
@@ -204,8 +204,8 @@
   stroke-width: 2;
   transition: fill .2s ease, stroke .2s ease;
 }
-.cell__val { font-family: var(--font-mono); font-size: 15px; font-weight: 600; fill: var(--c-text); text-anchor: middle; }
-.cell__sub { font-family: var(--font-mono); font-size: 11px; fill: var(--c-faint); text-anchor: middle; }
+.cell__val { font-family: var(--font-mono); font-size: 17px; font-weight: 600; fill: var(--c-text); text-anchor: middle; }
+.cell__sub { font-family: var(--font-mono); font-size: 12px; fill: var(--c-faint); text-anchor: middle; }
 .cell.is-active   rect { fill: var(--viz-compare); stroke: #d97706; }
 .cell.is-highlight rect { fill: var(--search-active); stroke: #6366f1; }
 .cell.is-found    rect { fill: var(--viz-sorted); stroke: #059669; }
@@ -259,10 +259,10 @@
 .gedge.is-active { stroke: var(--viz-compare); stroke-width: 4; }
 .gedge.is-tree   { stroke: var(--viz-sorted); stroke-width: 4; }
 .gedge.is-faded  { stroke: var(--c-border); stroke-width: 2; }
-.gweight { font-family: var(--font-mono); font-size: 13px; font-weight: 600; fill: var(--c-primary-dark); text-anchor: middle; }
+.gweight { font-family: var(--font-mono); font-size: 15px; font-weight: 600; fill: var(--c-primary-dark); text-anchor: middle; }
 .gnode circle { fill: var(--tree-node); stroke: var(--c-faint); stroke-width: 2.5; transition: fill .2s ease, stroke .2s ease; }
-.gnode__label { font-family: var(--font-mono); font-size: 15px; font-weight: 700; fill: var(--c-text); text-anchor: middle; }
-.gnode__sub { font-family: var(--font-mono); font-size: 12px; fill: var(--c-primary-dark); text-anchor: middle; font-weight: 600; }
+.gnode__label { font-family: var(--font-mono); font-size: 17px; font-weight: 700; fill: var(--c-text); text-anchor: middle; }
+.gnode__sub { font-family: var(--font-mono); font-size: 13px; fill: var(--c-primary-dark); text-anchor: middle; font-weight: 600; }
 .gnode.is-current circle { fill: var(--viz-compare); stroke: #d97706; }
 .gnode.is-frontier circle { fill: var(--search-active); stroke: #6366f1; }
 .gnode.is-visited circle { fill: var(--viz-sorted); stroke: #059669; }
@@ -337,5 +337,5 @@
 /* ---------- layout 2 คอลัมน์: viz + code ---------- */
 .viz-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
 @media (min-width: 900px) {
-  .viz-grid { grid-template-columns: 1.4fr 1fr; align-items: start; }
+  .viz-grid { grid-template-columns: 1.8fr 1fr; align-items: start; }
 }

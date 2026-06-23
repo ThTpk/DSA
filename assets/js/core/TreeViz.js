@@ -8,7 +8,7 @@
 (function () {
   window.DSA = window.DSA || {};
 
-  var VW = 700, VH = 380, PADX = 44, PADY = 46, R = 18;
+  var VW = 700, VH = 380, PADX = 44, PADY = 46, R = 20;
 
   function serialize(root) {
     var nodes = [];
