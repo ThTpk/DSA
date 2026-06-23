@@ -36,6 +36,19 @@
 .navbar__spacer { flex: 1; }
 .navbar__link { color: rgba(255,255,255,.9); font-weight: 500; }
 .navbar__link:hover { color: #fff; text-decoration: none; }
+.navbar__toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 36px; height: 36px;
+  border: none;
+  border-radius: 8px;
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: background .15s;
+}
+.navbar__toggle:hover { background: rgba(255,255,255,.32); }
 
 /* ---------- โครงหน้าเนื้อหา (sidebar + main) ---------- */
 .shell {
@@ -44,6 +57,9 @@
   gap: 0;
   align-items: start;
 }
+/* ซ่อนเมนูซ้าย → main ขยายเต็มความกว้าง */
+.shell.sidebar-hidden { grid-template-columns: 1fr; }
+.shell.sidebar-hidden .sidebar { display: none; }
 
 /* ---------- Sidebar ---------- */
 .sidebar {

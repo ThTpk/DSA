@@ -19,13 +19,33 @@
       var el = document.getElementById(elId);
       if (!el) return;
       el.className = 'navbar';
+      var hasSidebar = !!document.getElementById('sidebar');
+      var toggle = hasSidebar
+        ? '<button class="navbar__toggle" id="sidebarToggle" title="ซ่อน/แสดงเมนู" aria-label="สลับเมนูด้านซ้าย">☰</button>'
+        : '';
       el.innerHTML =
+        toggle +
         '<a class="navbar__brand" href="' + link('index.html') + '">' +
           '<span class="navbar__logo">⚙️</span> DSA Visualizer' +
         '</a>' +
         '<span class="navbar__spacer"></span>' +
         '<a class="navbar__link" href="' + link('roadmap/') + '">เส้นทางการเรียน</a>' +
         '<a class="navbar__link" href="' + link('index.html') + '">หน้าแรก</a>';
+
+      if (hasSidebar) {
+        var shell = document.querySelector('.shell');
+        var btn = document.getElementById('sidebarToggle');
+        // จำสถานะข้ามหน้าไว้ใน localStorage
+        var hidden = false;
+        try { hidden = localStorage.getItem('dsa-sidebar') === 'hidden'; } catch (e) {}
+        if (shell && hidden) shell.classList.add('sidebar-hidden');
+        if (btn && shell) {
+          btn.addEventListener('click', function () {
+            var nowHidden = shell.classList.toggle('sidebar-hidden');
+            try { localStorage.setItem('dsa-sidebar', nowHidden ? 'hidden' : 'shown'); } catch (e) {}
+          });
+        }
+      }
     },
 
     /** วาง sidebar (เมนูตามหมวด) — currentId = id หัวข้อปัจจุบัน */
