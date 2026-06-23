@@ -46,8 +46,11 @@
     .ca-ex__sec > p { margin: 0 0 8px; font-size: .93rem; line-height: 1.65; }
     .ca-io { font-size: .9rem; color: var(--c-muted); margin: 6px 0; }
     .ca-sample { font-family: var(--font-mono); font-size: .85rem; background: var(--c-surface-2); border: 1px solid var(--c-border); border-radius: var(--radius-sm); padding: 8px 12px; margin-top: 6px; color: var(--c-text); white-space: pre-wrap; line-height: 1.5; }
-    .ca-think { margin: 0; padding-left: 20px; font-size: .92rem; }
-    .ca-think li { margin: 5px 0; line-height: 1.55; }
+    .ca-think { margin: 0; padding-left: 22px; font-size: .92rem; }
+    .ca-think > li { margin: 8px 0; line-height: 1.6; }
+    .ca-think .s { font-weight: 700; color: var(--c-primary-dark); }
+    /* ไฮไลต์วลี/ตัวเลขจริงที่ยกมาจากโจทย์ */
+    .ca-q { background: #fef3c7; color: #92400e; border-radius: 4px; padding: 0 5px; font-weight: 600; }
     .ca-ex__sol { background: var(--c-primary-soft); border-radius: var(--radius-sm); padding: 11px 14px; }
     .ca-ex__sol .ca-ex__lbl { color: var(--c-primary-dark); }
     .ca-ex__sol p { color: var(--c-primary-dark); margin: 0; }
@@ -137,7 +140,7 @@
 
     <div class="card">
       <h2>🏆 ลองใช้จริงกับโจทย์ ICPC World Finals (10 ข้อ)</h2>
-      <p class="ca-lead">โจทย์จริงจากเวทีระดับโลก แปลตรงจากโจทย์ทางการ แต่ละข้อแสดง 3 ส่วน: <b>📋 เนื้อโจทย์ → 🧭 คิดเลือกอัลกอริทึม → ✅ เฉลย</b> · ตัวเลข “แก้ได้กี่ทีม” (จาก ~140 ทีม) = ตัวบอกความยาก</p>
+      <p class="ca-lead">โจทย์จริงจากเวทีระดับโลก แปลตรงจากโจทย์ทางการ แต่ละข้อแสดง 3 ส่วน: <b>📋 เนื้อโจทย์ → 🧭 คิดเลือกอัลกอริทึม → ✅ เฉลย</b> · ในส่วน “คิด” ผมจะ<b>ไฮไลต์วลี/ตัวเลขจริงในโจทย์</b> (พื้นเหลือง) ที่เป็นสัญญาณของแต่ละขั้น เพื่อให้เห็นว่าดูตรงไหน · ตัวเลข “แก้ได้กี่ทีม” (จาก ~140 ทีม) = ตัวบอกความยาก</p>
     </div>
 
     <!-- 1 -->
@@ -156,11 +159,11 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หา “เวลารวม<u>น้อยที่สุด</u>” → ปัญหา optimization</li>
-          <li><b>ขนาด n?</b> n ≤ 10⁴ → รับ O(n²) ได้</li>
-          <li><b>โครงสร้าง?</b> ต้องตัดสินใจเป็นลำดับว่าใครข้ามไป/ใครพายไฟฉายกลับ — เหมือนเลือกแบบโลภ แต่มีหลายแบบ</li>
-          <li><b>คำใบ้?</b> “เลือกกลุ่มข้ามแบบดีสุดแต่ละครั้ง” = <b>greedy</b> — แต่ greedy ล้วนพิสูจน์ยากและพลาดได้ จึงต้องมี “สถานะ” มาช่วย → <b>DP</b></li>
-          <li class="ca-concl">→ สรุป: <a href="../topics/greedy/">Greedy</a> (โครงสร้างคำตอบ) + <a href="../topics/dp/">DP</a> (คำนวณต้นทุน)</li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> มองหา “คำกริยาเป้าหมาย” — โจทย์เขียนว่า <span class="ca-q">“จงหาเวลาที่น้อยที่สุด”</span> คำว่า <u>น้อยที่สุด</u> บอกชัดว่าเป็นปัญหา <b>หาค่าเหมาะที่สุด (optimization)</b> ไม่ใช่แค่ “นับ” หรือ “เช็คว่าได้ไหม”</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> ดูที่บรรทัดอินพุต <span class="ca-q">“2 ≤ n, c ≤ 10⁴”</span> → เปิด <b>ตารางที่ 1</b>: n ระดับ 10⁴ ยอมให้ใช้ O(n²) ได้ (เพราะ (10⁴)² = 10⁸ ≈ 1 วินาที) เราจึง<b>ไม่ต้องรีบ</b>หาสูตรเร็วพิเศษ — DP แบบสองชั้นยังไหว</li>
+          <li><span class="s">ขั้น 3 · ลองมือกับตัวอย่าง</span> ดูตัวอย่าง: 4 คน <span class="ca-q">[1, 2, 5, 10]</span>, c = 2 ได้ 17 — สังเกตในวงเล็บว่า “คนเร็วสุดต้องพายไฟฉายกลับมาส่ง” แสดงว่าคำตอบคือ <u>ลำดับการตัดสินใจ</u> ว่าใครข้ามไป/ใครพายกลับ ไม่ใช่สูตรสำเร็จรูป</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> “เลือกกลุ่มข้ามให้ดีที่สุดแต่ละครั้ง” ฟังดูเป็น <b>greedy</b> (ตารางที่ 2) — แต่พอลองหลายแบบจะเห็นว่า greedy ตรง ๆ พลาดได้ จึงต้องมี “ความจำ/สถานะ” มาช่วยเลือก = <b>DP</b></li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/greedy/">Greedy</a> (วางโครงคำตอบ) + <a href="../topics/dp/">DP</a> (คำนวณต้นทุนของแต่ละสถานะ)</li>
         </ol>
       </div>
       <div class="ca-ex__sec ca-ex__sol">
@@ -180,10 +183,10 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> สร้างตาราง (construct) ที่ทำได้ หรือบอก impossible</li>
-          <li><b>ขนาด n?</b> n ≤ 2×10⁵ → ต้อง O(n) หรือ O(n log n) — DP หนัก ๆ ใช้ไม่ได้</li>
-          <li><b>โครงสร้าง?</b> เป็นปัญหาบน “ช่วงเวลา (interval)” เรียงตามเวลาอยู่แล้ว</li>
-          <li><b>คำใบ้?</b> interval + “เลือกช่วงนอนให้ตื่นได้นานที่สุด” = ลายเซ็นคลาสสิกของ <b>greedy</b></li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> ดูที่เอาต์พุต: ให้ออก “ตารางนอน หรือคำว่า <span class="ca-q">impossible</span>” → ไม่ใช่หาค่าน้อยสุด แต่เป็นการ <b>สร้างคำตอบสักชุด (construct)</b> ที่ทำได้ หรือบอกว่าทำไม่ได้</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> อินพุตบอก <span class="ca-q">“1 ≤ n ≤ 200,000”</span> → ตารางที่ 1: ระดับ 2×10⁵ ต้องเป็น O(n) หรือ O(n log n) เท่านั้น → <b>ตัดทิ้ง</b>วิธี DP ช้า ๆ หรือ O(n²)</li>
+          <li><span class="s">ขั้น 3 · โครงสร้างข้อมูล?</span> แต่ละกิจกรรมคือช่วงเวลา <span class="ca-q">[bᵢ, eᵢ]</span> วางเรียงกันบนเส้นเวลา → นี่คือปัญหาแบบ <b>“ช่วงเวลา (interval) บนเส้นจำนวน”</b></li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> interval + เป้าหมาย “เลือกนอนช่วงไหนให้<u>ตื่นได้นานที่สุด</u>” = ลายเซ็นคลาสสิกของ <b>greedy</b> (ตัดสินใจทีละช่วงแบบโลภ)</li>
           <li class="ca-concl">→ สรุป: <a href="../topics/greedy/">Greedy</a> (โค้ดสั้นมาก)</li>
         </ol>
       </div>
@@ -204,11 +207,11 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หาค่า expected “น้อยที่สุด” ภายใต้การเลือก reroll ที่ดีที่สุด → optimize + ตัดสินใจดีสุด</li>
-          <li><b>ขนาด n?</b> d ≤ 6 → จำนวนสถานะของลูกเต๋า ≈ 7ᵈ ≤ 7⁶ ≈ 118,000 (เล็กพอจะมองเป็นโหนดได้)</li>
-          <li><b>โครงสร้าง?</b> แต่ละ “สถานะของลูกเต๋าทั้งหมด” (แต่ละลูกโชว์เลขอะไร หรือกำลัง reroll) = โหนด; การทอย/reroll = การย้ายสถานะที่มีต้นทุนและความน่าจะเป็น</li>
-          <li><b>คำใบ้?</b> “ไปถึงสถานะเป้าหมาย (เป็นคำ) ด้วยต้นทุน<u>น้อยที่สุด</u>” = shortest path บนกราฟสถานะ</li>
-          <li class="ca-concl">→ สรุป: <a href="../topics/dijkstra/">Dijkstra</a> / <a href="../topics/bellman-ford/">Bellman-Ford</a> (หรือ value iteration)</li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> วลี <span class="ca-q">“จำนวนครั้งการทอยที่คาดหวัง น้อยที่สุด เมื่อใช้กลยุทธ์ที่ดีที่สุด”</span> → เป็น optimization (หาค่าน้อยสุด) + มี<b>การตัดสินใจเลือก reroll ที่ดีสุด</b> และเป็นค่า expected (ความน่าจะเป็น)</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> อินพุตบอก <span class="ca-q">“1 ≤ d ≤ 6”</span> — d เล็กมาก! แต่ละลูกมี 6 หน้า + สถานะ “กำลัง reroll” รวมเป็น 7 แบบต่อลูก → จำนวนสถานะ ≤ <b>7⁶ ≈ 118,000</b> เล็กพอจะเก็บทุกสถานะเป็นโหนดได้</li>
+          <li><span class="s">ขั้น 3 · โครงสร้างข้อมูล?</span> นึกภาพ “สถานะของลูกเต๋าทั้งชุด” (แต่ละลูกโชว์เลขอะไร หรือกำลัง reroll) เป็นจุดหนึ่ง · การทอย/reroll = เดินจากจุดหนึ่งไปอีกจุด (เสีย 1 ทอย และมีความน่าจะเป็น) → นี่คือ <b>กราฟของสถานะ</b></li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> “ไปถึงสถานะเป้าหมาย (เรียงเป็นคำได้) ด้วยจำนวนทอย<u>น้อยที่สุด</u>” = หาเส้นทางสั้นสุดบนกราฟ → ตารางที่ 2 ชี้ไป <b>Dijkstra</b></li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/dijkstra/">Dijkstra</a> / <a href="../topics/bellman-ford/">Bellman-Ford</a> (สำหรับ expected value คือ value iteration)</li>
         </ol>
       </div>
       <div class="ca-ex__sec ca-ex__sol">
@@ -234,9 +237,10 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> เป็นไปได้ไหม (yes/no) ที่จะจัดสัตว์เป็น permutation เป้าหมาย</li>
-          <li><b>โครงสร้าง?</b> ข้อมูลคือ<b>กราฟ</b> และการย้าย = หมุนสัตว์ไปตาม cycle ของกราฟ</li>
-          <li><b>คำใบ้?</b> edge ที่<u>ไม่อยู่ในวงรอบ (cycle)</u> ใด ๆ เลย = bridge → สัตว์หมุนผ่านมันไม่ได้ จึง “ตัดทิ้ง” ได้ แล้วแยกปัญหาเป็นชิ้น ๆ</li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> เอาต์พุตเป็น <span class="ca-q">possible / ไม่ได้</span> → เป็นปัญหา <b>เป็นไปได้ไหม (feasibility)</b> ตอบ yes/no ไม่ใช่หาค่าน้อยสุด</li>
+          <li><span class="s">ขั้น 2 · โครงสร้างข้อมูล?</span> โจทย์มี <span class="ca-q">“คอก”</span> เชื่อมด้วย <span class="ca-q">“อุโมงค์”</span> → นี่คือ <b>กราฟ</b> (คอก = โหนด, อุโมงค์ = เส้นเชื่อม) และการย้ายคือหมุนสัตว์ไปตามวงรอบของกราฟ</li>
+          <li><span class="s">ขั้น 3 · จับจุดสำคัญในเนื้อเรื่อง</span> ประโยค <span class="ca-q">“สลับสัตว์สองคอกที่ติดกันตรง ๆ ไม่ได้”</span> บอกว่าการย้ายต้องอาศัย “วง (cycle)” → edge ที่ไม่อยู่ในวงใดเลย (= bridge) ใช้หมุนสัตว์ไม่ได้</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> “edge ที่ขาดแล้วกราฟแยก / ไม่อยู่ใน cycle” = ตารางที่ 2 ชี้ไป <b>Bridges / Articulation</b></li>
           <li class="ca-concl">→ สรุป: <a href="../topics/articulation/">Bridges / Articulation</a> ย่อยกราฟเป็น 2-edge-connected component แล้วแก้ทีละชิ้น</li>
         </ol>
       </div>
@@ -260,9 +264,10 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หา score ที่ “ต่ำสุด/สูงสุด” ที่เป็นไปได้ของ D3 ภายใต้เงื่อนไข → optimization (+ กลิ่นทฤษฎีเกม)</li>
-          <li><b>โครงสร้าง?</b> score(D3, ·) เป็นฟังก์ชันของส่วนผสมหน้า D3; เมื่อมองตามค่าหน้า v มันมีรูปที่ “ขึ้นแล้วลง” (unimodal/convex)</li>
-          <li><b>คำใบ้?</b> “หาจุด optimum ของฟังก์ชัน unimodal” → <b>ternary search</b></li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> โจทย์ขอ score ที่ <span class="ca-q">“ต่ำสุด”</span> และ <span class="ca-q">“สูงสุด”</span> ที่เป็นไปได้ → optimization (มีกลิ่นทฤษฎีเกมจากเรื่อง intransitive dice)</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> <span class="ca-q">“1 ≤ n ≤ 10⁵”</span> → ต้องการอัลกอริทึมระดับ O(n log n) — เหมาะกับวิธีที่ “วนหาค่าดีสุดไม่กี่รอบ” มากกว่าวิธีลองทุกความเป็นไปได้</li>
+          <li><span class="s">ขั้น 3 · มองให้เป็นฟังก์ชัน</span> เมื่อเลือกหน้าของ D3 ให้เน้นที่ค่า v หนึ่งค่า แล้วคำนวณ score เทียบ D1/D2 ได้ → score กลายเป็น<b>ฟังก์ชันของ v ที่ “ขึ้นแล้วลง” (unimodal)</b> มีจุดสูง/ต่ำสุดจุดเดียว</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> “หาจุดสูงสุด/ต่ำสุดของฟังก์ชันที่ขึ้นแล้วลง” = ลายเซ็นของ <b>ternary search</b> (ตารางที่ 2 แถวใหม่)</li>
           <li class="ca-concl">→ สรุป: <a href="../topics/ternary-search/">Ternary Search</a> (โจทย์ฐานคือทฤษฎีเกม intransitive dice)</li>
         </ol>
       </div>
@@ -286,10 +291,10 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หาระยะทาง “สั้นที่สุด” บนผิว → optimization เชิงเรขาคณิต</li>
-          <li><b>ขนาด n?</b> เล็ก (มีแค่ 2 พีระมิด) → ปัญหาไม่ใช่เรื่องเวลา แต่คือ “จะแทนรูปทรง 3 มิติให้คำนวณง่ายอย่างไร”</li>
-          <li><b>โครงสร้าง?</b> การเดินบนผิวคือเส้นตรง เมื่อเรา “คลี่ (unfold)” หน้าของพีระมิดออกให้เป็นระนาบเดียว</li>
-          <li><b>คำใบ้?</b> จุด / ระยะทาง / รูปทรง → <b>เรขาคณิตเชิงคำนวณ</b></li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> วลี <span class="ca-q">“ระยะทางที่สั้นที่สุด”</span> → optimization แต่บริบทเป็น<b>เรขาคณิต</b> (เกี่ยวกับรูปทรง/ระยะ ไม่ใช่กราฟของโหนด)</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> โจทย์มีแค่ <span class="ca-q">2 พีระมิด</span> → ปัญหา<b>ไม่ใช่เรื่องความเร็ว</b> แต่เป็นเรื่อง “จะแทนรูปทรง 3 มิติยังไงให้คำนวณง่าย”</li>
+          <li><span class="s">ขั้น 3 · จับกุญแจในโจทย์</span> ประโยค <span class="ca-q">“เดินได้เฉพาะบนผิวของพีระมิดและบนพื้นราบ”</span> → บนผิวที่กางออกได้ เส้นทางสั้นสุดจะกลายเป็น<b>เส้นตรง</b>เมื่อเรา “คลี่ (unfold)” ผิวออกเป็นระนาบเดียว</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> มี จุด / ระยะทาง / รูปทรง → ตารางที่ 2 ชี้ไป <b>เรขาคณิตเชิงคำนวณ</b></li>
           <li class="ca-concl">→ สรุป: เรขาคณิต (หมวด <a href="../topics/convex-hull/">Convex Hull</a> / <a href="../topics/closest-pair/">Closest Pair</a>)</li>
         </ol>
       </div>
@@ -314,16 +319,16 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หา PLRR “ลำดับที่ n” ในเซตที่เรียงแล้ว (find k-th)</li>
-          <li><b>ขนาด n?</b> n ≤ 10⁹ → ลิสต์ทุกตัวไม่ได้ ต้อง “นับ” แล้วกระโดดข้าม</li>
-          <li><b>โครงสร้าง?</b> หา “อันดับที่ n ตามลำดับพจน์” → สร้างคำตอบทีละพจน์ โดยนับว่ามีกี่ตัวที่ขึ้นต้นด้วย prefix นี้</li>
-          <li><b>คำใบ้?</b> “นับจำนวนวิธี + ปัญหาย่อยซ้อนทับ + เดินตามอันดับ” → <b>DP</b></li>
-          <li class="ca-concl">→ สรุป: <a href="../topics/dp/">Dynamic Programming</a> (นับ + หา k-th)</li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> <span class="ca-q">“จงหา PLRR ที่อยู่ลำดับที่ n”</span> ในเซตที่เรียงไว้แล้ว → เป็นการ<b>หาอันดับที่ n (find k-th)</b></li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> <span class="ca-q">“1 ≤ n ≤ 10⁹”</span> — มหาศาล! การสร้างทุกตัวออกมาแล้วนับถึงตัวที่ n เป็นไปไม่ได้ → ต้อง <b>“นับเป็นบล็อก” แล้วกระโดดข้าม</b> ทีละก้อน</li>
+          <li><span class="s">ขั้น 3 · เทคนิคหา k-th</span> การหา “อันดับที่ n ตามลำดับพจน์” ทำโดยสร้างคำตอบทีละพจน์ + <b>นับว่ามีกี่ตัวที่ขึ้นต้นด้วย prefix นี้</b> (ถ้านับ &lt; n ก็ข้ามแล้วลด n; ถ้า ≥ n ก็เจาะลึกต่อ)</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> “นับจำนวนวิธี + ปัญหาย่อยซ้อนทับกัน” → ตารางที่ 2 ชี้ไป <b>DP</b></li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/dp/">Dynamic Programming</a> (นับ + เดินตามอันดับเพื่อหา k-th)</li>
         </ol>
       </div>
       <div class="ca-ex__sec ca-ex__sol">
         <div class="ca-ex__lbl">✅ เฉลย</div>
-        <p>คล้ายการหา “สตริงลำดับที่ n ตามพจน์” — สร้างลำดับที่ถูกสร้างทีละค่า ใช้ DP <b>นับจำนวน PLRR</b> ที่ continuation ขึ้นต้นด้วยค่าที่เลือกไว้ ถ้านับได้ &lt; n ก็ข้ามบล็อกนั้นแล้วลด n ลง ถ้า ≥ n ก็เจาะลงต่อ — เป็น DP นับ + เดินตามอันดับ (counting DP) ที่ซับซ้อนมาก จึงไม่มีทีมใดแก้ได้ในรอบนั้น</p>
+        <p>คล้ายการหา “สตริงลำดับที่ n ตามพจน์” — สร้างลำดับที่ถูกสร้างทีละค่า ใช้ DP <b>นับจำนวน PLRR</b> ที่ continuation ขึ้นต้นด้วยค่าที่เลือกไว้ ถ้านับได้ &lt; n ก็ข้ามบล็อกนั้นแล้วลด n ลง ถ้า ≥ n ก็เจาะลึกต่อ — เป็น DP นับ + เดินตามอันดับ (counting DP) ที่ซับซ้อนมาก จึงไม่มีทีมใดแก้ได้ในรอบนั้น</p>
       </div>
     </div>
 
@@ -338,9 +343,9 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> เปลี่ยนผังเริ่ม → ปลายได้ไหม (yes/no)</li>
-          <li><b>โครงสร้าง?</b> หลังเอียงครบทั้งแนวนอนและแนวตั้งอย่างน้อยอย่างละครั้ง ไทล์จะ “ชิดมุม” และการเอียงต่อ ๆ ไปคือการ<b>สลับตำแหน่งไทล์แบบวนซ้ำ (permutation)</b></li>
-          <li><b>คำใบ้?</b> “ทำการกระทำเดิมซ้ำ ๆ แล้วดูว่าวนกลับมาเป็นเป้าหมายไหม” = วงรอบของ permutation → <b>cycle detection</b></li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> เอาต์พุตเป็น <span class="ca-q">yes / no</span> → ปัญหา <b>เป็นไปได้ไหม (feasibility)</b></li>
+          <li><span class="s">ขั้น 2 · จับพฤติกรรมการกระทำ</span> ประโยค <span class="ca-q">“เอียงแล้วไทล์ทุกอันไถลจนติดขอบหรือชนไทล์อื่น”</span> → พอเอียงครบทั้งแนวนอน+แนวตั้ง ไทล์จะ “ชิดมุม” และการเอียงต่อ ๆ ไปกลายเป็นแค่<b>การสลับตำแหน่งไทล์เป็นวง (permutation)</b></li>
+          <li><span class="s">ขั้น 3 · จับคำใบ้เลือกอัลกอริทึม</span> “ทำการกระทำเดิมซ้ำ ๆ แล้วจะวนกลับมาเป็นเป้าหมายเมื่อไหร่” = วงรอบของ permutation → ตารางที่ 2 ชี้ไป <b>cycle detection</b></li>
           <li class="ca-concl">→ สรุป: <a href="../topics/floyds-cycle/">Cycle Detection</a> / <a href="../topics/permutations/">Permutation cycles</a></li>
         </ol>
       </div>
@@ -362,11 +367,12 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> จำนวนกดน้อยสุดให้ไฟทุกดวงแดง หรือ impossible → optimize/feasibility</li>
-          <li><b>ขนาด n?</b> l ≤ 2×10⁵ → ต้องเชิงเส้น</li>
-          <li><b>โครงสร้าง?</b> มองสี = เลข mod 3, กดปุ่ม i เป็นจำนวน xᵢ ครั้ง; ไฟแต่ละดวงคุมด้วยปุ่ม ≤ 2 ปุ่ม → สมการ xᵢ + xⱼ ≡ (ค่าที่ต้องเปลี่ยน) (mod 3) · มองปุ่ม = โหนด, ไฟ = เส้นเชื่อม → <b>กราฟ</b></li>
-          <li><b>คำใบ้?</b> “สมการต่อเนื่องกันใน component แล้ว propagate” → <b>BFS/DFS</b> บนแต่ละ connected component (พร้อมเลขคณิต mod 3)</li>
-          <li class="ca-concl">→ สรุป: <a href="../topics/bfs-dfs/">BFS / DFS</a> (สำรวจ component) + เลขคณิตมอดุลาร์</li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> <span class="ca-q">“กดปุ่มรวมน้อยที่สุด”</span> หรือ <span class="ca-q">impossible</span> → optimization + feasibility</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> <span class="ca-q">“1 ≤ l ≤ 2×10⁵”</span> → ต้องเป็นอัลกอริทึมเชิงเส้น (ตารางที่ 1)</li>
+          <li><span class="s">ขั้น 3 · แปลงให้เป็นเลข</span> สี <span class="ca-q">“แดง→เขียว→น้ำเงิน→แดง (วนสี)”</span> = บวกทีละ 1 แบบ <b>mod 3</b> → ให้ xᵢ = จำนวนครั้งที่กดปุ่ม i (เป็นตัวแปร mod 3)</li>
+          <li><span class="s">ขั้น 4 · จับกุญแจสำคัญ</span> ประโยค <span class="ca-q">“ไฟแต่ละดวงถูกควบคุมด้วยปุ่มไม่เกิน 2 ปุ่ม”</span> → ไฟ 1 ดวง = สมการของตัวแปร ≤ 2 ตัว → มอง <b>ปุ่ม = โหนด, ไฟ = เส้นเชื่อม</b> ก็จะได้กราฟ!</li>
+          <li><span class="s">ขั้น 5 · จับคำใบ้เลือกอัลกอริทึม</span> “แก้สมการต่อกันใน component แล้ว propagate” → <b>BFS/DFS</b> บนแต่ละ connected component</li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/bfs-dfs/">BFS / DFS</a> (สำรวจ component) + เลขคณิตมอดุลาร์ mod 3</li>
         </ol>
       </div>
       <div class="ca-ex__sec ca-ex__sol">
@@ -387,10 +393,10 @@
       <div class="ca-ex__sec">
         <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
         <ol class="ca-think">
-          <li><b>ถามอะไร?</b> หาสตริงผลลัพธ์ที่ “สั้นที่สุด” → optimization บนสตริง</li>
-          <li><b>ขนาด n?</b> ≤ 10⁵ → ต้อง O(n) หรือ O(n log n)</li>
-          <li><b>โครงสร้าง?</b> ลบ “สองสำเนา substring ติดกัน” ซ้ำ ๆ → ต้องวิเคราะห์โครงสร้างของสตริง (เช่น อักษรตัวแรก/ตัวสุดท้ายลบไม่ได้, ลบทุก occurrence ของอักษรตัวหนึ่งจนหมดไม่ได้)</li>
-          <li><b>คำใบ้?</b> ปัญหาเกี่ยวกับ substring ซ้ำ/โครงสร้างสตริง → <b>string algorithms</b></li>
+          <li><span class="s">ขั้น 1 · โจทย์ถามอะไร?</span> <span class="ca-q">“ผลลัพธ์ที่สั้นที่สุด”</span> → optimization บนสตริง</li>
+          <li><span class="s">ขั้น 2 · ขนาด n เท่าไร?</span> <span class="ca-q">“ยาวไม่เกิน 10⁵”</span> → ต้อง O(n) หรือ O(n log n)</li>
+          <li><span class="s">ขั้น 3 · โครงสร้างข้อมูล?</span> การลบ <span class="ca-q">“สองสำเนาของ substring เดียวกันวางติดกัน”</span> = ปัญหาเกี่ยวกับ pattern / โครงสร้างซ้ำในสตริง</li>
+          <li><span class="s">ขั้น 4 · จับคำใบ้เลือกอัลกอริทึม</span> substring ซ้ำ/โครงสร้างสตริง → ตารางที่ 2 ชี้ไป <b>string algorithms</b> (และใช้ข้อสังเกตเชิงโครงสร้างช่วย)</li>
           <li class="ca-concl">→ สรุป: <a href="../topics/string-algo/">String Algorithms</a> (วิเคราะห์โครงสร้างสตริง + greedy)</li>
         </ol>
       </div>
