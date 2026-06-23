@@ -30,6 +30,7 @@
         '</a>' +
         '<span class="navbar__spacer"></span>' +
         '<a class="navbar__link" href="' + link('roadmap/') + '">เส้นทางการเรียน</a>' +
+        '<a class="navbar__link" href="' + link('choose-algorithm/') + '">เลือกอัลกอริทึม</a>' +
         '<a class="navbar__link" href="' + link('index.html') + '">หน้าแรก</a>';
 
       if (hasSidebar) {

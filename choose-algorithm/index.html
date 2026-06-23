@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>วิธีเลือกอัลกอริทึม — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .ca-hero {
+      background: linear-gradient(135deg, var(--c-primary-dark), var(--c-accent));
+      color: #fff; padding: 44px 40px; text-align: center;
+    }
+    .ca-hero h1 { font-size: 2rem; margin: 0 0 10px; color: #fff; }
+    .ca-hero p { max-width: 720px; margin: 0 auto; opacity: .95; }
+    .ca-wrap { max-width: 1100px; margin: 28px auto; padding: 0 24px 80px; }
+
+    .card h2 { display: flex; align-items: center; gap: 8px; }
+    .ca-lead { color: var(--c-muted); margin: 0 0 16px; }
+
+    /* กรอบคิด 4 ขั้น */
+    .ca-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+    .ca-step { border: 1px solid var(--c-border); border-radius: var(--radius-sm); padding: 14px 16px; background: var(--c-surface-2); position: relative; }
+    .ca-step__n {
+      width: 30px; height: 30px; border-radius: 50%; background: var(--c-primary); color: #fff;
+      display: grid; place-items: center; font-weight: 700; font-family: var(--font-mono); margin-bottom: 8px;
+    }
+    .ca-step__t { font-weight: 600; margin-bottom: 4px; }
+    .ca-step__d { font-size: .88rem; color: var(--c-muted); }
+
+    /* ตาราง */
+    .ca-tablewrap { overflow-x: auto; }
+    .ca-table { border-collapse: collapse; width: 100%; font-size: .92rem; min-width: 520px; }
+    .ca-table th, .ca-table td { border: 1px solid var(--c-border); padding: 9px 12px; text-align: left; vertical-align: top; }
+    .ca-table th { background: var(--c-surface-2); color: var(--c-muted); font-weight: 700; white-space: nowrap; }
+    .ca-table td:first-child { font-family: var(--font-mono); white-space: nowrap; color: var(--c-primary-dark); font-weight: 600; }
+    .ca-table tr:hover { background: var(--c-primary-soft); }
+    .ca-table a { color: var(--c-primary); font-weight: 600; }
+    .ca-chip { display: inline-block; background: var(--c-primary-soft); color: var(--c-primary-dark); border-radius: 999px; padding: 1px 9px; font-size: .82rem; font-weight: 600; margin: 1px 0; }
+
+    /* ตัวอย่าง ICPC */
+    .ca-ex { border: 1px solid var(--c-border); border-left: 4px solid var(--c-accent); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 12px; background: var(--c-surface-2); }
+    .ca-ex__title { font-weight: 700; margin-bottom: 6px; }
+    .ca-ex__row { font-size: .92rem; margin: 3px 0; }
+    .ca-ex__sig { color: var(--c-muted); }
+    .ca-ex__arrow { color: var(--c-accent); font-weight: 700; }
+
+    .ca-tip { background: var(--c-primary-soft); border-radius: var(--radius); padding: 16px 20px; color: var(--c-primary-dark); }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+
+  <section class="ca-hero">
+    <h1>🧭 วิธีเลือกอัลกอริทึม</h1>
+    <p>อ่านโจทย์แล้วจับสัญญาณว่าต้องใช้อัลกอริทึมตระกูลไหน — ทักษะที่สำคัญที่สุดของการแข่ง/สัมภาษณ์ สำคัญกว่าการเขียนโค้ดเสียอีก</p>
+  </section>
+
+  <main class="ca-wrap">
+
+    <div class="card">
+      <h2>🪜 กรอบคิด 4 ขั้น (ใช้ได้กับทุกโจทย์)</h2>
+      <div class="ca-steps">
+        <div class="ca-step">
+          <div class="ca-step__n">1</div>
+          <div class="ca-step__t">โจทย์ถามอะไร?</div>
+          <div class="ca-step__d">หาค่าน้อย/มากสุด? · นับจำนวนวิธี? · เป็นไปได้ไหม/หาคำตอบสักอัน? · สร้าง/จัดเรียง?</div>
+        </div>
+        <div class="ca-step">
+          <div class="ca-step__n">2</div>
+          <div class="ca-step__t">ขนาดข้อมูล n เท่าไร?</div>
+          <div class="ca-step__d">บอก <b>เป้าหมาย Big-O</b> ที่ยอมรับได้ — สัญญาณที่ทรงพลังที่สุด (ดูตารางที่ 1)</div>
+        </div>
+        <div class="ca-step">
+          <div class="ca-step__n">3</div>
+          <div class="ca-step__t">ข้อมูลโครงสร้างแบบไหน?</div>
+          <div class="ca-step__d">กราฟ/เครือข่าย? · เรียงได้ไหม? · ต้นไม้? · ช่วงเวลา? · กริด? · ตัวเลข/จำนวนเฉพาะ? · จุด/รูปทรง?</div>
+        </div>
+        <div class="ca-step">
+          <div class="ca-step__n">4</div>
+          <div class="ca-step__t">มีคำใบ้อะไร?</div>
+          <div class="ca-step__d">keyword ในโจทย์ที่ชี้ตรง ๆ ไปยังตระกูลอัลกอริทึม (ดูตารางที่ 2)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📏 ตารางที่ 1 — ดู “ขนาด n” เดาเป้าหมาย Big-O</h2>
+      <p class="ca-lead">สมมติคอมพิวเตอร์ทำงานราว 10⁸ ครั้ง/วินาที — เห็นค่า n ก็เดาความซับซ้อนที่ต้องได้ และตัดอัลกอริทึมที่ช้าเกินทิ้งได้ทันที</p>
+      <div class="ca-tablewrap">
+        <table class="ca-table">
+          <tr><th>n สูงสุด</th><th>Big-O ที่ต้องได้</th><th>อัลกอริทึมที่ใช่</th></tr>
+          <tr><td>≤ 11</td><td>O(n!)</td><td><a href="../topics/permutations/">Permutations</a>, brute force</td></tr>
+          <tr><td>≤ 20–25</td><td>O(2ⁿ)</td><td><a href="../topics/backtracking/">Backtracking</a>, <a href="../topics/bit-manip/">Bitmask DP</a></td></tr>
+          <tr><td>≤ 100–500</td><td>O(n³)</td><td><a href="../topics/floyd-warshall/">Floyd-Warshall</a>, <a href="../topics/matrix-chain/">Matrix-Chain</a>, interval DP</td></tr>
+          <tr><td>≤ 2,000–5,000</td><td>O(n²)</td><td><a href="../topics/dp/">DP</a>, <a href="../topics/edit-distance/">Edit Distance</a></td></tr>
+          <tr><td>≤ 10⁵–10⁶</td><td>O(n log n)</td><td><a href="../topics/sorting-merge/">Sort</a>, <a href="../topics/binary-search/">Binary Search</a>, <a href="../topics/segment-tree/">Segment Tree</a>, <a href="../topics/dijkstra/">Dijkstra</a>, <a href="../topics/greedy/">Greedy</a></td></tr>
+          <tr><td>≤ 10⁷–10⁸</td><td>O(n)</td><td><a href="../topics/two-pointers/">Two Pointers</a>, <a href="../topics/sliding-window/">Sliding Window</a>, <a href="../topics/kadane/">Kadane</a></td></tr>
+          <tr><td>สูงมาก (10¹⁸)</td><td>O(log n) / สูตร</td><td><a href="../topics/mod-exp/">Modular Exp</a>, <a href="../topics/gcd/">GCD</a>, คณิตศาสตร์</td></tr>
+        </table>
+      </div>
+      <p class="ca-lead" style="margin-top:14px;margin-bottom:0">💡 เห็น <code>n ≤ 18</code> → แทบฟันธงเป็น bitmask/backtracking · เห็น <code>n ≤ 10⁶</code> → ห้ามคิด O(n²) เด็ดขาด</p>
+    </div>
+
+    <div class="card">
+      <h2>🎯 ตารางที่ 2 — ดู “โจทย์ถามอะไร + คำใบ้” เดาตระกูลอัลกอริทึม</h2>
+      <div class="ca-tablewrap">
+        <table class="ca-table">
+          <tr><th style="white-space:normal">สัญญาณในโจทย์</th><th>อัลกอริทึมที่น่าจะใช่</th></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“เส้นทาง/ต้นทุนน้อยที่สุด” บนเครือข่าย</td><td><a href="../topics/dijkstra/">Dijkstra</a> (น้ำหนักบวก) · <a href="../topics/bellman-ford/">Bellman-Ford</a> (ติดลบ) · <a href="../topics/bfs-dfs/">BFS</a> (ไร้น้ำหนัก)</td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“จำนวนก้าวน้อยสุดไปถึงสถานะหนึ่ง”</td><td><a href="../topics/bfs-dfs/">BFS</a> บน state graph</td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“มาก/น้อยสุด” + ปัญหาย่อยซ้อนทับ + “นับจำนวนวิธี”</td><td><a href="../topics/dp/">Dynamic Programming</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“เลือกแบบโลภแล้วน่าจะดีสุด” (เรียงแล้วคว้า)</td><td><a href="../topics/greedy/">Greedy</a> (ต้องพิสูจน์ greedy-choice)</td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“เป็นไปได้ไหม / หาคำตอบสักชุด” + ลองแล้วถอย</td><td><a href="../topics/backtracking/">Backtracking</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“ถามค่าในช่วง [l..r] + แก้ค่า” บ่อย ๆ</td><td><a href="../topics/segment-tree/">Segment Tree</a> · <a href="../topics/fenwick-tree/">Fenwick Tree</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“กลุ่ม / เชื่อมต่อกันไหม / component”</td><td><a href="../topics/union-find/">Union-Find</a> · <a href="../topics/bfs-dfs/">DFS/BFS</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“จุดที่ขาดแล้วกราฟแยก”</td><td><a href="../topics/articulation/">Articulation / Bridges</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“ค่ามากสุดที่ยังผ่านเงื่อนไข” (monotonic)</td><td><a href="../topics/binary-search/">Binary search on answer</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“คู่/ช่วงต่อเนื่องบนข้อมูลเรียงแล้ว”</td><td><a href="../topics/two-pointers/">Two Pointers</a> · <a href="../topics/sliding-window/">Sliding Window</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“หา pattern ในข้อความ”</td><td><a href="../topics/string-algo/">KMP</a> · <a href="../topics/rabin-karp/">Rabin-Karp</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“k-th น้อยสุด / มัธยฐาน”</td><td><a href="../topics/quickselect/">Quickselect</a> · <a href="../topics/heap/">Heap</a></td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">“สองผู้เล่นเล่นดีที่สุด / expected value ภายใต้การเลือกดีสุด”</td><td><a href="../topics/minimax/">Minimax</a> · ทฤษฎีเกม · value iteration</td></tr>
+          <tr><td style="white-space:normal;font-family:inherit;color:inherit;font-weight:400">จุด / เส้น / รูปหลายเหลี่ยม</td><td><a href="../topics/convex-hull/">Convex Hull</a> · <a href="../topics/closest-pair/">Closest Pair</a> · เรขาคณิต</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🏆 ลองใช้จริงกับโจทย์ ICPC World Finals</h2>
+      <p class="ca-lead">ไล่ตามกรอบคิด: เห็น “สัญญาณ” → สรุป “อัลกอริทึม”</p>
+
+      <div class="ca-ex">
+        <div class="ca-ex__title">🎲 Alea Iacta Est (2023)</div>
+        <div class="ca-ex__row ca-ex__sig">สัญญาณ: “ใช้จำนวนการทอย<b>น้อยที่สุด</b>ไปให้ถึงเป้าหมาย” + สถานะลูกเต๋ามีจำกัด (7ᵈ)</div>
+        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> “น้อยที่สุดไปถึงสถานะ” = shortest path · มองสถานะเป็นโหนด → <a href="../topics/dijkstra/">Dijkstra</a> / <a href="../topics/bellman-ford/">Bellman-Ford</a></div>
+      </div>
+
+      <div class="ca-ex">
+        <div class="ca-ex__title">🌉 Zoo Management (2022)</div>
+        <div class="ca-ex__row ca-ex__sig">สัญญาณ: ข้อมูลเป็นกราฟ + ต้องดู “ส่วนที่ขาดแล้วแยก / cycle”</div>
+        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> keyword bridge/cycle/component → <a href="../topics/articulation/">Articulation/Bridges</a> แล้วแก้ทีละ 2-edge-connected component</div>
+      </div>
+
+      <div class="ca-ex">
+        <div class="ca-ex__title">🔦 Bridging the Gap (2023)</div>
+        <div class="ca-ex__row ca-ex__sig">สัญญาณ: ถาม “เวลารวม<b>น้อยที่สุด</b>” (optimize) + ต้องเลือกว่าใครข้ามไป-กลับ + n เล็ก</div>
+        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> “เลือกแบบโลภดูจะดี แต่ต้องพิสูจน์” → <a href="../topics/greedy/">Greedy</a> ผสม <a href="../topics/dp/">DP</a> (greedy ล้วนอาจพลาด)</div>
+      </div>
+
+      <div class="ca-ex">
+        <div class="ca-ex__title">⏰ Jet Lag (2023)</div>
+        <div class="ca-ex__row ca-ex__sig">สัญญาณ: จัดตาราง “ช่วงเวลา” ให้ได้เงื่อนไข + n ใหญ่ (โค้ดสั้น)</div>
+        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> ปัญหา interval + เลือกทีละช่วง → <a href="../topics/greedy/">Greedy</a> (มักเรียงตามเวลาจบแล้วคว้า)</div>
+      </div>
+    </div>
+
+    <div class="ca-tip">
+      💡 <strong>เคล็ดลับนักแข่ง:</strong> อ่าน <b>constraint ก่อนอ่านโจทย์ให้จบด้วยซ้ำ</b> — ตัวเลข n บอกครึ่งหนึ่งของคำตอบแล้ว
+      จากนั้นค่อยจับ keyword ว่าโจทย์ “ถามอะไร” เพื่อเลือกตระกูลอัลกอริทึม
+    </div>
+
+  </main>
+
+  <script>window.DSA = { basePath: '../' };</script>
+  <script src="../assets/js/data/topics.js"></script>
+  <script src="../assets/js/core/ui.js"></script>
+  <script>DSA.UI.mountNavbar('navbar');</script>
+</body>
+</html>
