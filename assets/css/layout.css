@@ -57,9 +57,10 @@
   gap: 0;
   align-items: start;
 }
-/* ซ่อนเมนูซ้าย → main ขยายเต็มความกว้าง */
+/* ซ่อนเมนูซ้าย → main ขยายเต็มความกว้างจอ (ปลด max-width) */
 .shell.sidebar-hidden { grid-template-columns: 1fr; }
 .shell.sidebar-hidden .sidebar { display: none; }
+.shell.sidebar-hidden .main { max-width: none; }
 
 /* ---------- Sidebar ---------- */
 .sidebar {
