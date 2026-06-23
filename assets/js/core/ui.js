@@ -142,5 +142,103 @@
 
       el.innerHTML = html;
     },
+
+    /** สร้างการ์ด จุดเด่น/จุดด้อย/ความเหมาะสม จาก DSA.topicMeta[id] แล้ว append ลง .main */
+    renderTopicMeta: function (topicId) {
+      var meta = (DSA.topicMeta || {})[topicId];
+      var main = document.querySelector('.main');
+      if (!meta || !main || document.querySelector('.te-card')) return;
+
+      function list(items, cls) {
+        var ul = document.createElement('ul');
+        ul.className = 'te-list';
+        (items || []).forEach(function (t) {
+          var li = document.createElement('li');
+          li.className = cls;
+          li.textContent = t;
+          ul.appendChild(li);
+        });
+        return ul;
+      }
+
+      var card = document.createElement('div');
+      card.className = 'card te-card';
+
+      var h2 = document.createElement('h2');
+      h2.textContent = '⚖️ จุดเด่น · จุดด้อย · ความเหมาะสม';
+      card.appendChild(h2);
+
+      var grid = document.createElement('div');
+      grid.className = 'te-grid';
+
+      var colPros = document.createElement('div');
+      colPros.className = 'te-col te-col--pros';
+      var hPros = document.createElement('h3');
+      hPros.textContent = '✅ จุดเด่น';
+      colPros.appendChild(hPros);
+      colPros.appendChild(list(meta.pros, 'te-pro'));
+
+      var colCons = document.createElement('div');
+      colCons.className = 'te-col te-col--cons';
+      var hCons = document.createElement('h3');
+      hCons.textContent = '⚠️ จุดด้อย';
+      colCons.appendChild(hCons);
+      colCons.appendChild(list(meta.cons, 'te-con'));
+
+      grid.appendChild(colPros);
+      grid.appendChild(colCons);
+      card.appendChild(grid);
+
+      if (meta.use) {
+        var use = document.createElement('p');
+        use.className = 'te-use';
+        var b = document.createElement('strong');
+        b.textContent = '🎯 เหมาะกับงาน: ';
+        use.appendChild(b);
+        use.appendChild(document.createTextNode(meta.use));
+        card.appendChild(use);
+      }
+
+      main.appendChild(card);
+    },
   };
+
+  /* ---- auto-inject การ์ด topic meta บนหน้าหัวข้อ (ไม่ต้องแก้ทีละไฟล์) ---- */
+  (function autoTopicMeta() {
+    var m = /\/topics\/([^\/]+)\//.exec(location.pathname);
+    if (!m) return;                 // ไม่ใช่หน้าหัวข้อ (home/roadmap) ข้าม
+    var topicId = m[1];
+
+    // ใส่ style ครั้งเดียว
+    if (!document.getElementById('te-style')) {
+      var st = document.createElement('style');
+      st.id = 'te-style';
+      st.textContent =
+        '.te-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:6px 0 4px}' +
+        '@media(max-width:640px){.te-grid{grid-template-columns:1fr}}' +
+        '.te-col{border:1px solid var(--c-border);border-radius:var(--radius-sm);padding:12px 14px;background:var(--c-surface-2)}' +
+        '.te-col--pros{border-left:4px solid #16a34a}' +
+        '.te-col--cons{border-left:4px solid #f59e0b}' +
+        '.te-col h3{margin:0 0 8px;font-size:.98rem}' +
+        '.te-list{margin:0;padding-left:18px}' +
+        '.te-list li{margin:4px 0;font-size:.9rem;line-height:1.5}' +
+        '.te-use{margin:12px 0 0;background:var(--c-primary-soft);border-radius:var(--radius-sm);padding:10px 14px;font-size:.92rem;color:var(--c-primary-dark)}';
+      (document.head || document.documentElement).appendChild(st);
+    }
+
+    function go() {
+      // โหลด topic-meta.js ถ้ายังไม่มี แล้วค่อย render
+      if (DSA.topicMeta) { DSA.UI.renderTopicMeta(topicId); return; }
+      var s = document.createElement('script');
+      s.src = (DSA.basePath || '') + 'assets/js/data/topic-meta.js';
+      s.onload = function () { DSA.UI.renderTopicMeta(topicId); };
+      document.body.appendChild(s);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', go);
+    } else {
+      go();
+    }
+  })();
 })();
