@@ -40,12 +40,18 @@
     .ca-table a { color: var(--c-primary); font-weight: 600; }
     .ca-chip { display: inline-block; background: var(--c-primary-soft); color: var(--c-primary-dark); border-radius: 999px; padding: 1px 9px; font-size: .82rem; font-weight: 600; margin: 1px 0; }
 
-    /* ตัวอย่าง ICPC */
-    .ca-ex { border: 1px solid var(--c-border); border-left: 4px solid var(--c-accent); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 12px; background: var(--c-surface-2); }
-    .ca-ex__title { font-weight: 700; margin-bottom: 6px; }
-    .ca-ex__row { font-size: .92rem; margin: 3px 0; }
-    .ca-ex__sig { color: var(--c-muted); }
-    .ca-ex__arrow { color: var(--c-accent); font-weight: 700; }
+    /* ตัวอย่าง ICPC (3 ส่วน: โจทย์ → คิด → เฉลย) */
+    .ca-meta { color: var(--c-muted); font-weight: 400; font-size: .85rem; }
+    .ca-ex__sec { margin: 12px 0; }
+    .ca-ex__lbl { font-weight: 700; font-size: .92rem; margin-bottom: 5px; }
+    .ca-ex__sec > p { margin: 0; font-size: .93rem; line-height: 1.6; }
+    .ca-sample { font-family: var(--font-mono); font-size: .85rem; background: var(--c-surface-2); border: 1px solid var(--c-border); border-radius: var(--radius-sm); padding: 6px 10px; margin-top: 6px; color: var(--c-muted); }
+    .ca-think { margin: 0; padding-left: 20px; font-size: .92rem; }
+    .ca-think li { margin: 5px 0; line-height: 1.55; }
+    .ca-ex__sol { background: var(--c-primary-soft); border-radius: var(--radius-sm); padding: 11px 14px; }
+    .ca-ex__sol .ca-ex__lbl { color: var(--c-primary-dark); }
+    .ca-ex__sol p { color: var(--c-primary-dark); }
+    .ca-concl { color: var(--c-accent); font-weight: 700; }
 
     .ca-tip { background: var(--c-primary-soft); border-radius: var(--radius); padding: 16px 20px; color: var(--c-primary-dark); }
   </style>
@@ -129,30 +135,94 @@
 
     <div class="card">
       <h2>🏆 ลองใช้จริงกับโจทย์ ICPC World Finals</h2>
-      <p class="ca-lead">ไล่ตามกรอบคิด: เห็น “สัญญาณ” → สรุป “อัลกอริทึม”</p>
+      <p class="ca-lead">โจทย์จริงจากเวทีระดับโลก แต่ละข้อแสดง 3 ส่วน: <b>📋 เนื้อโจทย์ → 🧭 คิดเลือกอัลกอริทึม → ✅ เฉลย</b> · ตัวเลข “แก้ได้กี่ทีม” (จาก ~140 ทีม) = ตัวบอกความยาก</p>
+    </div>
 
-      <div class="ca-ex">
-        <div class="ca-ex__title">🎲 Alea Iacta Est (2023)</div>
-        <div class="ca-ex__row ca-ex__sig">สัญญาณ: “ใช้จำนวนการทอย<b>น้อยที่สุด</b>ไปให้ถึงเป้าหมาย” + สถานะลูกเต๋ามีจำกัด (7ᵈ)</div>
-        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> “น้อยที่สุดไปถึงสถานะ” = shortest path · มองสถานะเป็นโหนด → <a href="../topics/dijkstra/">Dijkstra</a> / <a href="../topics/bellman-ford/">Bellman-Ford</a></div>
+    <div class="card">
+      <h2>🔦 Bridging the Gap <span class="ca-meta">— ICPC WF 2023 · แก้ได้ 1 ทีมเดียว</span></h2>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">📋 เนื้อโจทย์</div>
+        <p>คน n คนต้องข้ามสะพานตอนกลางคืน สะพานรับน้ำหนักได้ครั้งละไม่เกิน c คน และมีไฟฉายเพียงอันเดียว (ต้องใช้ทุกครั้งที่ข้าม) กลุ่มที่ข้ามพร้อมกันต้องเดินช้าเท่าคนที่ช้าที่สุดในกลุ่ม จงหา<b>เวลารวมน้อยที่สุด</b>ให้ทุกคนข้ามสะพานได้</p>
+        <div class="ca-sample">ตัวอย่าง: 4 คน เวลาข้าม [1, 2, 5, 10], c = 2 → คำตอบ 17 นาที<br>(2 คนเร็วข้าม=2 · คนเร็วสุดกลับ=1 · 2 คนช้าข้าม=10 · คนเร็วรองกลับ=2 · 2 คนเร็วข้าม=2)</div>
       </div>
-
-      <div class="ca-ex">
-        <div class="ca-ex__title">🌉 Zoo Management (2022)</div>
-        <div class="ca-ex__row ca-ex__sig">สัญญาณ: ข้อมูลเป็นกราฟ + ต้องดู “ส่วนที่ขาดแล้วแยก / cycle”</div>
-        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> keyword bridge/cycle/component → <a href="../topics/articulation/">Articulation/Bridges</a> แล้วแก้ทีละ 2-edge-connected component</div>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
+        <ol class="ca-think">
+          <li><b>ถามอะไร?</b> หา “เวลารวม<u>น้อยที่สุด</u>” → ปัญหา optimization</li>
+          <li><b>ขนาด n?</b> n ≤ 10⁴ → รับ O(n²) ได้ ไม่ต้องรีบหาสูตร O(n)</li>
+          <li><b>โครงสร้าง?</b> ต้องตัดสินใจเป็นลำดับว่าใครข้ามไป/ใครพายไฟฉายกลับ — เหมือนเลือกแบบโลภ แต่ลำดับมีหลายแบบ</li>
+          <li><b>คำใบ้?</b> “เลือกกลุ่มข้ามแบบดีสุดแต่ละครั้ง” ส่งกลิ่น <b>greedy</b> — แต่ greedy ล้วนพิสูจน์ยากและพลาดได้ จึงต้องมี “สถานะ” มาช่วยคิด → <b>DP</b></li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/greedy/">Greedy</a> (โครงสร้างคำตอบ) + <a href="../topics/dp/">DP</a> (คำนวณต้นทุน)</li>
+        </ol>
       </div>
-
-      <div class="ca-ex">
-        <div class="ca-ex__title">🔦 Bridging the Gap (2023)</div>
-        <div class="ca-ex__row ca-ex__sig">สัญญาณ: ถาม “เวลารวม<b>น้อยที่สุด</b>” (optimize) + ต้องเลือกว่าใครข้ามไป-กลับ + n เล็ก</div>
-        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> “เลือกแบบโลภดูจะดี แต่ต้องพิสูจน์” → <a href="../topics/greedy/">Greedy</a> ผสม <a href="../topics/dp/">DP</a> (greedy ล้วนอาจพลาด)</div>
+      <div class="ca-ex__sec ca-ex__sol">
+        <div class="ca-ex__lbl">✅ เฉลย</div>
+        <p>ข้อสังเกต: การพายไฟฉาย<b>กลับ</b>ทำทีละ 1 คนเสมอ และการข้าม<b>ไป</b>มีแค่ไม่กี่รูปแบบ (เช่น เอา k คนช้าสุด + c−k คนเร็วสุดที่จะพายกลับทีหลัง) → ตั้ง DP บนสถานะ <code>(จำนวนคนช้าที่ข้ามไปแล้ว, จำนวนการพายกลับที่ “จ่ายล่วงหน้า” ไว้)</code> เนื่องจากไม่จำเป็นต้องสะสมการพายกลับเกิน n/c ครั้ง สถานะจึงเหลือ O(n²/c) — เร็วพอสำหรับ n=10⁴</p>
       </div>
+    </div>
 
-      <div class="ca-ex">
-        <div class="ca-ex__title">⏰ Jet Lag (2023)</div>
-        <div class="ca-ex__row ca-ex__sig">สัญญาณ: จัดตาราง “ช่วงเวลา” ให้ได้เงื่อนไข + n ใหญ่ (โค้ดสั้น)</div>
-        <div class="ca-ex__row"><span class="ca-ex__arrow">→</span> ปัญหา interval + เลือกทีละช่วง → <a href="../topics/greedy/">Greedy</a> (มักเรียงตามเวลาจบแล้วคว้า)</div>
+    <div class="card">
+      <h2>⏰ Jet Lag <span class="ca-meta">— ICPC WF 2023 · แก้ได้ 96 ทีม (ค่อนข้างง่าย)</span></h2>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">📋 เนื้อโจทย์</div>
+        <p>มีกิจกรรม n อย่างในงาน แต่ละอย่างเป็นช่วงเวลา [bᵢ, eᵢ] ที่คุณต้อง<b>ตื่นอยู่ตลอด</b> กติกาการนอน: ถ้านอน k นาที จะ “อิ่มตัว” (ห้ามนอน) อีก k นาที แล้วจึงใช้งานได้อีก k นาที (จะนอนหรือตื่นก็ได้) เริ่มที่นาที 0 ต้องนอนทันที จงหาตารางนอนที่ไม่พลาดกิจกรรมใดเลย หรือบอกว่า <code>impossible</code></p>
+      </div>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
+        <ol class="ca-think">
+          <li><b>ถามอะไร?</b> สร้างตาราง (construct) ที่ feasible หรือบอก impossible</li>
+          <li><b>ขนาด n?</b> n ≤ 2×10⁵ → ต้อง O(n) หรือ O(n log n) — DP หนัก ๆ ใช้ไม่ได้</li>
+          <li><b>โครงสร้าง?</b> เป็นปัญหาบน “ช่วงเวลา (interval)” เรียงตามเวลาอยู่แล้ว</li>
+          <li><b>คำใบ้?</b> interval + “เลือกช่วงนอนให้ตื่นได้นานที่สุด” = ลายเซ็นคลาสสิกของ <b>greedy</b></li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/greedy/">Greedy</a> (โค้ดสั้นมาก)</li>
+        </ol>
+      </div>
+      <div class="ca-ex__sec ca-ex__sol">
+        <div class="ca-ex__lbl">✅ เฉลย</div>
+        <p>เริ่มด้วยการ<b>ละเงื่อนไข “ห้ามนอนตอนอิ่มตัว” ไว้ก่อน</b> → นอนในช่วงว่างระหว่างกิจกรรม [eᵢ, bᵢ₊₁] แบบโลภเฉพาะเมื่อมันทำให้ตื่นได้นานขึ้น จากนั้นค่อยปรับช่วงนอนที่ติดกันให้เว้นระยะอิ่มตัวให้ถูก (เลื่อนจุดจบการนอนเป็นค่าเฉลี่ยของจุดเริ่มสองช่วงเมื่อจำเป็น) — ไอเดีย greedy ที่ถูกต้องทำให้เฉลยทีมสั้นสุดเพียง 669 ไบต์!</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🎲 Alea Iacta Est <span class="ca-meta">— ICPC WF 2023 · แก้ได้ 11 ทีม</span></h2>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">📋 เนื้อโจทย์</div>
+        <p>เล่นเกมด้วยลูกเต๋า d ลูก (d ≤ 6) แต่ละหน้ามีตัวอักษร ทอยแล้วอยากเรียงตัวอักษรบนสุดให้เป็น<b>คำในพจนานุกรม</b> (มี w คำ) ถ้าทำไม่ได้ก็เลือกลูกที่จะทอยใหม่ (reroll) บางลูกได้ จงหา<b>จำนวนครั้งการทอยที่คาดหวัง (expected) น้อยที่สุด</b> เมื่อเล่นด้วยกลยุทธ์ที่ดีที่สุด</p>
+      </div>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
+        <ol class="ca-think">
+          <li><b>ถามอะไร?</b> หาค่า expected “น้อยที่สุด” ภายใต้การเลือก reroll ที่ดีที่สุด → optimize + ตัดสินใจดีสุด</li>
+          <li><b>ขนาด n?</b> d ≤ 6 → จำนวนสถานะของลูกเต๋า ≈ 7ᵈ ≤ 7⁶ ≈ 118,000 (เล็กพอจะมองเป็นโหนดได้)</li>
+          <li><b>โครงสร้าง?</b> แต่ละ “สถานะของลูกเต๋าทั้งหมด” (แต่ละลูกโชว์เลขอะไร หรือกำลัง reroll) = โหนด; การทอย/reroll = การย้ายสถานะที่มีต้นทุนและความน่าจะเป็น</li>
+          <li><b>คำใบ้?</b> “ไปถึงสถานะเป้าหมาย (เป็นคำ) ด้วยต้นทุน<u>น้อยที่สุด</u>” = shortest path บนกราฟสถานะ</li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/dijkstra/">Dijkstra</a> / <a href="../topics/bellman-ford/">Bellman-Ford</a> (หรือ value iteration)</li>
+        </ol>
+      </div>
+      <div class="ca-ex__sec ca-ex__sol">
+        <div class="ca-ex__lbl">✅ เฉลย</div>
+        <p>มองสถานะเป็นเวกเตอร์ v ∈ {1..6, ∗}ᵈ โดย ∗ = ลูกที่กำลัง reroll · เป้าหมายคือ “fixed state” ที่จัดเป็นคำได้ · จาก fixed state เลือก reroll ลูกไหนก็ได้ (cost 0) ไปยัง “undetermined state” · จาก undetermined state การทอยให้ผลตามความน่าจะเป็น (เพิ่มจำนวนทอย +1) · expected cost ที่น้อยสุดจึงคือ shortest path บนกราฟนี้ → แก้ด้วย Dijkstra เวอร์ชันสำหรับ expected value (value iteration)</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🦓 Zoo Management <span class="ca-meta">— ICPC WF 2022 · แก้ได้ 15 ทีม</span></h2>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">📋 เนื้อโจทย์</div>
+        <p>สวนสัตว์มีคอก (node) เชื่อมกันด้วยอุโมงค์ (edge) ทุกคอกมีสัตว์อยู่เต็ม ย้ายสัตว์ได้โดยให้สัตว์หลายตัว<b>เดินไปตามอุโมงค์พร้อมกัน</b> (สัตว์เลื่อนไปคอกถัดไปตาม edge พร้อมกันหมด จึงไม่เจอกันในอุโมงค์ — สลับสองคอกที่ติดกันตรง ๆ ไม่ได้) ถาม: จัดสัตว์ให้เป็น<b>รูปแบบเป้าหมาย</b>ได้หรือไม่ (<code>possible</code> / ไม่ได้)</p>
+      </div>
+      <div class="ca-ex__sec">
+        <div class="ca-ex__lbl">🧭 คิดเลือกอัลกอริทึมทีละขั้น</div>
+        <ol class="ca-think">
+          <li><b>ถามอะไร?</b> เป็นไปได้ไหม (yes/no) ที่จะจัดสัตว์เป็น permutation เป้าหมาย</li>
+          <li><b>โครงสร้าง?</b> ข้อมูลคือ<b>กราฟ</b> และการย้าย = หมุนสัตว์ไปตาม cycle ของกราฟ</li>
+          <li><b>คำใบ้?</b> edge ที่<u>ไม่อยู่ในวงรอบ (cycle)</u> ใด ๆ เลย = bridge → สัตว์หมุนผ่านมันไม่ได้ จึง “ตัดทิ้ง” ได้ แล้วแยกปัญหาเป็นชิ้น ๆ</li>
+          <li class="ca-concl">→ สรุป: <a href="../topics/articulation/">Bridges / Articulation</a> ย่อยกราฟเป็น 2-edge-connected component แล้วแก้ทีละชิ้น</li>
+        </ol>
+      </div>
+      <div class="ca-ex__sec ca-ex__sol">
+        <div class="ca-ex__lbl">✅ เฉลย</div>
+        <p>ลบ bridge ทั้งหมดทิ้งได้เลย (ไม่มี cycle ผ่าน) เหลือเป็นปัญหาย่อยอิสระทีละ 2-edge-connected component · ถ้า component เป็น cycle เดี่ยว ๆ → เช็คว่าจัดเป็นเป้าหมายได้ไหมด้วยการเทียบสตริงแบบวน (<a href="../topics/string-algo/">string matching</a> เชิงเส้น) · ถ้า component มีหลาย cycle → พิสูจน์ได้ว่าสร้าง “ทุก permutation” หรือ “เฉพาะ even permutation” ได้ ตามโครงสร้าง</p>
       </div>
     </div>
 
