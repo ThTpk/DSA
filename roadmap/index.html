@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>เส้นทางการเรียน — DSA Visualizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/theme.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <style>
+    .rm-hero {
+      background: linear-gradient(135deg, var(--c-primary-dark), var(--c-accent));
+      color: #fff; padding: 44px 40px; text-align: center;
+    }
+    .rm-hero h1 { font-size: 2rem; margin: 0 0 10px; color: #fff; }
+    .rm-hero p { max-width: 680px; margin: 0 auto; opacity: .95; }
+    .rm-wrap { max-width: 1180px; margin: 28px auto; padding: 0 24px 80px; }
+
+    /* พื้นฐานร่วม */
+    .rm-prelude {
+      border: 1px dashed var(--c-primary);
+      background: var(--c-primary-soft);
+      border-radius: var(--radius); padding: 18px 22px; margin-bottom: 26px;
+    }
+    .rm-prelude__head { font-weight: 700; color: var(--c-primary-dark); font-size: 1.1rem; }
+    .rm-prelude__desc { margin: 4px 0 12px; color: var(--c-muted); font-size: .92rem; }
+
+    /* สองสาย */
+    .rm-tracks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; align-items: start; }
+    @media (max-width: 880px) { .rm-tracks { grid-template-columns: 1fr; } }
+
+    .rm-track {
+      border: 1px solid var(--c-border); border-radius: var(--radius);
+      background: var(--c-surface); overflow: hidden;
+    }
+    .rm-track--ds   { border-top: 4px solid #2563eb; }
+    .rm-track--algo { border-top: 4px solid #d97706; }
+    .rm-track__head { display: flex; gap: 12px; align-items: center; padding: 18px 20px 10px; }
+    .rm-track__icon { font-size: 1.8rem; }
+    .rm-track__title { margin: 0; font-size: 1.25rem; }
+    .rm-track--ds   .rm-track__title { color: #2563eb; }
+    .rm-track--algo .rm-track__title { color: #d97706; }
+    .rm-track__sub { margin: 2px 0 0; color: var(--c-muted); font-size: .86rem; }
+
+    /* ระดับแบบ timeline */
+    .rm-levels { padding: 8px 20px 22px; }
+    .rm-level { position: relative; display: flex; gap: 14px; padding: 12px 0; }
+    .rm-level:not(:last-child)::before {
+      content: ''; position: absolute; left: 15px; top: 40px; bottom: -6px;
+      width: 2px; background: var(--c-border);
+    }
+    .rm-level__badge {
+      flex: 0 0 32px; height: 32px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-family: var(--font-mono); color: #fff; z-index: 1;
+    }
+    .rm-track--ds   .rm-level__badge { background: #2563eb; }
+    .rm-track--algo .rm-level__badge { background: #d97706; }
+    .rm-level__body { flex: 1 1 auto; padding-top: 3px; }
+    .rm-level__title { font-weight: 600; color: var(--c-text); }
+    .rm-level__desc { color: var(--c-muted); font-size: .85rem; margin: 2px 0 9px; }
+
+    /* ชิปหัวข้อ */
+    .rm-chiprow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .rm-chip {
+      display: inline-block; padding: 5px 11px; border-radius: 999px;
+      border: 1px solid var(--c-border); background: var(--c-surface-2);
+      color: var(--c-text); font-size: .86rem; text-decoration: none; transition: .12s;
+    }
+    .rm-chip:hover { border-color: var(--c-primary); background: var(--c-primary-soft); text-decoration: none; transform: translateY(-1px); }
+    .rm-chip.is-planned { opacity: .6; cursor: default; }
+    .rm-arrow { color: var(--c-muted); font-size: .8rem; user-select: none; }
+  </style>
+</head>
+<body>
+  <header id="navbar"></header>
+
+  <section class="rm-hero">
+    <h1>🗺️ เส้นทางการเรียน DSA</h1>
+    <p>ลำดับการเรียนรู้ที่แนะนำ ไล่จากง่ายไปยาก แยกเป็น 2 สายชัดเจน — เรียนตามหมายเลขระดับจากบนลงล่าง</p>
+  </section>
+
+  <main class="rm-wrap">
+    <div id="roadmap"></div>
+  </main>
+
+  <script>window.DSA = { basePath: '../' };</script>
+  <script src="../assets/js/data/topics.js"></script>
+  <script src="../assets/js/data/learning-path.js"></script>
+  <script src="../assets/js/core/ui.js"></script>
+  <script>
+    DSA.UI.mountNavbar('navbar');
+    DSA.UI.mountRoadmap('roadmap');
+  </script>
+</body>
+</html>

@@ -43,10 +43,23 @@
       background: var(--c-primary-soft);
       border-radius: var(--radius);
       padding: 16px 20px;
-      margin-bottom: 28px;
+      margin-bottom: 12px;
       color: var(--c-primary-dark);
       font-size: .95rem;
     }
+    .roadmap-cta {
+      display: block;
+      background: linear-gradient(135deg, var(--c-primary-dark), var(--c-accent));
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      font-size: .95rem;
+      text-decoration: none;
+      transition: .15s;
+    }
+    .roadmap-cta:hover { text-decoration: none; transform: translateY(-2px); filter: brightness(1.05); }
+    .roadmap-cta u { text-underline-offset: 3px; }
   </style>
 </head>
 <body>
@@ -62,6 +75,9 @@
       💡 <strong>วิธีใช้:</strong> เลือกหัวข้อด้านล่าง แล้วกดปุ่ม <strong>เล่น</strong> เพื่อดูภาพเคลื่อนไหว
       หรือกด <strong>เดิน</strong> เพื่อก้าวทีละขั้น ปรับความเร็วและใส่ข้อมูลเองได้
     </div>
+    <a class="roadmap-cta" href="roadmap/index.html">
+      🗺️ <strong>ไม่รู้จะเริ่มตรงไหน?</strong> ดู <u>เส้นทางการเรียนแบบเรียงลำดับ</u> (แยกสาย Data Structure / Algorithm) →
+    </a>
     <div id="course-map"></div>
   </main>
 

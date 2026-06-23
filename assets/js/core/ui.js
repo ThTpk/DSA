@@ -24,6 +24,7 @@
           '<span class="navbar__logo">⚙️</span> DSA Visualizer' +
         '</a>' +
         '<span class="navbar__spacer"></span>' +
+        '<a class="navbar__link" href="' + link('roadmap/') + '">เส้นทางการเรียน</a>' +
         '<a class="navbar__link" href="' + link('index.html') + '">หน้าแรก</a>';
     },
 
@@ -74,6 +75,71 @@
         });
         html += '</div></div>';
       });
+      el.innerHTML = html;
+    },
+
+    /** วางหน้า "เส้นทางการเรียน" (roadmap) จาก learning-path.js */
+    mountRoadmap: function (elId) {
+      var el = document.getElementById(elId);
+      if (!el || !DSA.learningPath) return;
+
+      // สร้างตารางค้นหา id -> {title, path, status}
+      var lookup = {};
+      DSA.sections.forEach(function (sec) {
+        sec.items.forEach(function (it) { lookup[it.id] = it; });
+      });
+
+      // วาดชิปหัวข้อแบบมีลำดับ (มีลูกศรคั่น)
+      function chips(ids) {
+        var out = '';
+        ids.forEach(function (id, i) {
+          var it = lookup[id];
+          if (!it) return;
+          if (i > 0) out += '<span class="rm-arrow">→</span>';
+          if (it.status === 'ready') {
+            out += '<a class="rm-chip" href="' + link(it.path) + '">' + it.title + '</a>';
+          } else {
+            out += '<span class="rm-chip is-planned">' + it.title +
+                   '<span class="badge-soon">เร็วๆ นี้</span></span>';
+          }
+        });
+        return out;
+      }
+
+      var p = DSA.learningPath.prelude;
+      var html = '';
+
+      // พื้นฐานร่วม
+      html += '<div class="rm-prelude">' +
+                '<div class="rm-prelude__head">🚩 ' + p.title + '</div>' +
+                '<p class="rm-prelude__desc">' + p.desc + '</p>' +
+                '<div class="rm-chiprow">' + chips(p.items) + '</div>' +
+              '</div>';
+
+      // สองสาย
+      html += '<div class="rm-tracks">';
+      DSA.learningPath.tracks.forEach(function (track) {
+        html += '<section class="rm-track rm-track--' + track.id + '">';
+        html += '<header class="rm-track__head">' +
+                  '<span class="rm-track__icon">' + track.icon + '</span>' +
+                  '<div><h2 class="rm-track__title">' + track.title + '</h2>' +
+                  '<p class="rm-track__sub">' + track.subtitle + '</p></div>' +
+                '</header>';
+        html += '<div class="rm-levels">';
+        track.levels.forEach(function (lv) {
+          html += '<div class="rm-level">' +
+                    '<div class="rm-level__badge">' + lv.n + '</div>' +
+                    '<div class="rm-level__body">' +
+                      '<div class="rm-level__title">' + lv.title + '</div>' +
+                      '<div class="rm-level__desc">' + lv.desc + '</div>' +
+                      '<div class="rm-chiprow">' + chips(lv.items) + '</div>' +
+                    '</div>' +
+                  '</div>';
+        });
+        html += '</div></section>';
+      });
+      html += '</div>';
+
       el.innerHTML = html;
     },
   };
